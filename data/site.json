@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "title": "크랙 확프 보관소",
+  "issueNewUrl": "",
+  "repositoryUrl": "",
+  "staleAfterDays": 120,
+  "heroMedia": {
+    "enabled": false,
+    "imageUrl": "",
+    "alt": "",
+    "creditUrl": "",
+    "creditLabel": ""
+  },
+  "assistant": {
+    "name": "모아",
+    "role": "확프 추천 도우미"
+  }
+}
