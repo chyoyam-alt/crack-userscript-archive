@@ -16,18 +16,21 @@
   }
   function badge(text, type) { return create('span', `badge${type ? ` badge--${type}` : ''}`, text); }
 
-  function installDetailDialogScrollFix() {
-    if (document.getElementById('detail-dialog-scroll-fix')) return;
+  function installResponsiveDialogFixes() {
+    if (document.getElementById('responsive-dialog-fixes')) return;
     const style = document.createElement('style');
-    style.id = 'detail-dialog-scroll-fix';
+    style.id = 'responsive-dialog-fixes';
     style.textContent = `
       html.detail-dialog-open,
       body.detail-dialog-open {
         overflow: hidden !important;
         overscroll-behavior: none;
       }
+
       #detailDialog.dialog--detail {
+        height: calc(100vh - 20px) !important;
         height: calc(100dvh - 20px) !important;
+        max-height: calc(100vh - 20px) !important;
         max-height: calc(100dvh - 20px) !important;
       }
       #detailDialog.dialog--detail[open] {
@@ -39,16 +42,198 @@
         min-height: 0;
         overflow-y: auto;
         overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
         scrollbar-gutter: stable;
       }
-      @media (max-width: 620px) {
-        #detailDialog.dialog--detail {
-          inset: auto 0 0 0 !important;
-          width: 100% !important;
-          height: min(92dvh, 920px) !important;
-          max-height: 92dvh !important;
+
+      @media (max-width: 700px) {
+        html, body {
+          max-width: 100%;
+          overflow-x: hidden;
+        }
+
+        .app-shell {
+          width: calc(100% - 16px) !important;
+          padding-top: 6px;
+        }
+
+        .site-header {
+          grid-template-columns: minmax(0, 1fr) auto !important;
+          min-height: 0;
+          padding: 8px !important;
+          row-gap: 6px;
+        }
+        .brand {
+          min-width: 0;
+        }
+        .brand > span:last-child {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .site-nav {
+          display: flex !important;
+          grid-column: 1 / -1;
+          width: 100%;
+          padding-top: 6px;
+          overflow-x: auto;
+          overscroll-behavior-x: contain;
+          border-top: 1px solid var(--line);
+          scrollbar-width: none;
+        }
+        .site-nav::-webkit-scrollbar {
+          display: none;
+        }
+        .site-nav button {
+          flex: 0 0 auto;
+          min-height: 40px;
+          padding: 0 10px;
+        }
+        .theme-toggle {
+          width: 44px;
+          height: 44px;
+          margin-left: 0;
+        }
+
+        .hero {
+          padding-top: 44px !important;
+        }
+        .control-panel {
+          position: relative !important;
+          top: auto !important;
+        }
+        .card-grid {
+          grid-template-columns: 1fr !important;
+        }
+        .script-card {
+          min-height: 0 !important;
+        }
+        .script-card h3 {
+          font-size: 20px !important;
+          overflow-wrap: anywhere;
+        }
+        .script-card > p {
+          font-size: 12px !important;
+        }
+        .card-select,
+        .icon-button,
+        .button {
+          min-height: 44px;
+        }
+        .card-select {
+          height: 44px;
+        }
+
+        .dialog {
+          inset: 6px !important;
+          width: auto !important;
+          max-width: none !important;
+          height: auto !important;
+          max-height: none !important;
           margin: 0 !important;
-          border-radius: 22px 22px 0 0 !important;
+          border-radius: 10px !important;
+        }
+        .dialog[open]:not(.dialog--detail):not(.dialog--ai-recommend) {
+          display: flex;
+          flex-direction: column;
+        }
+        .dialog__header {
+          flex: 0 0 auto;
+          min-height: 0 !important;
+          padding: 14px 14px 11px !important;
+        }
+        .dialog__header > div {
+          min-width: 0;
+        }
+        .dialog__header h2 {
+          margin-top: 4px !important;
+          font-size: clamp(20px, 6.5vw, 28px) !important;
+          line-height: 1.14;
+          overflow-wrap: anywhere;
+        }
+        .dialog__footer {
+          flex: 0 0 auto;
+          padding: 10px 12px calc(10px + env(safe-area-inset-bottom)) !important;
+        }
+        .dialog__content,
+        .wizard-form {
+          flex: 1 1 auto;
+          min-height: 0;
+          overflow-y: auto;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
+        }
+        #selectionDialog .selection-list,
+        #queueDialog .queue-list {
+          flex: 1 1 auto;
+          min-height: 0;
+          max-height: none;
+          overflow-y: auto;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        #detailDialog.dialog--detail {
+          inset: 6px !important;
+          width: auto !important;
+          height: auto !important;
+          max-height: none !important;
+          border-radius: 10px !important;
+        }
+        #detailDialog.dialog--detail[open] {
+          display: grid;
+          grid-template-rows: auto minmax(0, 1fr) auto;
+        }
+        #detailDialog.dialog--detail .dialog__header h2 {
+          font-size: clamp(22px, 7vw, 30px) !important;
+        }
+        #detailDialog.dialog--detail .dialog__content {
+          padding: 0 16px 20px !important;
+        }
+        #detailDialog .detail-cover {
+          min-height: 220px;
+          margin-left: -16px;
+          margin-right: -16px;
+        }
+        #detailDialog .detail-meta {
+          grid-template-columns: 1fr;
+        }
+
+        .dialog__footer--spread {
+          align-items: stretch;
+          flex-direction: column;
+        }
+        .dialog__footer-group {
+          display: grid !important;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          width: 100% !important;
+        }
+        .dialog__footer-group .button {
+          width: 100%;
+        }
+
+        .selection-bar {
+          width: calc(100% - 16px) !important;
+          bottom: max(8px, env(safe-area-inset-bottom)) !important;
+        }
+        .ai-launcher {
+          right: 8px !important;
+          bottom: max(8px, env(safe-area-inset-bottom)) !important;
+        }
+        .dialog--ai-recommend {
+          inset: 6px !important;
+          width: auto !important;
+          height: auto !important;
+          max-height: none !important;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .hero h1 {
+          font-size: clamp(42px, 14vw, 52px) !important;
+        }
+        .dialog__footer-group {
+          grid-template-columns: 1fr;
         }
       }
     `;
@@ -65,7 +250,7 @@
     dialog.addEventListener('close', syncScrollLock);
     syncScrollLock();
   }
-  installDetailDialogScrollFix();
+  installResponsiveDialogFixes();
 
   function renderCards(items) {
     const grid = document.getElementById('cardGrid');
@@ -110,9 +295,9 @@
     status.dataset.status = extension.status;
     statuses.append(status);
     if (extension.originalSource?.url) {
-      const originalMark = badge('원본 링크', 'accent');
-      originalMark.classList.add('original-source-mark');
-      statuses.append(originalMark);
+      const originalSourceBadge = badge('원본 링크', 'accent');
+      originalSourceBadge.classList.add('original-source-mark');
+      statuses.append(originalSourceBadge);
     }
     if (!extension.installUrl) statuses.append(badge('링크 미등록', 'warning'));
     if (extension.stale) statuses.append(badge('재확인 필요', 'warning'));
@@ -172,7 +357,6 @@
     status.dataset.status = extension.status;
     const content = document.getElementById('detailContent');
     content.replaceChildren();
-
     const cover = coverMedia(extension);
     if (cover) content.append(cover);
     content.append(
