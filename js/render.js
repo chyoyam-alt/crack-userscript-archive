@@ -278,7 +278,7 @@
   }
   function historyList(history) {
     const list = create('ul', 'history-list');
-    [...history].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '').localeCompare(String(a.date || '')))).slice(0, 10).forEach((item) => {
+    [...history].sort((a, b) => String(b.date || '').localeCompare(String(a.date || ''))).slice(0, 10).forEach((item) => {
       const li = create('li', 'history-item');
       li.append(create('strong', '', item.version ? `v${item.version}` : '업데이트'), create('small', '', item.date || '날짜 없음'), create('div', '', item.note || ''));
       list.append(li);
