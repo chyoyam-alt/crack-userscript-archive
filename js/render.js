@@ -58,7 +58,11 @@
     const status = create('span', 'status-badge', labels.status[extension.status]);
     status.dataset.status = extension.status;
     statuses.append(status);
-    if (extension.originalSource?.url) statuses.append(badge('원본 링크', 'accent')).lastChild.classList.add('original-source-mark');
+    if (extension.originalSource?.url) {
+      const originalSourceBadge = badge('원본 링크', 'accent');
+      originalSourceBadge.classList.add('original-source-mark');
+      statuses.append(originalSourceBadge);
+    }
     if (!extension.installUrl) statuses.append(badge('링크 미등록', 'warning'));
     if (extension.stale) statuses.append(badge('재확인 필요', 'warning'));
     top.append(statuses, platformBadge(extension));
@@ -117,7 +121,6 @@
     status.dataset.status = extension.status;
     const content = document.getElementById('detailContent');
     content.replaceChildren();
-
     const cover = coverMedia(extension);
     if (cover) content.append(cover);
     content.append(
