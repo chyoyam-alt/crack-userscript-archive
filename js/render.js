@@ -16,6 +16,57 @@
   }
   function badge(text, type) { return create('span', `badge${type ? ` badge--${type}` : ''}`, text); }
 
+  function installDetailDialogScrollFix() {
+    if (document.getElementById('detail-dialog-scroll-fix')) return;
+    const style = document.createElement('style');
+    style.id = 'detail-dialog-scroll-fix';
+    style.textContent = `
+      html.detail-dialog-open,
+      body.detail-dialog-open {
+        overflow: hidden !important;
+        overscroll-behavior: none;
+      }
+      #detailDialog.dialog--detail {
+        height: calc(100dvh - 20px) !important;
+        max-height: calc(100dvh - 20px) !important;
+      }
+      #detailDialog.dialog--detail[open] {
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+      }
+      #detailDialog.dialog--detail .dialog__content {
+        height: auto !important;
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-gutter: stable;
+      }
+      @media (max-width: 620px) {
+        #detailDialog.dialog--detail {
+          inset: auto 0 0 0 !important;
+          width: 100% !important;
+          height: min(92dvh, 920px) !important;
+          max-height: 92dvh !important;
+          margin: 0 !important;
+          border-radius: 22px 22px 0 0 !important;
+        }
+      }
+    `;
+    document.head.append(style);
+
+    const dialog = document.getElementById('detailDialog');
+    if (!dialog) return;
+    const syncScrollLock = () => {
+      const isOpen = dialog.hasAttribute('open');
+      document.documentElement.classList.toggle('detail-dialog-open', isOpen);
+      document.body.classList.toggle('detail-dialog-open', isOpen);
+    };
+    new MutationObserver(syncScrollLock).observe(dialog, { attributes: true, attributeFilter: ['open'] });
+    dialog.addEventListener('close', syncScrollLock);
+    syncScrollLock();
+  }
+  installDetailDialogScrollFix();
+
   function renderCards(items) {
     const grid = document.getElementById('cardGrid');
     const empty = document.getElementById('emptyState');
@@ -59,9 +110,9 @@
     status.dataset.status = extension.status;
     statuses.append(status);
     if (extension.originalSource?.url) {
-      const originalSourceBadge = badge('원본 링크', 'accent');
-      originalSourceBadge.classList.add('original-source-mark');
-      statuses.append(originalSourceBadge);
+      const originalMark = badge('원본 링크', 'accent');
+      originalMark.classList.add('original-source-mark');
+      statuses.append(originalMark);
     }
     if (!extension.installUrl) statuses.append(badge('링크 미등록', 'warning'));
     if (extension.stale) statuses.append(badge('재확인 필요', 'warning'));
@@ -121,6 +172,7 @@
     status.dataset.status = extension.status;
     const content = document.getElementById('detailContent');
     content.replaceChildren();
+
     const cover = coverMedia(extension);
     if (cover) content.append(cover);
     content.append(
@@ -226,7 +278,7 @@
   }
   function historyList(history) {
     const list = create('ul', 'history-list');
-    [...history].sort((a, b) => String(b.date || '').localeCompare(String(a.date || ''))).slice(0, 10).forEach((item) => {
+    [...history].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '').localeCompare(String(a.date || '')))).slice(0, 10).forEach((item) => {
       const li = create('li', 'history-item');
       li.append(create('strong', '', item.version ? `v${item.version}` : '업데이트'), create('small', '', item.date || '날짜 없음'), create('div', '', item.note || ''));
       list.append(li);
