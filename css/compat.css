@@ -59,6 +59,16 @@ html.detail-dialog-open,body.detail-dialog-open{overflow:hidden!important;oversc
 .choice-card input:hover+span{border-color:var(--ink);color:var(--ink)}
 .choice-card input:checked+span{border-color:var(--accent);background:var(--accent-weak);color:var(--accent)}
 
+.wizard-installed-help{margin:0 0 9px;font-size:11px;line-height:1.55;color:var(--muted)}
+.wizard-installed-details{border:1px solid var(--line-2);background:var(--panel-2)}
+.wizard-installed-details summary{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:42px;padding:10px 38px 10px 12px;list-style:none;cursor:pointer;font:700 11px var(--mono);color:var(--ink-2);transition:background .18s,color .18s}
+.wizard-installed-details summary::-webkit-details-marker{display:none}
+.wizard-installed-details summary::after{content:"＋";position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--muted)}
+.wizard-installed-details[open] summary{border-bottom:1px solid var(--line-2);background:var(--accent-weak);color:var(--ink)}
+.wizard-installed-details[open] summary::after{content:"−"}
+.wizard-installed-count{font-weight:500;color:var(--muted);white-space:nowrap}
+.wizard-installed-list{display:flex;flex-wrap:wrap;gap:7px;padding:11px;max-height:220px;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+
 .selection-item,.queue-item,.warning-item,.queue-current,.queue-progress{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid var(--line-2);background:var(--panel-2)}
 .selection-item__body,.queue-item__body,.warning-item__body{display:flex;flex:1;min-width:0;flex-direction:column;gap:4px}
 .selection-item__body small,.queue-item__body small{font-size:11px;color:var(--muted);overflow-wrap:anywhere}
@@ -117,6 +127,7 @@ body.ai-helper-open .selbar{z-index:55}
   .ai-recommend-item{grid-template-columns:auto minmax(0,1fr)}
   .ai-recommend-item__actions{grid-column:2;flex-direction:row}
   #aiRecommendDialog{max-height:none}
+  .wizard-installed-list{max-height:180px}
 }
 @media(max-width:380px){
   .dialog__foot-group{grid-template-columns:1fr}
