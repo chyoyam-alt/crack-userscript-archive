@@ -5,6 +5,7 @@
   const THEME_KEY = 'crack-archive:theme:v1';
 
   async function init() {
+    installCatalogEnhancementStyles();
     bindStaticEvents();
     NS.aiRecommend.init();
     NS.state.loadSelected();
@@ -28,6 +29,84 @@
     } catch (error) {
       showFatalError(error.message);
     }
+  }
+
+  function installCatalogEnhancementStyles() {
+    if (document.getElementById('catalog-enhancement-styles')) return;
+    const style = document.createElement('style');
+    style.id = 'catalog-enhancement-styles';
+    style.textContent = `
+      .script-card.is-recommended {
+        border-color: color-mix(in srgb, var(--acid) 58%, var(--line));
+      }
+      .script-card.is-recommended::before {
+        background: linear-gradient(to bottom, var(--acid), var(--accent));
+        transform: scaleY(1);
+      }
+      .recommendation-badge {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        gap: 6px;
+        color: color-mix(in srgb, var(--text) 78%, var(--acid-deep));
+        border: 1px solid color-mix(in srgb, var(--acid) 68%, var(--line));
+        background: color-mix(in srgb, var(--acid-soft) 82%, var(--surface-solid));
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--acid) 8%, transparent);
+      }
+      .recommendation-badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        flex: 0 0 auto;
+        background: var(--acid);
+        box-shadow: 0 0 0 0 color-mix(in srgb, var(--acid) 40%, transparent);
+        animation: recommendation-dot 2.6s ease-in-out infinite;
+      }
+      .recommendation-badge::after {
+        content: "";
+        position: absolute;
+        inset: -40% auto -40% -36%;
+        z-index: -1;
+        width: 28%;
+        transform: skewX(-18deg);
+        background: linear-gradient(90deg, transparent, color-mix(in srgb, white 52%, transparent), transparent);
+        animation: recommendation-sheen 4.8s 1.2s ease-in-out infinite;
+      }
+      @keyframes recommendation-dot {
+        50% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--acid) 0%, transparent); transform: scale(.82); }
+      }
+      @keyframes recommendation-sheen {
+        0%, 68% { left: -36%; opacity: 0; }
+        74% { opacity: .75; }
+        88%, 100% { left: 112%; opacity: 0; }
+      }
+      .card-source-link {
+        text-decoration: none;
+        cursor: pointer;
+        transition: color .18s ease, border-color .18s ease, background .18s ease;
+      }
+      .card-source-link:hover {
+        color: var(--text);
+        border-color: var(--accent);
+        background: color-mix(in srgb, var(--accent-soft) 80%, var(--surface-solid));
+      }
+      .detail-original-button {
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      @media (max-width: 700px) {
+        #detailDialog .detail-original-button {
+          grid-column: 1 / -1;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .recommendation-badge::before,
+        .recommendation-badge::after {
+          animation: none !important;
+        }
+      }
+    `;
+    document.head.append(style);
   }
 
   function bindStaticEvents() {
@@ -135,11 +214,54 @@
       return !filters.query || NS.catalog.getSearchText(extension).includes(filters.query);
     });
     const sort = filters.sort || 'recommended';
+    if (sort === 'recommended') {
+      result.sort((a, b) => Number(isRecommended(b)) - Number(isRecommended(a))
+        || String(b.updatedAt || b.lastTestedAt || '').localeCompare(String(a.updatedAt || a.lastTestedAt || ''))
+        || a.name.localeCompare(b.name, 'ko'));
+    }
     if (sort === 'name') result.sort((a, b) => a.name.localeCompare(b.name, 'ko'));
     if (sort === 'updated') result.sort((a, b) => String(b.updatedAt || b.lastTestedAt || '').localeCompare(String(a.updatedAt || a.lastTestedAt || '')) || a.name.localeCompare(b.name, 'ko'));
     NS.state.value.filtered = result;
     NS.render.renderCards(result);
+    decorateCatalogCards(result);
     animateScan();
+  }
+
+  function isRecommended(extension) {
+    return Boolean(extension?.recommendation?.enabled);
+  }
+
+  function decorateCatalogCards(items) {
+    items.forEach((extension) => {
+      const card = document.querySelector(`#cardGrid .script-card[data-id="${CSS.escape(extension.id)}"]`);
+      if (!card) return;
+      const statuses = card.querySelector('.card-status-row');
+
+      card.classList.toggle('is-recommended', isRecommended(extension));
+      if (isRecommended(extension) && statuses && !statuses.querySelector('.recommendation-badge')) {
+        const badge = document.createElement('span');
+        badge.className = 'badge recommendation-badge';
+        badge.textContent = extension.recommendation?.label || '추천';
+        badge.setAttribute('aria-label', `${badge.textContent} 확프`);
+        statuses.prepend(badge);
+      }
+
+      if (extension.originalSource?.url && statuses) {
+        const existing = statuses.querySelector('.original-source-mark');
+        const link = document.createElement('a');
+        link.className = 'badge badge--accent original-source-mark card-source-link';
+        link.href = extension.originalSource.url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = '원문 보기 ↗';
+        link.setAttribute('aria-label', `${extension.name} 원문 새 탭에서 열기`);
+        link.addEventListener('click', (event) => event.stopPropagation());
+        link.addEventListener('pointerdown', (event) => event.stopPropagation());
+        link.addEventListener('keydown', (event) => event.stopPropagation());
+        if (existing) existing.replaceWith(link);
+        else statuses.append(link);
+      }
+    });
   }
 
   function animateScan() {
@@ -162,14 +284,43 @@
     if (!extension) return;
     NS.state.value.detailId = id;
     NS.render.renderDetail(extension);
+    syncDetailOriginalButton(extension);
     const dialog = document.getElementById('detailDialog');
     if (!dialog.open) dialog.showModal();
+  }
+
+  function syncDetailOriginalButton(extension) {
+    const group = document.querySelector('#detailDialog .dialog__footer-group');
+    if (!group) return;
+    let button = document.getElementById('detailOriginalButton');
+    if (!button) {
+      button = document.createElement('a');
+      button.id = 'detailOriginalButton';
+      button.className = 'button button--ghost detail-original-button';
+      button.target = '_blank';
+      button.rel = 'noopener noreferrer';
+      group.insertBefore(button, document.getElementById('detailSelectButton'));
+    }
+    const url = extension?.originalSource?.url || '';
+    button.hidden = !url;
+    if (!url) {
+      button.removeAttribute('href');
+      button.textContent = '';
+      return;
+    }
+    button.href = url;
+    button.textContent = '원문 보기';
+    button.setAttribute('aria-label', `${extension.name} 원문 새 탭에서 열기`);
   }
 
   function toggleSelection(id, fromDialog) {
     const selected = NS.state.toggleSelected(id);
     refreshAll();
-    if (fromDialog && NS.state.value.detailId === id) NS.render.renderDetail(NS.state.value.catalog.byId.get(id));
+    if (fromDialog && NS.state.value.detailId === id) {
+      const extension = NS.state.value.catalog.byId.get(id);
+      NS.render.renderDetail(extension);
+      syncDetailOriginalButton(extension);
+    }
     NS.render.toast(selected ? '선택 목록에 추가했습니다.' : '선택에서 제외했습니다.');
   }
 
