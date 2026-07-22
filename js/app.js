@@ -173,8 +173,23 @@
     NS.render.toast(selected ? '선택 목록에 추가했습니다.' : '선택에서 제외했습니다.');
   }
 
+  function syncCardSelectionState() {
+    const selected = NS.state.value.selected;
+    document.querySelectorAll('#cardGrid .script-card[data-id]').forEach((card) => {
+      const id = card.dataset.id;
+      const isSelected = selected.has(id);
+      card.classList.toggle('is-selected', isSelected);
+      const button = card.querySelector('.card-select');
+      if (!button) return;
+      button.classList.toggle('is-selected', isSelected);
+      const extension = NS.state.value.catalog?.byId?.get(id);
+      const name = extension?.name || id;
+      button.setAttribute('aria-label', isSelected ? `${name} 선택 해제` : `${name} 선택 목록에 추가`);
+    });
+  }
+
   function refreshAll() {
-    applyFilters();
+    syncCardSelectionState();
     NS.render.renderSelectionBar();
     if (document.getElementById('selectionDialog').open) NS.render.renderSelectionDialog();
   }
