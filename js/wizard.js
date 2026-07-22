@@ -11,6 +11,9 @@
 
   function open() {
     renderInstalled();
+    const details = document.getElementById('wizardInstalledDetails');
+    if (details) details.open = false;
+    updateInstalledSummary();
     document.getElementById('wizardDialog').showModal();
   }
 
@@ -19,14 +22,35 @@
     list.replaceChildren();
     NS.state.value.catalog.extensions.filter((item) => item.status === 'active').forEach((extension) => {
       const label = NS.render.create('label', 'choice-card');
-      const input = document.createElement('input'); input.type = 'checkbox'; input.name = 'installed'; input.value = extension.id;
-      const span = NS.render.create('span', '', extension.name); label.append(input, span); list.append(label);
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.name = 'installed';
+      input.value = extension.id;
+      input.addEventListener('change', updateInstalledSummary);
+      const span = NS.render.create('span', '', extension.name);
+      label.append(input, span);
+      list.append(label);
     });
+    updateInstalledSummary();
+  }
+
+  function updateInstalledSummary() {
+    const details = document.getElementById('wizardInstalledDetails');
+    const label = document.getElementById('wizardInstalledToggleLabel');
+    const count = document.getElementById('wizardInstalledCount');
+    const checked = document.querySelectorAll('#wizardInstalledList input[name="installed"]:checked').length;
+    if (label) label.textContent = details?.open ? '선택 목록 접기' : '펼쳐서 선택';
+    if (count) count.textContent = checked ? `${checked}개 선택됨` : '선택 안 함';
   }
 
   function reset() {
-    const form = document.getElementById('wizardForm'); form.reset();
-    form.elements.namedItem('platform').value = 'all'; form.elements.namedItem('performance').value = 'medium';
+    const form = document.getElementById('wizardForm');
+    form.reset();
+    form.elements.namedItem('platform').value = 'all';
+    form.elements.namedItem('performance').value = 'medium';
+    const details = document.getElementById('wizardInstalledDetails');
+    if (details) details.open = false;
+    updateInstalledSummary();
   }
 
   function apply() {
@@ -78,19 +102,25 @@
   }
 
   function includeRequirements(ids) {
-    const result = new Set(ids); const catalog = NS.state.value.catalog;
+    const result = new Set(ids);
+    const catalog = NS.state.value.catalog;
     let changed = true;
     while (changed) {
       changed = false;
       [...result].forEach((id) => {
         const item = catalog.byId.get(id);
         item?.relations.requires.forEach((required) => {
-          if (catalog.byId.has(required) && !result.has(required)) { result.add(required); changed = true; }
+          if (catalog.byId.has(required) && !result.has(required)) {
+            result.add(required);
+            changed = true;
+          }
         });
       });
     }
     return [...result];
   }
+
+  document.getElementById('wizardInstalledDetails')?.addEventListener('toggle', updateInstalledSummary);
 
   NS.wizard = { open, reset, apply };
 })();
