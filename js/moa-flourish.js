@@ -3,6 +3,7 @@
  *  - 목록 옆 모아 코멘트: 카오모지 + 말풍선 순환 / 클릭하면 조용 / 다시 클릭하면 재개
  *  - 비주얼노벨·동숲식 비프음(글자마다 띠딕) — 첫 사용자 입력 후 활성(브라우저 자동재생 정책)
  *  - 우하단 모아 대화창: 비모달 도킹(showModal ❌ → show ✅)이라 열려 있어도 검색·목록 그대로 사용
+ *  - 방문자가 보는 안내 문구는 기술 약어를 제외하고 최대한 한글로 표시
  *  - '모션 줄이기' OS 설정이면 타이핑·소리 자동 비활성
  */
 (function () {
@@ -29,79 +30,169 @@
   ].join('');
   document.head.appendChild(moaUiStyle);
 
-  /* 사람이 직접 읽는 화면은 한글 우선. 확프명·설명·버전 같은 실제 데이터는 건드리지 않는다. */
-  var exactKorean = {
-    'ACTIVE': '사용 가능',
-    'REPLACE': '교체 권장',
-    'ARCHIVED': '보관됨',
-    'NO LINK': '링크 없음',
-    'RECHECK': '재확인',
-    'DETAIL →': '상세보기 →',
-    'DESCRIPTION': '설명',
-    'FEATURES': '기능',
+  /* ── 화면 문구 한글화 ── */
+  var statusLabels = { active: '사용 가능', deprecated: '교체 권장', archived: '보관됨' };
+  var performanceLabels = { light: '낮음', medium: '보통', heavy: '높음', unknown: '미확인' };
+  var headingLabels = {
+    DESCRIPTION: '설명',
+    FEATURES: '주요 기능',
     'SEARCH TAGS': '검색어·태그',
-    'ENVIRONMENT': '사용 환경',
-    'RELATIONS': '함께 쓰기',
+    ENVIRONMENT: '사용 환경',
+    RELATIONS: '함께 쓰기',
     'ORIGINAL SOURCE': '원문 정보',
-    'DISTRIBUTION': '배포 정보',
-    'CHANGELOG': '변경 이력',
+    DISTRIBUTION: '배포 정보',
+    CHANGELOG: '변경 이력',
+    RECHECK: '재확인'
+  };
+  var metaLabels = {
     'PC SUPPORT': 'PC 지원',
     'MOBILE SUPPORT': '모바일 지원',
     'PC LOAD': 'PC 성능 부담',
     'MOBILE LOAD': '모바일 성능 부담',
-    'VERSION': '버전',
+    VERSION: '버전',
     'LAST TEST': '마지막 확인',
-    'UPDATED': '최근 수정',
-    'INSTALL': '설치 상태',
-    'SYSTEM': '관리',
-    'ARCHIVE': '보관',
-    'UTILITY': '편의',
-    'VISUAL': '꾸미기',
-    'SCRIPT': '기타'
+    UPDATED: '최근 수정',
+    INSTALL: '설치 링크'
+  };
+  var visibleValueLabels = {
+    ACTIVE: '사용 가능',
+    REPLACE: '교체 권장',
+    ARCHIVED: '보관됨',
+    LOW: '낮음',
+    MID: '보통',
+    HIGH: '높음',
+    '?': '미확인',
+    'NO LINK': '링크 없음',
+    RECHECK: '재확인'
   };
 
-  function localizeText(text) {
-    var value = String(text || '');
-    var trimmed = value.trim();
-    if (!trimmed) return value;
-    if (exactKorean[trimmed]) return value.replace(trimmed, exactKorean[trimmed]);
-    if (/^\d+\s+items$/.test(trimmed)) return value.replace(trimmed, trimmed.replace(' items', '개 표시'));
-    if (/^\d+\s*·\s*(SYSTEM|ARCHIVE|UTILITY|VISUAL|SCRIPT)$/.test(trimmed)) {
-      return value.replace(/(SYSTEM|ARCHIVE|UTILITY|VISUAL|SCRIPT)$/, function (word) { return exactKorean[word] || word; });
-    }
-    if (/^(PC\+MOBILE|PC|MOBILE|SUPPORT \?)\s*·\s*LOAD\s*(LOW|MID|HIGH|\?)(.*)$/.test(trimmed)) {
-      return value.replace('SUPPORT ?', '지원 미확인')
-        .replace(' · LOAD LOW', ' · 부담 낮음')
-        .replace(' · LOAD MID', ' · 부담 보통')
-        .replace(' · LOAD HIGH', ' · 부담 높음')
-        .replace(' · LOAD ?', ' · 부담 미확인');
-    }
-    return value;
+  function setText(selector, text) {
+    var element = document.querySelector(selector);
+    if (element) element.textContent = text;
   }
 
-  function localizeNode(root) {
-    if (!root) return;
-    if (root.nodeType === Node.TEXT_NODE) {
-      var next = localizeText(root.nodeValue);
-      if (next !== root.nodeValue) root.nodeValue = next;
-      return;
-    }
-    if (root.nodeType !== Node.ELEMENT_NODE && root.nodeType !== Node.DOCUMENT_FRAGMENT_NODE) return;
-    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-    var node;
-    while ((node = walker.nextNode())) {
-      var localized = localizeText(node.nodeValue);
-      if (localized !== node.nodeValue) node.nodeValue = localized;
-    }
+  function setLeadingText(element, text) {
+    if (!element) return;
+    if (element.firstChild && element.firstChild.nodeType === Node.TEXT_NODE) element.firstChild.nodeValue = text + ' ';
   }
 
-  localizeNode(document.body);
-  new MutationObserver(function (records) {
-    records.forEach(function (record) {
-      record.addedNodes.forEach(localizeNode);
-      if (record.type === 'characterData') localizeNode(record.target);
+  function localizeStaticUi() {
+    document.title = '크랙 확프 보관소';
+
+    var stats = document.querySelectorAll('.strip .st');
+    setLeadingText(stats[0], '전체');
+    setLeadingText(stats[1], '모바일');
+    setLeadingText(stats[2], '최근 정리');
+
+    setText('.selbar__summary > span:not(.selbar__warn)', '선택됨');
+    setText('#detailStatus', '상태');
+    setText('#selectionDialog .kicker', '선택 목록');
+    setText('#queueDialog .kicker', '설치 순서');
+    setText('#wizardDialog .kicker', '맞춤 추천');
+    setText('#aiRecommendDialog .ai-head .kicker', '추천 도우미');
+    setText('#recommendConnectionBadge', '준비됨');
+    setText('#aiSettingsPanel .kicker', '연결 설정');
+    setText('#guideDialog .kicker', '설치 안내');
+
+    var heavyChoice = document.querySelector('#wizardForm input[value="heavy"] + span');
+    if (heavyChoice) heavyChoice.textContent = '무거워도 괜찮음';
+  }
+
+  function koreanCategory(extension) {
+    var direct = String(extension && extension.categories && extension.categories[0] || '').trim();
+    var source = (direct + ' ' + String(extension && extension.name || '') + ' ' + String(extension && extension.summary || '')).toLocaleLowerCase('ko-KR');
+    if (/archive|log|backup|로그|백업|아카이브|저장/.test(source)) return '기록·백업';
+    if (/visual|theme|background|effect|배경|테마|마법|날씨|효과|꾸미기/.test(source)) return '꾸미기';
+    if (/system|manage|setting|관리|설정|대시보드|상태/.test(source)) return '관리';
+    if (/utility|convenience|editor|input|chat|입력|채팅|텍스트|에디터|편의/.test(source)) return '편의';
+    if (/mobile|모바일/.test(source)) return '모바일';
+    if (direct && /[가-힣]/.test(direct)) return direct;
+    return '기타';
+  }
+
+  function koreanPlatform(extension) {
+    var pc = extension.platforms && extension.platforms.pc;
+    var mobile = extension.platforms && extension.platforms.mobile;
+    if (pc === 'yes' && mobile === 'yes') return 'PC+모바일';
+    if (pc === 'yes') return 'PC';
+    if (mobile === 'yes') return '모바일';
+    return '지원 미확인';
+  }
+
+  function versionSuffix(extension) {
+    var version = String(extension && extension.version || '').trim();
+    return version && version !== '확인 필요' ? ' · v' + version.replace(/^v/i, '') : '';
+  }
+
+  function localizeCards(items) {
+    setText('#resultCount', String(items.length) + '개');
+    items.forEach(function (extension, index) {
+      var row = document.querySelector('#cardGrid .row[data-id="' + CSS.escape(extension.id) + '"]');
+      if (!row) return;
+
+      var category = row.querySelector('.row__cat');
+      if (category) category.textContent = String(index + 1).padStart(2, '0') + ' · ' + koreanCategory(extension);
+
+      var tags = row.querySelector('.row__tags');
+      if (tags) {
+        var burden = performanceLabels[(extension.performance && (extension.performance.pc === 'heavy' || extension.performance.mobile === 'heavy') ? 'heavy' : extension.performance && (extension.performance.pc === 'medium' || extension.performance.mobile === 'medium') ? 'medium' : extension.performance && (extension.performance.pc === 'light' || extension.performance.mobile === 'light') ? 'light' : 'unknown')];
+        tags.textContent = koreanPlatform(extension) + ' · 성능 부담 ' + burden + versionSuffix(extension);
+      }
+
+      var open = row.querySelector('.row__open');
+      if (open) open.textContent = '자세히 →';
+
+      row.querySelectorAll('.badge').forEach(function (badgeElement) {
+        var translated = visibleValueLabels[badgeElement.textContent.trim()];
+        if (translated) badgeElement.textContent = translated;
+      });
     });
-  }).observe(document.body, { childList: true, subtree: true, characterData: true });
+  }
+
+  function localizeDetail(extension) {
+    var status = document.getElementById('detailStatus');
+    if (status) status.textContent = statusLabels[extension.status] || '상태 미확인';
+
+    document.querySelectorAll('#detailContent .detail-section > h3').forEach(function (heading) {
+      var translated = headingLabels[heading.textContent.trim()];
+      if (translated) heading.textContent = translated;
+    });
+
+    document.querySelectorAll('#detailContent .meta-box').forEach(function (box) {
+      var label = box.querySelector(':scope > span');
+      var value = box.querySelector(':scope > strong');
+      if (label && metaLabels[label.textContent.trim()]) label.textContent = metaLabels[label.textContent.trim()];
+      if (value && visibleValueLabels[value.textContent.trim()]) value.textContent = visibleValueLabels[value.textContent.trim()];
+    });
+  }
+
+  function installKoreanRenderLayer() {
+    var NS = window.CrackArchive;
+    if (!NS || !NS.render) return;
+
+    var originalCards = NS.render.renderCards;
+    NS.render.renderCards = function (items) {
+      originalCards.apply(this, arguments);
+      localizeCards(items || []);
+    };
+
+    var originalDetail = NS.render.renderDetail;
+    NS.render.renderDetail = function (extension) {
+      originalDetail.apply(this, arguments);
+      localizeDetail(extension || {});
+    };
+
+    var originalRecent = NS.render.renderRecent;
+    NS.render.renderRecent = function () {
+      originalRecent.apply(this, arguments);
+      document.querySelectorAll('#recentList .text-button').forEach(function (button) {
+        button.textContent = '자세히 →';
+      });
+    };
+  }
+
+  localizeStaticUi();
+  installKoreanRenderLayer();
 
   var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
 
