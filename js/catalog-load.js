@@ -3,6 +3,7 @@
 
   const NS = window.CrackArchive = window.CrackArchive || {};
   const CACHE_KEY = 'crack-archive:last-catalog:v2';
+  const RECOMMENDATION_TAGS = new Set(['추천', '에디터 추천', '관리자 추천', '공식 추천']);
 
   function asArray(value) { return Array.isArray(value) ? value : []; }
   function clean(value) { return String(value ?? '').trim(); }
@@ -12,6 +13,13 @@
   function normalizeExtension(raw) {
     const extension = raw && typeof raw === 'object' ? raw : {};
     const updatedAt = clean(extension.updatedAt) || newestHistoryDate(extension.history);
+    const tags = uniqueStrings(extension.tags);
+    const recommendationEnabled = Boolean(
+      extension.recommendation?.enabled
+      || extension.recommended
+      || extension.featured
+      || tags.some((tag) => RECOMMENDATION_TAGS.has(tag))
+    );
     return {
       id: clean(extension.id),
       status: ['active', 'deprecated', 'archived'].includes(extension.status) ? extension.status : 'active',
@@ -21,7 +29,7 @@
       categories: uniqueStrings(extension.categories),
       features: uniqueStrings(extension.features),
       aliases: uniqueStrings(extension.aliases),
-      tags: uniqueStrings(extension.tags),
+      tags,
       platforms: {
         pc: normalizeSupport(extension.platforms?.pc),
         mobile: normalizeSupport(extension.platforms?.mobile),
@@ -53,6 +61,10 @@
         label: clean(extension.originalSource?.label),
         author: clean(extension.originalSource?.author),
         note: clean(extension.originalSource?.note)
+      },
+      recommendation: {
+        enabled: recommendationEnabled,
+        label: clean(extension.recommendation?.label || extension.recommendationLabel) || '추천'
       },
       presentation: {
         coverImageUrl: isSafeMediaUrl(extension.presentation?.coverImageUrl) ? clean(extension.presentation.coverImageUrl) : '',
