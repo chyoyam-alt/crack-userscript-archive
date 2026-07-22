@@ -1,126 +1,146 @@
 (function () {
   'use strict';
+
   const NS = window.CrackArchive = window.CrackArchive || {};
   const rank = { light: 1, medium: 2, unknown: 2, heavy: 3 };
   const purposeTerms = {
-    convenience: ['채팅 편의', '편의', '입력', 'ui', '모바일'],
-    visual: ['꾸미기', '시각 효과', '테마', '배경', '마법', '날씨'],
-    archive: ['로그', '저장', '백업', '아카이브'],
-    management: ['관리', '설정', '대시보드', '상태']
+    convenience: ['채팅 편의', '편의', '입력', '에디터', 'ui', '채팅창'],
+    visual: ['꾸미기', '시각 효과', '테마', '배경', '마법', '날씨', '효과'],
+    archive: ['로그', '저장', '백업', '아카이브', '기록'],
+    management: ['관리', '설정', '대시보드', '상태', '정리']
+  };
+
+  const originalRenderCards = NS.render.renderCards;
+  NS.render.renderCards = function renderFilteredCards(items) {
+    const filtered = filterItems(items || []);
+    NS.state.value.filtered = filtered;
+    originalRenderCards(filtered);
+
+    if (!filtered.length && hasActiveFilters()) {
+      const empty = document.getElementById('emptyState');
+      const message = empty?.querySelector('p');
+      if (message) message.textContent = '필터 조건을 줄이거나 해제해보세요.';
+    }
   };
 
   function open() {
-    renderInstalled();
-    const details = document.getElementById('wizardInstalledDetails');
-    if (details) details.open = false;
-    updateInstalledSummary();
+    syncFormFromFilters();
     document.getElementById('wizardDialog').showModal();
-  }
-
-  function renderInstalled() {
-    const list = document.getElementById('wizardInstalledList');
-    list.replaceChildren();
-    NS.state.value.catalog.extensions.filter((item) => item.status === 'active').forEach((extension) => {
-      const label = NS.render.create('label', 'choice-card');
-      const input = document.createElement('input');
-      input.type = 'checkbox';
-      input.name = 'installed';
-      input.value = extension.id;
-      input.addEventListener('change', updateInstalledSummary);
-      const span = NS.render.create('span', '', extension.name);
-      label.append(input, span);
-      list.append(label);
-    });
-    updateInstalledSummary();
-  }
-
-  function updateInstalledSummary() {
-    const details = document.getElementById('wizardInstalledDetails');
-    const label = document.getElementById('wizardInstalledToggleLabel');
-    const count = document.getElementById('wizardInstalledCount');
-    const checked = document.querySelectorAll('#wizardInstalledList input[name="installed"]:checked').length;
-    if (label) label.textContent = details?.open ? '선택 목록 접기' : '펼쳐서 선택';
-    if (count) count.textContent = checked ? `${checked}개 선택됨` : '선택 안 함';
-  }
-
-  function reset() {
-    const form = document.getElementById('wizardForm');
-    form.reset();
-    form.elements.namedItem('platform').value = 'all';
-    form.elements.namedItem('performance').value = 'medium';
-    const details = document.getElementById('wizardInstalledDetails');
-    if (details) details.open = false;
-    updateInstalledSummary();
   }
 
   function apply() {
     const form = new FormData(document.getElementById('wizardForm'));
-    const platform = String(form.get('platform') || 'all');
-    const maxPerformance = String(form.get('performance') || 'medium');
-    const purposes = form.getAll('purpose').map(String);
-    const installed = new Set(form.getAll('installed').map(String));
-    const candidates = NS.state.value.catalog.extensions
-      .filter((item) => item.status === 'active' && !installed.has(item.id))
-      .map((item) => ({ item, score: score(item, { platform, maxPerformance, purposes }) }))
-      .filter(({ score }) => score > 0)
-      .sort((a, b) => b.score - a.score || a.item.name.localeCompare(b.item.name, 'ko'))
-      .slice(0, 6)
-      .map(({ item }) => item.id);
+    const filters = NS.state.value.filters;
 
-    if (!candidates.length) {
-      NS.render.toast('조건에 맞는 추천 항목을 찾지 못했습니다. 조건을 조금 넓혀 보세요.');
-      return;
-    }
-    const finalIds = includeRequirements(candidates);
-    NS.state.replaceSelected(finalIds);
-    NS.app.refreshAll();
+    filters.platform = String(form.get('platform') || 'all');
+    filters.performance = String(form.get('performance') || 'all');
+    filters.purposes = form.getAll('purpose').map(String);
+
+    NS.app.applyFilters();
+    syncControls();
     document.getElementById('wizardDialog').close();
-    NS.render.toast(`${finalIds.length}개를 추천 목록에 담았습니다.`);
+
+    const count = NS.state.value.filtered.length;
+    NS.render.toast(hasActiveFilters() ? `필터 조건에 맞는 확프 ${count}개를 표시합니다.` : '전체 확프 목록을 표시합니다.');
   }
 
-  function score(item, options) {
-    if (options.platform !== 'all' && item.platforms[options.platform] === 'no') return -100;
-    const performance = options.platform === 'all'
-      ? worstPerformance(item.performance.pc, item.performance.mobile)
-      : item.performance[options.platform];
-    if (rank[performance] > rank[options.maxPerformance]) return -50;
+  function reset() {
+    const filters = NS.state.value.filters;
+    filters.platform = 'all';
+    filters.performance = 'all';
+    filters.purposes = [];
 
-    let value = 1;
-    if (options.platform !== 'all') value += item.platforms[options.platform] === 'yes' ? 4 : 1;
-    value += Math.max(0, 4 - rank[performance]);
-    const haystack = NS.catalog.getSearchText(item);
-    if (!options.purposes.length) value += 1;
-    for (const purpose of options.purposes) {
-      const hits = (purposeTerms[purpose] || []).filter((term) => haystack.includes(term.toLocaleLowerCase('ko-KR'))).length;
-      value += hits * 3;
+    syncFormFromFilters();
+    NS.app.applyFilters();
+    syncControls();
+
+    const dialog = document.getElementById('wizardDialog');
+    if (dialog?.open) dialog.close();
+    NS.render.toast('필터를 해제했습니다.');
+  }
+
+  function syncFormFromFilters() {
+    const form = document.getElementById('wizardForm');
+    const filters = NS.state.value.filters;
+    const platform = filters.platform || 'all';
+    const performance = filters.performance || 'all';
+    const purposes = new Set(filters.purposes || []);
+
+    const platformInput = form.querySelector(`input[name="platform"][value="${platform}"]`);
+    const performanceInput = form.querySelector(`input[name="performance"][value="${performance}"]`);
+    if (platformInput) platformInput.checked = true;
+    if (performanceInput) performanceInput.checked = true;
+
+    form.querySelectorAll('input[name="purpose"]').forEach((input) => {
+      input.checked = purposes.has(input.value);
+    });
+  }
+
+  function filterItems(items) {
+    const filters = NS.state.value.filters;
+    const platform = filters.platform || 'all';
+    const performance = filters.performance || 'all';
+    const purposes = filters.purposes || [];
+
+    if (platform === 'all' && performance === 'all' && !purposes.length) return items;
+
+    return items.filter((item) => {
+      if (platform !== 'all' && item.platforms[platform] !== 'yes') return false;
+
+      if (performance !== 'all') {
+        const itemPerformance = relevantPerformance(item, platform);
+        if (rank[itemPerformance] > rank[performance]) return false;
+      }
+
+      if (purposes.length) {
+        const haystack = NS.catalog.getSearchText(item);
+        const matches = purposes.some((purpose) => (purposeTerms[purpose] || []).some((term) => haystack.includes(term.toLocaleLowerCase('ko-KR'))));
+        if (!matches) return false;
+      }
+
+      return true;
+    });
+  }
+
+  function relevantPerformance(item, platform) {
+    if (platform === 'pc' || platform === 'mobile') return item.performance[platform] || 'unknown';
+
+    const supported = [];
+    if (item.platforms.pc === 'yes') supported.push(item.performance.pc || 'unknown');
+    if (item.platforms.mobile === 'yes') supported.push(item.performance.mobile || 'unknown');
+    const values = supported.length ? supported : [item.performance.pc || 'unknown', item.performance.mobile || 'unknown'];
+    return values.reduce((worst, value) => rank[value] > rank[worst] ? value : worst, 'light');
+  }
+
+  function hasActiveFilters() {
+    const filters = NS.state.value.filters;
+    return (filters.platform || 'all') !== 'all'
+      || (filters.performance || 'all') !== 'all'
+      || Boolean((filters.purposes || []).length);
+  }
+
+  function activeFilterCount() {
+    const filters = NS.state.value.filters;
+    return Number((filters.platform || 'all') !== 'all')
+      + Number((filters.performance || 'all') !== 'all')
+      + (filters.purposes || []).length;
+  }
+
+  function syncControls() {
+    const active = hasActiveFilters();
+    const openButton = document.getElementById('openWizardButton');
+    const clearButton = document.getElementById('clearWizardFilterButton');
+
+    if (openButton) {
+      openButton.classList.toggle('is-active', active);
+      openButton.setAttribute('aria-pressed', String(active));
+      openButton.textContent = active ? `필터 · ${activeFilterCount()}` : '필터';
     }
-    return value;
+    if (clearButton) clearButton.hidden = !active;
   }
 
-  function worstPerformance(a, b) {
-    return rank[a] >= rank[b] ? a : b;
-  }
+  document.getElementById('clearWizardFilterButton')?.addEventListener('click', reset);
+  syncControls();
 
-  function includeRequirements(ids) {
-    const result = new Set(ids);
-    const catalog = NS.state.value.catalog;
-    let changed = true;
-    while (changed) {
-      changed = false;
-      [...result].forEach((id) => {
-        const item = catalog.byId.get(id);
-        item?.relations.requires.forEach((required) => {
-          if (catalog.byId.has(required) && !result.has(required)) {
-            result.add(required);
-            changed = true;
-          }
-        });
-      });
-    }
-    return [...result];
-  }
-
-  document.getElementById('wizardInstalledDetails')?.addEventListener('toggle', updateInstalledSummary);
-
-  NS.wizard = { open, reset, apply };
+  NS.wizard = { open, reset, apply, syncControls, hasActiveFilters };
 })();
