@@ -14,6 +14,21 @@
   listResetStyle.textContent = '.list{margin:10px 0 0!important;padding:0!important;padding-inline-start:0!important;list-style:none!important;}';
   document.head.appendChild(listResetStyle);
 
+  /* 모아 설정 패널은 완전히 불투명하게 덮고, 호출 버튼은 정사각형 아이콘으로 축소한다. */
+  var moaUiStyle = document.createElement('style');
+  moaUiStyle.id = 'moa-ui-polish';
+  moaUiStyle.textContent = [
+    '#aiRecommendDialog{isolation:isolate;}',
+    '#aiRecommendDialog .ai-settings{background:var(--solid)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:inset 0 0 0 1px var(--line-2);}',
+    '#aiRecommendDialog .ai-settings__head,#aiRecommendDialog .ai-settings__scroll{background:var(--solid)!important;}',
+    '#aiRecommendDialog .ai-settings[hidden]{display:none!important;}',
+    '.ailauncher{width:52px!important;height:52px!important;min-width:52px!important;padding:0!important;gap:0!important;justify-content:center!important;border-radius:10px!important;}',
+    '.ailauncher__txt{display:none!important;}',
+    '.ailauncher__face{width:32px!important;height:32px!important;}',
+    '@media(max-width:520px){.ailauncher{width:48px!important;height:48px!important;min-width:48px!important;border-radius:9px!important;}.ailauncher__face{width:30px!important;height:30px!important;}}'
+  ].join('');
+  document.head.appendChild(moaUiStyle);
+
   var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
 
   /* ── 비프음 (WebAudio) ── */
