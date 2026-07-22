@@ -7,6 +7,13 @@
  */
 (function () {
   'use strict';
+
+  /* 데스크톱에서는 중앙 최대폭과 좌우 바깥 여백을 없애 화면 끝까지 사용 */
+  var edgeStyle = document.createElement('style');
+  edgeStyle.id = 'archive-edge-layout';
+  edgeStyle.textContent = '@media (min-width:761px){.app{width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important;}}';
+  document.head.appendChild(edgeStyle);
+
   var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
 
   /* ── 비프음 (WebAudio) ── */
