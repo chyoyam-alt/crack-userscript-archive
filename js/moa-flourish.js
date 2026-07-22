@@ -29,6 +29,80 @@
   ].join('');
   document.head.appendChild(moaUiStyle);
 
+  /* 사람이 직접 읽는 화면은 한글 우선. 확프명·설명·버전 같은 실제 데이터는 건드리지 않는다. */
+  var exactKorean = {
+    'ACTIVE': '사용 가능',
+    'REPLACE': '교체 권장',
+    'ARCHIVED': '보관됨',
+    'NO LINK': '링크 없음',
+    'RECHECK': '재확인',
+    'DETAIL →': '상세보기 →',
+    'DESCRIPTION': '설명',
+    'FEATURES': '기능',
+    'SEARCH TAGS': '검색어·태그',
+    'ENVIRONMENT': '사용 환경',
+    'RELATIONS': '함께 쓰기',
+    'ORIGINAL SOURCE': '원문 정보',
+    'DISTRIBUTION': '배포 정보',
+    'CHANGELOG': '변경 이력',
+    'PC SUPPORT': 'PC 지원',
+    'MOBILE SUPPORT': '모바일 지원',
+    'PC LOAD': 'PC 성능 부담',
+    'MOBILE LOAD': '모바일 성능 부담',
+    'VERSION': '버전',
+    'LAST TEST': '마지막 확인',
+    'UPDATED': '최근 수정',
+    'INSTALL': '설치 상태',
+    'SYSTEM': '관리',
+    'ARCHIVE': '보관',
+    'UTILITY': '편의',
+    'VISUAL': '꾸미기',
+    'SCRIPT': '기타'
+  };
+
+  function localizeText(text) {
+    var value = String(text || '');
+    var trimmed = value.trim();
+    if (!trimmed) return value;
+    if (exactKorean[trimmed]) return value.replace(trimmed, exactKorean[trimmed]);
+    if (/^\d+\s+items$/.test(trimmed)) return value.replace(trimmed, trimmed.replace(' items', '개 표시'));
+    if (/^\d+\s*·\s*(SYSTEM|ARCHIVE|UTILITY|VISUAL|SCRIPT)$/.test(trimmed)) {
+      return value.replace(/(SYSTEM|ARCHIVE|UTILITY|VISUAL|SCRIPT)$/, function (word) { return exactKorean[word] || word; });
+    }
+    if (/^(PC\+MOBILE|PC|MOBILE|SUPPORT \?)\s*·\s*LOAD\s*(LOW|MID|HIGH|\?)(.*)$/.test(trimmed)) {
+      return value.replace('SUPPORT ?', '지원 미확인')
+        .replace(' · LOAD LOW', ' · 부담 낮음')
+        .replace(' · LOAD MID', ' · 부담 보통')
+        .replace(' · LOAD HIGH', ' · 부담 높음')
+        .replace(' · LOAD ?', ' · 부담 미확인');
+    }
+    return value;
+  }
+
+  function localizeNode(root) {
+    if (!root) return;
+    if (root.nodeType === Node.TEXT_NODE) {
+      var next = localizeText(root.nodeValue);
+      if (next !== root.nodeValue) root.nodeValue = next;
+      return;
+    }
+    if (root.nodeType !== Node.ELEMENT_NODE && root.nodeType !== Node.DOCUMENT_FRAGMENT_NODE) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    var node;
+    while ((node = walker.nextNode())) {
+      var localized = localizeText(node.nodeValue);
+      if (localized !== node.nodeValue) node.nodeValue = localized;
+    }
+  }
+
+  localizeNode(document.body);
+  new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      record.addedNodes.forEach(localizeNode);
+      if (record.type === 'characterData') localizeNode(record.target);
+    });
+  }).observe(document.body, { childList: true, subtree: true, characterData: true });
+
   var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
 
   /* ── 비프음 (WebAudio) ── */
