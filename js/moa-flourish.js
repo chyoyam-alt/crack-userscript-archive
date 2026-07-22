@@ -8,11 +8,11 @@
 (function () {
   'use strict';
 
-  /* 데스크톱에서는 중앙 최대폭과 좌우 바깥 여백을 없애 화면 끝까지 사용 */
-  var edgeStyle = document.createElement('style');
-  edgeStyle.id = 'archive-edge-layout';
-  edgeStyle.textContent = '@media (min-width:761px){.app{width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important;}}';
-  document.head.appendChild(edgeStyle);
+  /* #cardGrid는 ul이라 브라우저 기본 왼쪽 padding이 붙는다. 목록 자체만 정확히 초기화한다. */
+  var listResetStyle = document.createElement('style');
+  listResetStyle.id = 'archive-list-reset';
+  listResetStyle.textContent = '.list{margin:10px 0 0!important;padding:0!important;padding-inline-start:0!important;list-style:none!important;}';
+  document.head.appendChild(listResetStyle);
 
   var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
 
