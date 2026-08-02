@@ -39,6 +39,18 @@
     <div class="notice" hidden id="dataNotice"></div>
     <div class="notice" hidden id="sharedSetNotice"></div>
 
+    <section class="block block--recommended" hidden id="recommendedSection" aria-labelledby="recommendedTitle">
+      <div class="block__head">
+        <div class="block__label recommended-heading">
+          <span class="recommended-heading__sparkle" aria-hidden="true">✦</span>
+          <div><h2 id="recommendedTitle">추천</h2><p>먼저 둘러보기 좋은 확프</p></div>
+        </div>
+        <p class="block__count" id="recommendedCount"></p>
+      </div>
+      <div class="rule" aria-hidden="true"></div>
+      <div class="recommended-list" id="recommendedList"></div>
+    </section>
+
     <section class="controls" aria-label="검색과 정렬">
       <label class="search"><span class="sr-only">확프 검색</span><input id="searchInput" placeholder="입력창, 로그 저장, 배경 꾸미기…" type="search"/><button class="search__clear" aria-label="검색어 지우기" hidden id="clearSearchButton" type="button">×</button></label>
       <button class="button button--ghost controls__filter-clear" hidden id="clearWizardFilterButton" type="button">필터 해제</button>
@@ -120,8 +132,16 @@
   </section>
 </dialog>
 <dialog class="dialog" id="guideDialog">
-  <div class="dialog__head"><div class="dialog__title"><span class="kicker">GUIDE</span><h2>설치 전 확인</h2></div><button class="icon-button dialog-close" aria-label="닫기" type="button">×</button></div>
-  <div class="dialog__body prose"><p>이 사이트는 확프를 합치거나 자동 설치하지 않습니다. 각 <code>.user.js</code> 설치 링크를 하나씩 여는 방식입니다.</p><h3>PC</h3><p>Tampermonkey 같은 유저스크립트 관리자를 먼저 설치하세요.</p><h3>모바일</h3><p>OS·브라우저에 따라 설치 앱이 다릅니다.</p></div>
+  <div class="dialog__head"><div class="dialog__title"><span class="kicker">INSTALL GUIDE</span><h2>기기별 설치 방법</h2></div><button class="icon-button dialog-close" aria-label="닫기" type="button">×</button></div>
+  <div class="dialog__body prose install-guide">
+    <p>사용 중인 기기를 선택하면 자세한 설치 방법이 새 탭에서 열립니다. 설치 준비를 마친 뒤 이곳으로 돌아와 원하는 확프의 설치 버튼을 누르세요.</p>
+    <div class="install-guide__list">
+      <a class="install-guide__card" href="https://gall.dcinside.com/mini/wrtnw/226864" rel="noopener noreferrer" target="_blank"><span class="install-guide__icon" aria-hidden="true">PC</span><span><strong>PC 설치 방법</strong><small>Windows · 데스크톱 브라우저</small></span><b aria-hidden="true">↗</b></a>
+      <a class="install-guide__card" href="https://gall.dcinside.com/mini/wrtnw/216977" rel="noopener noreferrer" target="_blank"><span class="install-guide__icon" aria-hidden="true">iOS</span><span><strong>iPhone · iPad 설치 방법</strong><small>iOS · iPadOS</small></span><b aria-hidden="true">↗</b></a>
+      <a class="install-guide__card" href="https://gall.dcinside.com/mini/wrtnw/44839" rel="noopener noreferrer" target="_blank"><span class="install-guide__icon" aria-hidden="true">AOS</span><span><strong>Android 설치 방법</strong><small>Android 스마트폰 · 태블릿</small></span><b aria-hidden="true">↗</b></a>
+    </div>
+    <p class="install-guide__note">이 사이트는 확프를 합치거나 자동 설치하지 않습니다. 각 <code>.user.js</code> 설치 링크를 하나씩 여는 방식입니다.</p>
+  </div>
 </dialog>
 <div class="toast-region" aria-atomic="true" aria-live="polite" id="toastRegion"></div>
 
