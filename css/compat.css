@@ -16,6 +16,49 @@ html.detail-dialog-open,body.detail-dialog-open{overflow:hidden!important;oversc
 .row.is-recommended{background:color-mix(in srgb,var(--panel) 88%,var(--accent-weak))}
 .row.is-recommended .row__mark{opacity:1}
 
+/* 최상단 추천 확프 */
+.block--recommended{position:relative;margin-top:24px;padding:18px 18px 20px;overflow:hidden;border:1px solid var(--line-2);background:linear-gradient(135deg,color-mix(in srgb,var(--panel) 94%,#fff1ad 6%),var(--panel))}
+.block--recommended::before,.block--recommended::after{content:"✦";position:absolute;pointer-events:none;color:color-mix(in srgb,var(--accent) 32%,transparent);animation:featuredFloat 5.8s ease-in-out infinite}
+.block--recommended::before{right:5%;top:8px;font-size:13px}
+.block--recommended::after{right:12%;top:34px;font-size:8px;animation-delay:-2.1s}
+.recommended-heading{gap:9px}
+.recommended-heading>div{display:flex;align-items:center;gap:11px}
+.recommended-heading__sparkle{display:grid;place-items:center;width:28px;height:28px;border:1px solid var(--line-2);border-radius:50%;background:var(--panel-2);font-size:12px;color:var(--accent);box-shadow:0 0 18px color-mix(in srgb,var(--accent) 10%,transparent);animation:featuredHeadingSpark 3.6s ease-in-out infinite}
+.recommended-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:13px}
+.recommended-card{position:relative;isolation:isolate;display:flex;min-width:0;min-height:190px;flex-direction:column;gap:8px;padding:16px;overflow:hidden;border:1px solid var(--line-2);background:color-mix(in srgb,var(--solid) 72%,transparent);box-shadow:0 8px 26px rgba(28,29,34,.055);cursor:pointer;animation:featuredCardIn .48s var(--ease) both;transition:transform .22s var(--ease),border-color .22s var(--ease),box-shadow .22s var(--ease),background .22s var(--ease)}
+.recommended-card::before{content:"";position:absolute;inset:-55% auto -55% -30%;z-index:-1;width:25%;transform:skewX(-19deg);background:linear-gradient(90deg,transparent,color-mix(in srgb,#fff 58%,transparent),transparent);animation:featuredSheen 6.4s ease-in-out infinite}
+.recommended-card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 44%,var(--line-2));box-shadow:0 13px 32px rgba(28,29,34,.1);background:color-mix(in srgb,var(--solid) 82%,transparent)}
+.recommended-card.is-selected{border-color:var(--accent);background:color-mix(in srgb,var(--solid) 76%,var(--accent-weak))}
+.recommended-card__sparkles{position:absolute;right:12px;top:10px;width:42px;height:30px;pointer-events:none;color:var(--accent)}
+.recommended-card__sparkles i{position:absolute;font-style:normal;line-height:1;opacity:.38;animation:featuredTwinkle 3.2s ease-in-out infinite}
+.recommended-card__sparkles i:nth-child(1){right:0;top:0;font-size:11px}
+.recommended-card__sparkles i:nth-child(2){left:8px;bottom:0;font-size:8px;animation-delay:-1.3s}
+.recommended-card__sparkles i:nth-child(3){right:15px;bottom:2px;font-size:13px;animation-delay:-2.2s}
+.recommended-card__top{display:flex;align-items:center;gap:8px;padding-right:42px}
+.recommended-card__badge{display:inline-flex;align-items:center;height:21px;padding:0 8px;border:1px solid color-mix(in srgb,var(--accent) 28%,var(--line-2));background:var(--accent-weak);font:800 9.5px var(--mono);letter-spacing:.08em;color:var(--accent)}
+.recommended-card__category{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:650 9px var(--mono);letter-spacing:.08em;color:var(--faint)}
+.recommended-card__name{padding-right:6px;font-size:15px;font-weight:800;line-height:1.35;letter-spacing:-.025em}
+.recommended-card__desc{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;font-size:12px;line-height:1.55;color:var(--muted)}
+.recommended-card__meta{margin-top:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:600 9.5px var(--mono);color:var(--faint)}
+.recommended-card__actions{display:flex;align-items:center;justify-content:flex-end;gap:7px;padding-top:5px}
+.recommended-card__actions button{height:31px;padding:0 10px;border:1px solid var(--line-2);font:750 10px var(--mono);transition:.18s var(--ease)}
+.recommended-card__detail{color:var(--muted);background:transparent}
+.recommended-card__pick{color:var(--accent-ink);background:var(--accent);border-color:var(--accent)!important}
+.recommended-card__actions button:hover{transform:translateY(-1px);border-color:var(--accent)}
+
+/* 기기별 설치 안내 */
+.install-guide{display:flex;flex-direction:column;gap:13px}
+.install-guide>p{margin:0}
+.install-guide__list{display:grid;grid-template-columns:1fr;gap:8px}
+.install-guide__card{display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:12px;min-height:67px;padding:10px 12px;border:1px solid var(--line-2);background:var(--panel-2);transition:transform .18s var(--ease),border-color .18s var(--ease),background .18s var(--ease)}
+.install-guide__card:hover{transform:translateY(-2px);border-color:var(--accent);background:var(--accent-weak)}
+.install-guide__icon{display:grid;place-items:center;width:48px;height:42px;border:1px solid var(--line-2);background:var(--panel);font:800 10px var(--mono);letter-spacing:.04em}
+.install-guide__card>span:nth-child(2){display:flex;min-width:0;flex-direction:column;gap:3px}
+.install-guide__card strong{font-size:13px}
+.install-guide__card small{font-size:10.5px;color:var(--muted)}
+.install-guide__card>b{font:700 13px var(--mono);color:var(--muted)}
+.install-guide__note{padding-top:11px;border-top:1px solid var(--line);font-size:11.5px!important;color:var(--muted)!important}
+
 .row__recommendation{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;height:19px;padding:0 7px;border:1px solid var(--line-2);font-family:var(--mono);font-size:9px;font-weight:750;letter-spacing:.08em;color:var(--accent);background:var(--panel-2)}
 .row__recommendation::before{content:"";width:5px;height:5px;margin-right:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent-weak);animation:recommendDot 2.6s var(--ease) infinite}
 .row__recommendation::after{content:"";position:absolute;inset:-40% auto -40% -35%;z-index:-1;width:28%;transform:skewX(-18deg);background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--solid) 64%,transparent),transparent);animation:recommendSheen 4.8s 1.2s var(--ease) infinite}
@@ -128,7 +171,12 @@ body.ai-helper-open .selbar{z-index:55}
   .ai-recommend-item__actions{grid-column:2;flex-direction:row}
   #aiRecommendDialog{max-height:none}
   .wizard-installed-list{max-height:180px}
+  .block--recommended{margin-top:18px;padding:14px 12px 15px}
+  .recommended-heading>div{align-items:flex-start;flex-direction:column;gap:1px}
+  .recommended-list{grid-template-columns:1fr}
+  .recommended-card{min-height:174px}
 }
+@media(min-width:1200px){.recommended-list{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:380px){
   .dialog__foot-group{grid-template-columns:1fr}
   .selbar{gap:6px;padding-left:10px}
@@ -137,4 +185,9 @@ body.ai-helper-open .selbar{z-index:55}
 }
 @keyframes recommendDot{50%{box-shadow:0 0 0 4px transparent;transform:scale(.82)}}
 @keyframes recommendSheen{0%,68%{left:-35%;opacity:0}74%{opacity:.7}88%,100%{left:112%;opacity:0}}
-@media(prefers-reduced-motion:reduce){.row__recommendation::before,.row__recommendation::after{animation:none!important}}
+@keyframes featuredCardIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@keyframes featuredHeadingSpark{0%,100%{transform:rotate(-7deg) scale(.94);opacity:.72}50%{transform:rotate(8deg) scale(1.08);opacity:1}}
+@keyframes featuredTwinkle{0%,100%{opacity:.18;transform:scale(.68) rotate(-8deg)}45%{opacity:.82;transform:scale(1.14) rotate(5deg)}}
+@keyframes featuredFloat{0%,100%{transform:translateY(0) rotate(-5deg);opacity:.22}50%{transform:translateY(5px) rotate(7deg);opacity:.55}}
+@keyframes featuredSheen{0%,72%{left:-30%;opacity:0}78%{opacity:.55}92%,100%{left:118%;opacity:0}}
+@media(prefers-reduced-motion:reduce){.row__recommendation::before,.row__recommendation::after,.block--recommended::before,.block--recommended::after,.recommended-heading__sparkle,.recommended-card,.recommended-card::before,.recommended-card__sparkles i{animation:none!important}.recommended-card:hover{transform:none}}
