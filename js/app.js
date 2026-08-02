@@ -20,6 +20,7 @@
       showDataNotice();
       renderHeroInfo();
       renderAssistantIdentity();
+      NS.render.renderRecommended(NS.state.value.catalog);
       NS.render.renderPresets(NS.state.value.presets);
       NS.render.renderRecent(NS.state.value.catalog);
       applyFilters();
@@ -213,8 +214,8 @@
     }
 
     button.href = url;
-    button.textContent = '원문 보기';
-    button.setAttribute('aria-label', `${extension.name} 원문 새 탭에서 열기`);
+    button.textContent = '원본 링크';
+    button.setAttribute('aria-label', `${extension.name} 원본 링크 새 탭에서 열기`);
   }
 
   function toggleSelection(id, fromDialog) {
@@ -233,19 +234,21 @@
   function syncCardSelectionState() {
     const selected = NS.state.value.selected;
 
-    document.querySelectorAll('#cardGrid .row[data-id]').forEach((row) => {
-      const id = row.dataset.id;
+    document.querySelectorAll('[data-extension-card][data-id]').forEach((card) => {
+      const id = card.dataset.id;
       const isSelected = selected.has(id);
-      row.classList.toggle('is-selected', isSelected);
+      card.classList.toggle('is-selected', isSelected);
 
-      const button = row.querySelector('.row__pick');
+      const button = card.querySelector('.row__pick, .recommended-card__pick');
       if (!button) return;
 
       const extension = NS.state.value.catalog?.byId?.get(id);
       const name = extension?.name || id;
       button.setAttribute('aria-pressed', String(isSelected));
       button.setAttribute('aria-label', isSelected ? `${name} 선택 해제` : `${name} 선택 목록에 추가`);
-      button.textContent = isSelected ? '✓' : '+';
+      button.textContent = button.classList.contains('recommended-card__pick')
+        ? (isSelected ? '담김 ✓' : '담기 +')
+        : (isSelected ? '✓' : '+');
     });
   }
 
