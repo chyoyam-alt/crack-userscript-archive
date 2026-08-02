@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sampleData": false,
-  "updatedAt": "2026-07-21T10:46:59.634Z",
+  "updatedAt": "2026-08-02T04:37:55.249Z",
   "extensions": [
     {
       "id": "crack-composer-expander",
@@ -2302,7 +2302,12 @@
       "lastTestedAt": "",
       "history": [],
       "creatorNote": "",
-      "updatedAt": "2026-07-21T10:32:50.055Z"
+      "updatedAt": "2026-08-02T04:37:50.973Z",
+      "recommendation": {
+        "enabled": true,
+        "label": "추천",
+        "priority": 0
+      }
     },
     {
       "id": "crack-shortcut-customizer",
