@@ -64,7 +64,8 @@
       },
       recommendation: {
         enabled: recommendationEnabled,
-        label: clean(extension.recommendation?.label || extension.recommendationLabel) || '추천'
+        label: clean(extension.recommendation?.label || extension.recommendationLabel) || '추천',
+        priority: Number.isFinite(Number(extension.recommendation?.priority)) ? Number(extension.recommendation.priority) : 0
       },
       presentation: {
         coverImageUrl: isSafeMediaUrl(extension.presentation?.coverImageUrl) ? clean(extension.presentation.coverImageUrl) : '',

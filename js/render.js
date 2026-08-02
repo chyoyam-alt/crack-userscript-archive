@@ -64,6 +64,7 @@
     const selected = NS.state.value.selected.has(extension.id);
     const row = create('li', `row script-card${selected ? ' is-selected' : ''}${extension.recommendation?.enabled ? ' is-recommended' : ''}`);
     row.dataset.id = extension.id;
+    row.dataset.extensionCard = '';
     row.tabIndex = 0;
     row.setAttribute('aria-label', `${extension.name} 상세 정보 열기`);
 
@@ -97,11 +98,11 @@
     const links = create('span', 'row__links');
 
     if (extension.originalSource?.url) {
-      const source = create('a', 'row__source card-source-link', '원문↗');
+      const source = create('a', 'row__source card-source-link', '원본↗');
       source.href = extension.originalSource.url;
       source.target = '_blank';
       source.rel = 'noopener noreferrer';
-      source.setAttribute('aria-label', `${extension.name} 원문 새 탭에서 열기`);
+      source.setAttribute('aria-label', `${extension.name} 원본 링크 새 탭에서 열기`);
       source.addEventListener('click', (event) => event.stopPropagation());
       links.append(source);
     }
@@ -125,6 +126,81 @@
     });
 
     return row;
+  }
+
+  function renderRecommended(catalog) {
+    const sectionElement = document.getElementById('recommendedSection');
+    const list = document.getElementById('recommendedList');
+    if (!sectionElement || !list) return;
+
+    const items = (catalog?.extensions || [])
+      .filter((extension) => extension.status === 'active' && extension.recommendation?.enabled)
+      .sort((a, b) =>
+        Number(b.recommendation?.priority || 0) - Number(a.recommendation?.priority || 0)
+        || String(b.updatedAt || b.lastTestedAt || '').localeCompare(String(a.updatedAt || a.lastTestedAt || ''))
+        || a.name.localeCompare(b.name, 'ko')
+      );
+
+    list.replaceChildren();
+    sectionElement.hidden = items.length === 0;
+    const count = document.getElementById('recommendedCount');
+    if (count) count.textContent = items.length ? `${items.length}개 추천` : '';
+    if (!items.length) return;
+
+    const fragment = document.createDocumentFragment();
+    items.forEach((extension, index) => fragment.append(createRecommendedCard(extension, index)));
+    list.append(fragment);
+  }
+
+  function createRecommendedCard(extension, index) {
+    const selected = NS.state.value.selected.has(extension.id);
+    const card = create('article', `recommended-card${selected ? ' is-selected' : ''}`);
+    card.dataset.id = extension.id;
+    card.dataset.extensionCard = '';
+    card.tabIndex = 0;
+    card.setAttribute('aria-label', `${extension.name} 상세 정보 열기`);
+    card.style.animationDelay = `${Math.min(index * 90, 360)}ms`;
+
+    const decoration = create('span', 'recommended-card__sparkles');
+    decoration.setAttribute('aria-hidden', 'true');
+    decoration.append(create('i', '', '✦'), create('i', '', '✧'), create('i', '', '·'));
+
+    const top = create('div', 'recommended-card__top');
+    top.append(
+      create('span', 'recommended-card__badge', extension.recommendation.label || '추천'),
+      create('span', 'recommended-card__category', categoryCode(extension))
+    );
+
+    const name = create('h3', 'recommended-card__name', extension.name);
+    const description = create('p', 'recommended-card__desc', extension.summary || '설명이 아직 등록되지 않았습니다.');
+    const meta = create('span', 'recommended-card__meta', `${platformCode(extension)} · LOAD ${labels.performance[relevantPerformance(extension)]}${versionCode(extension)}`);
+
+    const actions = create('div', 'recommended-card__actions');
+    const detail = create('button', 'recommended-card__detail', '상세 보기');
+    detail.type = 'button';
+    detail.addEventListener('click', (event) => {
+      event.stopPropagation();
+      NS.app.openDetail(extension.id);
+    });
+
+    const pick = create('button', 'recommended-card__pick card-select', selected ? '담김 ✓' : '담기 +');
+    pick.type = 'button';
+    pick.setAttribute('aria-pressed', String(selected));
+    pick.setAttribute('aria-label', selected ? `${extension.name} 선택 해제` : `${extension.name} 선택 목록에 추가`);
+    pick.addEventListener('click', (event) => {
+      event.stopPropagation();
+      NS.app.toggleSelection(extension.id);
+    });
+    actions.append(detail, pick);
+
+    card.append(decoration, top, name, description, meta, actions);
+    card.addEventListener('click', () => NS.app.openDetail(extension.id));
+    card.addEventListener('keydown', (event) => {
+      if (event.target !== card || (event.key !== 'Enter' && event.key !== ' ')) return;
+      event.preventDefault();
+      NS.app.openDetail(extension.id);
+    });
+    return card;
   }
 
   function categoryCode(extension) {
@@ -183,7 +259,7 @@
       section('RELATIONS', relationGrid(extension))
     );
 
-    if (extension.originalSource?.url) content.append(section('ORIGINAL SOURCE', originalSourceInfo(extension.originalSource)));
+    if (extension.originalSource?.url) content.append(section('원본 링크', originalSourceInfo(extension.originalSource)));
     content.append(section('DISTRIBUTION', distributionInfo(extension)));
     if (extension.history.length) content.append(section('CHANGELOG', historyList(extension.history)));
     if (extension.stale) content.append(section('RECHECK', create('p', 'muted', '마지막 실사용 확인일이 오래되었습니다. 현재 크랙 UI에서 다시 확인하는 편이 안전합니다.')));
@@ -230,7 +306,7 @@
 
   function originalSourceInfo(source) {
     const box = create('div', 'original-source-box');
-    box.append(create('strong', '', source.label || '이 확프의 원문 페이지'));
+    box.append(create('strong', '', source.label || '이 확프의 원본 페이지'));
 
     const details = [
       source.author ? `작성자: ${source.author}` : '',
@@ -239,7 +315,7 @@
 
     if (details) box.append(create('p', '', details));
 
-    const link = create('a', 'button button--secondary', '원문 열기');
+    const link = create('a', 'button button--secondary', '원본 링크 열기');
     link.href = source.url;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
@@ -521,6 +597,7 @@
     create,
     badge,
     renderCards,
+    renderRecommended,
     renderDetail,
     renderSelectionDialog,
     renderSelectionBar,
