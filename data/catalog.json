@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T10:53:55.093Z",
+  "generatedAt": "2026-08-02T04:37:55.839Z",
   "sampleData": false,
   "extensions": [
     {
@@ -58,6 +58,11 @@
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -123,6 +128,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -185,6 +195,11 @@
         "label": "",
         "author": "뤼갤러",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -254,6 +269,11 @@
         "author": "ㅇㅇ",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -318,6 +338,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -380,6 +405,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -441,6 +471,11 @@
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -505,6 +540,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -567,6 +607,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -628,6 +673,11 @@
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -695,6 +745,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -758,6 +813,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -820,6 +880,11 @@
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -885,6 +950,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -947,6 +1017,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1008,6 +1083,11 @@
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1072,6 +1152,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1134,6 +1219,11 @@
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1202,6 +1292,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1265,6 +1360,11 @@
         "label": "",
         "author": "",
         "note": "https://gall.dcinside.com/mini/wrtnw/226241\nhttps://gall.dcinside.com/mini/wrtnw/210345\nhttps://gall.dcinside.com/mini/wrtnw/200605\nhttps://gall.dcinside.com/mini/board/view/?id=wrtnw&no=230899\nhttps://gall.dcinside.com/mini/wrtnw/231157\nhttps://gall.dcinside.com/mini/wrtnw/234063"
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1330,6 +1430,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1392,6 +1497,11 @@
         "label": "",
         "author": "뤼갤러",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1457,6 +1567,11 @@
         "author": "ㄹㅅㄹ",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1516,6 +1631,11 @@
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1578,6 +1698,11 @@
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1652,6 +1777,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1715,6 +1845,11 @@
         "author": "ㅇㅇ",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1776,6 +1911,11 @@
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1839,6 +1979,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1900,6 +2045,11 @@
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1964,6 +2114,11 @@
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -2032,6 +2187,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -2090,7 +2250,7 @@
       ],
       "runAt": "document-start",
       "lastTestedAt": "",
-      "updatedAt": "2026-07-21T10:32:50.055Z",
+      "updatedAt": "2026-08-02T04:37:50.973Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
@@ -2098,6 +2258,11 @@
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": true,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -2162,6 +2327,11 @@
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -2224,6 +2394,11 @@
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
