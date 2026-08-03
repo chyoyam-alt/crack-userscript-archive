@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sampleData": false,
-  "updatedAt": "2026-08-03T05:02:02.421Z",
+  "updatedAt": "2026-08-03T05:44:56.679Z",
   "extensions": [
     {
       "id": "crack-composer-expander",
@@ -3408,6 +3408,424 @@
       "history": [],
       "creatorNote": "뤼튼 크랙 플랫폼의 DOM 구조와 네트워크 요청을 분석하여 동작하므로, 사이트 업데이트 시 일부 기능이 제한될 수 있습니다.",
       "updatedAt": "2026-08-03T05:01:50.263Z"
+    },
+    {
+      "id": "Transcendental-AI",
+      "status": "active",
+      "file": "",
+      "summary": "AI 메시지를 자연스러운 웹소설 문체로 번역하고 즉시 교체해 주는 스크립트입니다.",
+      "description": "크래커와 토큰 절감을 위해 본문 메시지를 영어로 출력 후 채팅방의 메시지 말풍선에 번역 버튼을 추가하여 최신 답변을 감지하고 Gemini API를 통해 번역합니다. 번역된 텍스트를 팝업에서 확인 및 수정하거나 즉시 원본 메시지와 교체할 수 있습니다. 키워드 치환, 프롬프트 수정, 이미지 링크 보호 등 롤플레잉에 최적화된 다양한 편의 기능을 제공합니다.",
+      "categories": [
+        "번역",
+        "채팅",
+        "도구"
+      ],
+      "features": [
+        "Google API 및 Firebase를 통한 Gemini 모델 연동",
+        "말풍선 내 번역 버튼 주입 및 즉시 교체 기능",
+        "한글 전용 및 영문 혼용 번역 프롬프트 지원",
+        "번역 결과 팝업 및 재번역(다시 돌리기) 기능",
+        "특정 단어를 바꾸는 키워드 치환 슬롯",
+        "마크다운 코드 블록 및 이미지 링크 마스킹 보호",
+        "토큰 사용량 기반 예상 비용 알림"
+      ],
+      "aliases": [
+        "크랙 초월 번역기",
+        "Crack Translator"
+      ],
+      "tags": [
+        "번역"
+      ],
+      "platforms": {
+        "pc": {
+          "support": "yes",
+          "evidence": "verified"
+        },
+        "mobile": {
+          "support": "yes",
+          "evidence": "verified"
+        }
+      },
+      "performance": {
+        "pc": "medium",
+        "mobile": "medium",
+        "evidence": "verified"
+      },
+      "relations": {
+        "conflictsWith": [],
+        "requires": [],
+        "goodWith": []
+      },
+      "distribution": {
+        "installUrlOverride": "https://github.com/h-ap5/crack-translator/raw/refs/heads/main/crack-translator.user.js"
+      },
+      "introductionPage": {
+        "url": "https://github.com/h-ap5/crack-translator",
+        "label": "크랙 초월 번역기"
+      },
+      "originalSource": {
+        "url": "",
+        "label": "",
+        "author": "",
+        "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
+      "presentation": {
+        "coverImageUrl": "",
+        "coverImageAlt": "",
+        "coverImageCreditUrl": "",
+        "coverImageCreditLabel": ""
+      },
+      "autoFallback": {
+        "name": "✨ 크랙 초월 번역기",
+        "version": "3.4",
+        "namespace": "",
+        "match": [],
+        "grant": [],
+        "runAt": ""
+      },
+      "lastTestedAt": "2026-08-03",
+      "history": [],
+      "creatorNote": "사용을 위하여 AI 메시지 본문을 영어로 출력해야합니다.",
+      "updatedAt": "2026-08-03T05:11:06.591Z"
+    },
+    {
+      "id": "Summary-Memo-Editor",
+      "status": "active",
+      "file": "",
+      "summary": "장기 요약 메모리를 한 번에 편집하고 관리할 수 있는 텍스트 편집기입니다.",
+      "description": "채팅방의 장기 요약 메모리를 텍스트 에디터 형태로 불러와 일괄 수정, 추가, 삭제할 수 있습니다. 변경 사항을 미리보기로 확인한 뒤 저장하여 메모리를 효율적으로 관리할 수 있습니다.",
+      "categories": [
+        "편의성",
+        "UI/UX"
+      ],
+      "features": [
+        "장기 요약 메모리 일괄 불러오기 및 편집",
+        "텍스트 에디터 기반의 메모리 추가",
+        "수정",
+        "삭제",
+        "형식 오류 및 글자 수 초과 실시간 하이라이트",
+        "변경 사항(Diff) 미리보기 제공",
+        "다크 모드 스타일 지원"
+      ],
+      "aliases": [
+        "크랙 요약 메모리 텍스트 편집기"
+      ],
+      "tags": [
+        "크랙",
+        "wrtn",
+        "메모리",
+        "요약",
+        "편집기"
+      ],
+      "platforms": {
+        "pc": {
+          "support": "yes",
+          "evidence": "verified"
+        },
+        "mobile": {
+          "support": "unknown",
+          "evidence": "unknown"
+        }
+      },
+      "performance": {
+        "pc": "light",
+        "mobile": "unknown",
+        "evidence": "verified"
+      },
+      "relations": {
+        "conflictsWith": [],
+        "requires": [],
+        "goodWith": []
+      },
+      "distribution": {
+        "installUrlOverride": "https://github.com/hamster4762/crack-summary-editor/raw/refs/heads/main/crack-summary-editor.user.js"
+      },
+      "introductionPage": {
+        "url": "https://github.com/hamster4762/crack-summary-editor",
+        "label": "크랙 장기 요약 메모리 편집기"
+      },
+      "originalSource": {
+        "url": "",
+        "label": "",
+        "author": "",
+        "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
+      "presentation": {
+        "coverImageUrl": "",
+        "coverImageAlt": "",
+        "coverImageCreditUrl": "",
+        "coverImageCreditLabel": ""
+      },
+      "autoFallback": {
+        "name": "요약 메모리 텍스트 편집기",
+        "version": "1.2.1",
+        "namespace": "",
+        "match": [],
+        "grant": [],
+        "runAt": ""
+      },
+      "lastTestedAt": "2026-08-03",
+      "history": [],
+      "creatorNote": "version 관리방식: 크랙UI변경.기능추가및수정.핫픽스",
+      "updatedAt": "2026-08-03T05:14:50.625Z"
+    },
+    {
+      "id": "Novel-Theme-Model-Icon",
+      "status": "active",
+      "file": "",
+      "summary": "뤼튼 크랙의 채팅 메시지 하단에 사용된 AI 모델의 고유 아이콘을 표시하는 스크립트입니다.",
+      "description": "소설형UI에서 각 채팅 메시지에 사용된 AI 모델을 파악하고, 메시지 좌측 하단에 해당 모델의 아이콘을 뱃지로 추가합니다. 자동 인식이 부정확할 경우 아이콘을 클릭해 팝업 메뉴에서 수동으로 모델을 지정할 수 있습니다. 수동으로 설정한 모델 정보는 브라우저의 로컬 스토리지에 저장되어 유지됩니다.",
+      "categories": [
+        "편의성",
+        "인터페이스"
+      ],
+      "features": [
+        "채팅 메시지 하단에 사용 모델 아이콘 표시",
+        "네트워크 응답 가로채기를 통한 모델 정보 자동 수집",
+        "아이콘 클릭 시 수동 모델 선택 팝업 제공",
+        "수동 지정 모델 정보 로컬 스토리지 저장"
+      ],
+      "aliases": [
+        "크랙 모델 아이콘",
+        "채팅모델 인식"
+      ],
+      "tags": [
+        "소설형UI",
+        "모델",
+        "아이콘"
+      ],
+      "platforms": {
+        "pc": {
+          "support": "yes",
+          "evidence": "verified"
+        },
+        "mobile": {
+          "support": "yes",
+          "evidence": "verified"
+        }
+      },
+      "performance": {
+        "pc": "light",
+        "mobile": "light",
+        "evidence": "verified"
+      },
+      "relations": {
+        "conflictsWith": [],
+        "requires": [],
+        "goodWith": []
+      },
+      "distribution": {
+        "installUrlOverride": "https://gist.github.com/sw12937oz-cpu/ae328304f1c86dd322a1da80bdac1746/raw/329ddd4e050849f553dbbfc45e6ece97af85e49b/crack-model-icon.user.js"
+      },
+      "introductionPage": {
+        "url": "https://gall.dcinside.com/mini/wrtnw/230899",
+        "label": "소개 페이지"
+      },
+      "originalSource": {
+        "url": "",
+        "label": "",
+        "author": "",
+        "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
+      "presentation": {
+        "coverImageUrl": "",
+        "coverImageAlt": "",
+        "coverImageCreditUrl": "",
+        "coverImageCreditLabel": ""
+      },
+      "autoFallback": {
+        "name": "소설형 채팅모델 인식",
+        "version": "2.1.2",
+        "namespace": "",
+        "match": [],
+        "grant": [],
+        "runAt": ""
+      },
+      "lastTestedAt": "2026-08-03",
+      "history": [],
+      "creatorNote": "채팅형UI에서도 뜨는 버그가 있습니다.",
+      "updatedAt": "2026-08-03T05:18:32.680Z"
+    },
+    {
+      "id": "Layout-Resizer",
+      "status": "active",
+      "file": "",
+      "summary": "채팅창 너비 조절 및 컴팩트 모드를 지원하는 레이아웃 커스텀 스크립트입니다.",
+      "description": "채팅창, 프로필 모달, 유저노트 모달, 최대 출력량 조절 모달의 너비를 슬라이더로 자유롭게 조절할 수 있습니다. 컴팩트 모드를 켜면 이미지와 텍스트를 나란히 배치하여 공간을 절약하며, 강제 스크롤 차단 기능도 포함되어 있습니다.",
+      "categories": [
+        "UI/UX",
+        "편의성"
+      ],
+      "features": [
+        "채팅 컬럼 너비 조절",
+        "대화 프로필 모달 너비 조절",
+        "유저노트 모달 너비 조절",
+        "최대 출력량 조절 모달 너비 조절",
+        "컴팩트 모드 지원 (이미지-텍스트 병렬 배치)",
+        "채팅 강제 스크롤 차단",
+        "플로팅 UI 패널 제공"
+      ],
+      "aliases": [
+        "Crack 레이아웃 조절기"
+      ],
+      "tags": [
+        "레이아웃",
+        "너비조절",
+        "컴팩트",
+        "스크롤차단",
+        "UI"
+      ],
+      "platforms": {
+        "pc": {
+          "support": "yes",
+          "evidence": "verified"
+        },
+        "mobile": {
+          "support": "unknown",
+          "evidence": "unknown"
+        }
+      },
+      "performance": {
+        "pc": "light",
+        "mobile": "unknown",
+        "evidence": "verified"
+      },
+      "relations": {
+        "conflictsWith": [],
+        "requires": [],
+        "goodWith": []
+      },
+      "distribution": {
+        "installUrlOverride": "https://github.com/brianlee0329-alt/Wrtn-Extension/raw/refs/heads/main/Crack%20%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83%20%EC%A1%B0%EC%A0%88%EA%B8%B0.user.js"
+      },
+      "introductionPage": {
+        "url": "https://gall.dcinside.com/wrtnai/1042108",
+        "label": "ㄹㅇ이가ㅏㅏㅏㅏㅏㅏㅏㅏㅏ"
+      },
+      "originalSource": {
+        "url": "",
+        "label": "",
+        "author": "",
+        "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
+      "presentation": {
+        "coverImageUrl": "",
+        "coverImageAlt": "",
+        "coverImageCreditUrl": "",
+        "coverImageCreditLabel": ""
+      },
+      "autoFallback": {
+        "name": "UI 레이아웃 조절기",
+        "version": "1.6.0",
+        "namespace": "",
+        "match": [],
+        "grant": [],
+        "runAt": ""
+      },
+      "lastTestedAt": "2026-08-03",
+      "history": [],
+      "creatorNote": "Tyme",
+      "updatedAt": "2026-08-03T05:21:23.822Z"
+    },
+    {
+      "id": "Message-Overrider",
+      "status": "active",
+      "file": "",
+      "summary": "AI 메시지를 글자수 제한 없이 강제로 수정할 수 있는 스크립트입니다.",
+      "description": "채팅방 내 AI 메시지 하단 툴바에 강제 수정 버튼을 추가합니다. 버튼을 누르면 나타나는 모달 창에서 글자수 제한 없이 메시지를 수정하고 API를 통해 즉시 적용할 수 있습니다. 수정 후에는 자동으로 새로고침되어 변경 사항이 반영됩니다.",
+      "categories": [
+        "채팅",
+        "유틸리티"
+      ],
+      "features": [
+        "AI 메시지 하단 툴바에 강제 수정 버튼 추가",
+        "글자수 제한 없는 메시지 수정 모달 제공",
+        "API를 통한 메시지 직접 수정 및 자동 새로고침"
+      ],
+      "aliases": [
+        "Message Overrider",
+        "AI 전용 강제 수정기"
+      ],
+      "tags": [
+        "메시지수정",
+        "강제수정"
+      ],
+      "platforms": {
+        "pc": {
+          "support": "yes",
+          "evidence": "verified"
+        },
+        "mobile": {
+          "support": "unknown",
+          "evidence": "unknown"
+        }
+      },
+      "performance": {
+        "pc": "light",
+        "mobile": "unknown",
+        "evidence": "inferred"
+      },
+      "relations": {
+        "conflictsWith": [],
+        "requires": [],
+        "goodWith": []
+      },
+      "distribution": {
+        "installUrlOverride": "https://gist.github.com/lyb5382/ffac8ca8ec8f455f6c0e51c0b1f88c89/raw/7c02531370f1748acc39720a540a8855a34ec345/Message_Overrider.user.js"
+      },
+      "introductionPage": {
+        "url": "https://gall.dcinside.com/wrtnai/1009809",
+        "label": "메시지 글자 수 제한 해제 확프"
+      },
+      "originalSource": {
+        "url": "",
+        "label": "",
+        "author": "",
+        "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
+      "presentation": {
+        "coverImageUrl": "",
+        "coverImageAlt": "",
+        "coverImageCreditUrl": "",
+        "coverImageCreditLabel": ""
+      },
+      "autoFallback": {
+        "name": "AI 메시지 글자수 제한 해제",
+        "version": "1.3.1",
+        "namespace": "",
+        "match": [],
+        "grant": [],
+        "runAt": ""
+      },
+      "lastTestedAt": "2026-08-03",
+      "history": [],
+      "creatorNote": "서버 400 에러 방지 및 AI 메시지만 수정 가능하도록 변경",
+      "updatedAt": "2026-08-03T05:25:54.157Z"
     }
   ]
 }
