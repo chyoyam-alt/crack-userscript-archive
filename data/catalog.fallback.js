@@ -1,6 +1,6 @@
 window.CRACK_CATALOG_FALLBACK = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T10:53:55.389Z",
+  "generatedAt": "2026-08-03T02:39:11.105Z",
   "sampleData": false,
   "extensions": [
     {
@@ -8,13 +8,11 @@ window.CRACK_CATALOG_FALLBACK = {
       "status": "active",
       "name": "↗️ Crack Composer Expander (채팅창 펼치기)",
       "summary": "크랙 채팅창의 입력란이 길어질 때 전체 펼치기 및 접기 기능을 제공합니다.",
-      "description": "뤼튼 크랙(Wrtn Crack) 웹사이트의 채팅방에서 긴 텍스트를 입력할 때 유용한 스크립트입니다. 채팅 입력창에 텍스트 내용이 넘치면 입력란 좌측 상단에 펼치기/접기 토글 버튼이 나타납니다. 버튼을 클릭하면 입력창이 화면 세로 크기의 최대 82%까지 넓게 확장되어 긴 글을 쓰거나 수정하기 편해집니다. 메시지를 전송하여 입력창이 비워지면 자동으로 원래 크기로 복원됩니다. 특정 외부 플러그인(라디오존데) 팝업과의 UI 충돌을 방지하는 화면 고정 및 위치 동기화 로직도 포함되어 있습니다.",
+      "description": "채팅 입력창에 텍스트 내용이 넘치면 입력란 좌측 상단에 펼치기/접기 토글 버튼이 나타납니다. 버튼을 클릭하면 입력창이 화면 세로 크기의 최대 82%까지 넓게 확장되어 긴 글을 쓰거나 수정하기 편해집니다. 메시지를 전송하여 입력창이 비워지면 자동으로 원래 크기로 복원됩니다. 특정 외부 플러그인(라디오존데) 팝업과의 UI 충돌을 방지하는 화면 고정 및 위치 동기화 로직도 포함되어 있습니다.",
       "categories": [],
       "features": [],
       "aliases": [],
       "tags": [
-        "뤼튼",
-        "wrtn",
         "채팅창",
         "입력창",
         "크기조절",
@@ -34,7 +32,9 @@ window.CRACK_CATALOG_FALLBACK = {
         "evidence": "unknown"
       },
       "relations": {
-        "conflictsWith": [],
+        "conflictsWith": [
+          "crack-mobile-utility"
+        ],
         "requires": [],
         "goodWith": []
       },
@@ -49,15 +49,20 @@ window.CRACK_CATALOG_FALLBACK = {
         "none"
       ],
       "runAt": "document-idle",
-      "lastTestedAt": "",
-      "updatedAt": "2026-07-21T09:20:44.905Z",
+      "lastTestedAt": "2026-08-03",
+      "updatedAt": "2026-08-03T02:20:04.457Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
         "url": "",
         "label": "",
-        "author": "",
+        "author": "묘기",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -70,14 +75,12 @@ window.CRACK_CATALOG_FALLBACK = {
       "id": "crack-korean-auto-correct",
       "status": "active",
       "name": "✍️ Crack Korean Auto Correct (한글 자동 교정)",
-      "summary": "뤼튼(wrtn) 채팅 입력창 한글 오타 및 맞춤법 자동 교정",
-      "description": "스토리 채팅 입력창에서 한글 오타, 맞춤법, 띄어쓰기를 실시간으로 교정하는 스크립트입니다. 두벌식 자판의 흔한 입력 실수를 완성된 음절로 복원해주며, 문맥에 맞게 어절 단위로 교정을 수행합니다. 자체 설정 UI를 통해 교정 규칙, 지연 시간, 예외 단어 등을 사용자가 직접 관리할 수 있습니다. 채팅을 입력하고 어절을 마칠 때나 전송하기 직전에 자동으로 적용되어 빠르고 안전하게 입력할 수 있습니다.",
+      "summary": "채팅 입력창 한글 오타 및 맞춤법 자동 교정",
+      "description": "채팅 입력창에서 한글 오타, 맞춤법, 띄어쓰기를 실시간으로 교정하는 스크립트입니다. 두벌식 자판의 흔한 입력 실수를 완성된 음절로 복원해주며, 문맥에 맞게 어절 단위로 교정을 수행합니다. 자체 설정 UI를 통해 교정 규칙, 지연 시간, 예외 단어 등을 사용자가 직접 관리할 수 있습니다. 채팅을 입력하고 어절을 마칠 때나 전송하기 직전에 자동으로 적용되어 빠르고 안전하게 입력할 수 있습니다.",
       "categories": [],
       "features": [],
       "aliases": [],
       "tags": [
-        "wrtn",
-        "뤼튼",
         "맞춤법",
         "오타교정",
         "입력보조"
@@ -86,14 +89,14 @@ window.CRACK_CATALOG_FALLBACK = {
         "pc": "yes",
         "mobile": "unknown",
         "evidence": {
-          "pc": "reported",
-          "mobile": "reported"
+          "pc": "verified",
+          "mobile": "verified"
         }
       },
       "performance": {
-        "pc": "unknown",
-        "mobile": "unknown",
-        "evidence": "unknown"
+        "pc": "light",
+        "mobile": "light",
+        "evidence": "verified"
       },
       "relations": {
         "conflictsWith": [],
@@ -113,8 +116,8 @@ window.CRACK_CATALOG_FALLBACK = {
         "GM_addStyle"
       ],
       "runAt": "document-idle",
-      "lastTestedAt": "",
-      "updatedAt": "2026-07-21T09:27:27.115Z",
+      "lastTestedAt": "2026-08-03",
+      "updatedAt": "2026-08-03T02:21:10.721Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
@@ -123,8 +126,13 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
-        "coverImageUrl": "",
+        "coverImageUrl": "https://gall.dcinside.com/mini/wrtnw/234766",
         "coverImageAlt": "",
         "coverImageCreditUrl": "",
         "coverImageCreditLabel": ""
@@ -186,6 +194,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "뤼갤러",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -198,13 +211,15 @@ window.CRACK_CATALOG_FALLBACK = {
       "status": "active",
       "name": "✨ Crack Muse Writer (AI 답변 커스텀)",
       "summary": "USER의 입력을 다듬어주는 AI 집필 보조 도구. 보라색 버튼을 길게 누르면 메뉴창이 뜹니다.",
-      "description": "플랫폼에서 캐릭터 채팅 시 AI를 활용해 답변의 문맥과 서사를 보조하는 스크립트입니다. Gemini 및 DeepSeek API를 연동하여 동작하며, 단기·장기 기억과 에리 로어 데이터를 읽기 전용으로 참고합니다. 분위기, 문체, 분량, 서사 나침반 등을 설정해 원하는 연출을 이끌어낼 수 있습니다. 사용을 위해 외부 API 키 등록이 필요하며, 실시간 토큰 사용량과 예상 비용을 UI로 제공합니다.",
+      "description": "AI를 활용해 답변의 문맥과 서사를 보조하는 스크립트입니다. Gemini 및 DeepSeek API를 연동하여 동작하며, 단기·장기 기억과 에리 로어 데이터를 읽기 전용으로 참고합니다. 분위기, 문체, 분량, 서사 나침반 등을 설정해 원하는 연출을 이끌어낼 수 있습니다. 사용을 위해 외부 API 키 등록이 필요하며, 실시간 토큰 사용량과 예상 비용을 UI로 제공합니다.",
       "categories": [],
       "features": [],
-      "aliases": [],
+      "aliases": [
+        "문장 부풀리기",
+        "답변 커스텀",
+        "답변 부풀리기"
+      ],
       "tags": [
-        "wrtn",
-        "뤼튼",
         "AI",
         "챗봇",
         "집필보조",
@@ -214,14 +229,14 @@ window.CRACK_CATALOG_FALLBACK = {
         "pc": "yes",
         "mobile": "yes",
         "evidence": {
-          "pc": "reported",
-          "mobile": "reported"
+          "pc": "verified",
+          "mobile": "verified"
         }
       },
       "performance": {
-        "pc": "unknown",
-        "mobile": "unknown",
-        "evidence": "unknown"
+        "pc": "light",
+        "mobile": "light",
+        "evidence": "verified"
       },
       "relations": {
         "conflictsWith": [],
@@ -244,8 +259,8 @@ window.CRACK_CATALOG_FALLBACK = {
         "unsafeWindow"
       ],
       "runAt": "",
-      "lastTestedAt": "",
-      "updatedAt": "2026-07-21T09:52:10.963Z",
+      "lastTestedAt": "2026-08-03",
+      "updatedAt": "2026-08-03T02:24:33.762Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
@@ -254,8 +269,13 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "ㅇㅇ",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
-        "coverImageUrl": "",
+        "coverImageUrl": "https://gall.dcinside.com/mini/wrtnw/236158",
         "coverImageAlt": "",
         "coverImageCreditUrl": "",
         "coverImageCreditLabel": ""
@@ -269,10 +289,13 @@ window.CRACK_CATALOG_FALLBACK = {
       "description": "채팅방에서 비, 눈, 벚꽃, 은하수 등 다양한 화면 이펙트와 시간대별 배경을 제공하는 스크립트입니다. 최신 로그의 사용자 키워드를 감지하여 상황에 맞는 배경과 날씨 효과로 자동 전환하는 기능을 지원합니다. 통합 사운드 메뉴를 통해 빗소리, 풀벌레, 파도 소리 등 다채로운 환경음을 제어할 수 있습니다. 단, 모바일과 같은 비PC 환경에서는 성능을 위해 은하수 및 수중 효과 렌더링이 차단됩니다.",
       "categories": [],
       "features": [],
-      "aliases": [],
+      "aliases": [
+        "날씨",
+        "시간대",
+        "시간대 배경",
+        "날씨 확프"
+      ],
       "tags": [
-        "뤼튼",
-        "채팅방",
         "배경효과",
         "날씨",
         "사운드",
@@ -282,14 +305,14 @@ window.CRACK_CATALOG_FALLBACK = {
         "pc": "yes",
         "mobile": "yes",
         "evidence": {
-          "pc": "reported",
-          "mobile": "reported"
+          "pc": "verified",
+          "mobile": "verified"
         }
       },
       "performance": {
-        "pc": "unknown",
-        "mobile": "unknown",
-        "evidence": "unknown"
+        "pc": "heavy",
+        "mobile": "heavy",
+        "evidence": "verified"
       },
       "relations": {
         "conflictsWith": [],
@@ -308,8 +331,8 @@ window.CRACK_CATALOG_FALLBACK = {
         "unsafeWindow"
       ],
       "runAt": "document-idle",
-      "lastTestedAt": "",
-      "updatedAt": "2026-07-21T10:01:07.508Z",
+      "lastTestedAt": "2026-08-03",
+      "updatedAt": "2026-08-03T02:25:44.399Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
@@ -318,8 +341,13 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
-        "coverImageUrl": "",
+        "coverImageUrl": "https://gall.dcinside.com/mini/wrtnw/239032",
         "coverImageAlt": "",
         "coverImageCreditUrl": "",
         "coverImageCreditLabel": ""
@@ -333,11 +361,12 @@ window.CRACK_CATALOG_FALLBACK = {
       "description": "뤼튼 크랙 채팅 페이지에서 각 답변을 생성할 때 실제로 소모된 크래커 개수를 측정하여 답변 하단에 배지로 표시합니다. 리롤(다시 생성)한 답변의 소모량도 개별적으로 추적하며, 답변 삭제 시 해당 기록도 함께 정리됩니다. 스크립트 설치 이후에 생성된 답변만 측정 가능하며, 실제 차감 내역을 기반으로 정확한 소모량을 보여줍니다.",
       "categories": [],
       "features": [],
-      "aliases": [],
-      "tags": [
-        "wrtn",
-        "크랙",
+      "aliases": [
         "크래커",
+        "답변별 크래커"
+      ],
+      "tags": [
+        "답변별 크래커",
         "소모량",
         "비용 표시"
       ],
@@ -350,12 +379,14 @@ window.CRACK_CATALOG_FALLBACK = {
         }
       },
       "performance": {
-        "pc": "unknown",
-        "mobile": "unknown",
-        "evidence": "unknown"
+        "pc": "light",
+        "mobile": "light",
+        "evidence": "verified"
       },
       "relations": {
-        "conflictsWith": [],
+        "conflictsWith": [
+          "crack-mobile-utility"
+        ],
         "requires": [],
         "goodWith": []
       },
@@ -370,8 +401,8 @@ window.CRACK_CATALOG_FALLBACK = {
         "unsafeWindow"
       ],
       "runAt": "document-start",
-      "lastTestedAt": "",
-      "updatedAt": "2026-07-21T09:23:55.896Z",
+      "lastTestedAt": "2026-08-03",
+      "updatedAt": "2026-08-03T02:29:33.430Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
@@ -380,8 +411,13 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
-        "coverImageUrl": "",
+        "coverImageUrl": "https://gall.dcinside.com/mini/wrtnw/241272",
         "coverImageAlt": "",
         "coverImageCreditUrl": "",
         "coverImageCreditLabel": ""
@@ -395,7 +431,10 @@ window.CRACK_CATALOG_FALLBACK = {
       "description": "API로 로그를 읽고 그에 맞는 NAI용 태그를 생성하여 삽화를 삽입합니다. 캐릭터 및 PC 모드 프롬프트 태그를 프리셋으로 생성하고 저장할 수 있습니다. SD 방식의 태그 가중치를 NovelAI 방식으로 자동 변환하여 적용합니다. Google Gemini API 및 Firebase 연동을 지원하며, 토큰 사용량 및 예상 요금 요약 UI를 제공합니다. 또한 로컬 스토리지 용량 절약을 위해 JSON 데이터를 자동으로 압축하여 저장합니다.",
       "categories": [],
       "features": [],
-      "aliases": [],
+      "aliases": [
+        "삽화",
+        "NAI"
+      ],
       "tags": [
         "NovelAI",
         "프롬프트",
@@ -407,14 +446,14 @@ window.CRACK_CATALOG_FALLBACK = {
         "pc": "yes",
         "mobile": "no",
         "evidence": {
-          "pc": "reported",
-          "mobile": "reported"
+          "pc": "verified",
+          "mobile": "verified"
         }
       },
       "performance": {
-        "pc": "unknown",
+        "pc": "medium",
         "mobile": "unknown",
-        "evidence": "unknown"
+        "evidence": "verified"
       },
       "relations": {
         "conflictsWith": [],
@@ -432,8 +471,8 @@ window.CRACK_CATALOG_FALLBACK = {
         "GM_xmlhttpRequest"
       ],
       "runAt": "document-idle",
-      "lastTestedAt": "",
-      "updatedAt": "2026-07-21T10:11:16.143Z",
+      "lastTestedAt": "2026-08-03",
+      "updatedAt": "2026-08-03T02:28:08.046Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
@@ -441,6 +480,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -457,7 +501,11 @@ window.CRACK_CATALOG_FALLBACK = {
       "description": "크랙에서 작동하는 모바일/태블릿 친화적인 삽화 스크립트입니다. 로그를 읽고 로그에 맞는 태그를 조합 후 NAI로 이미지를 생성하여 삽입합니다. Gemini API(Firebase 및 Vertex AI)를 연결하여 프롬프트를 생성하고 토큰 사용량 및 비용을 추적할 수 있습니다. 단보루 태그 검색, 태그 프리셋 관리, 가중치 문법 자동 변환 기능을 지원하며, 로컬스토리지 JSON 압축 저장을 통해 저장소 용량을 효율적으로 관리합니다.",
       "categories": [],
       "features": [],
-      "aliases": [],
+      "aliases": [
+        "모바일 삽화",
+        "삽화",
+        "모바일"
+      ],
       "tags": [
         "뤼튼",
         "프롬프트",
@@ -469,14 +517,14 @@ window.CRACK_CATALOG_FALLBACK = {
         "pc": "no",
         "mobile": "yes",
         "evidence": {
-          "pc": "reported",
-          "mobile": "reported"
+          "pc": "verified",
+          "mobile": "verified"
         }
       },
       "performance": {
         "pc": "unknown",
-        "mobile": "unknown",
-        "evidence": "unknown"
+        "mobile": "medium",
+        "evidence": "verified"
       },
       "relations": {
         "conflictsWith": [],
@@ -495,8 +543,8 @@ window.CRACK_CATALOG_FALLBACK = {
         "GM.xmlHttpRequest"
       ],
       "runAt": "document-idle",
-      "lastTestedAt": "",
-      "updatedAt": "2026-07-21T09:49:58.179Z",
+      "lastTestedAt": "2026-08-03",
+      "updatedAt": "2026-08-03T02:29:14.424Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
@@ -504,6 +552,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -517,13 +570,14 @@ window.CRACK_CATALOG_FALLBACK = {
       "status": "active",
       "name": "🏆 Crack Ranking Cleaner (랭킹 클리너)",
       "summary": "뤼튼 Crack 사이트의 사용자 랭킹 섹션과 팝업을 제거합니다.",
-      "description": "페이지 내에 표시되는 '사용자 랭킹' 섹션을 자동으로 찾아 숨깁니다. 랭킹 섹션 근처의 불필요한 레이아웃 구분선도 함께 정리하여 화면을 깔끔하게 유지합니다. 랭킹의 '전체보기' 버튼 클릭을 사전에 차단하고, 화면에 나타나는 랭킹 관련 팝업창(모달)도 감지하여 즉시 제거합니다. 별도의 설정 없이 스크립트를 설치하기만 하면 백그라운드에서 자동으로 동작합니다.",
+      "description": "페이지 내에 표시되는 '사용자 랭킹'을 자동으로 찾아 숨깁니다. 랭킹 섹션 근처의 불필요한 레이아웃 구분선도 함께 정리하여 화면을 깔끔하게 유지합니다. 랭킹의 '전체보기' 버튼 클릭을 사전에 차단하고, 화면에 나타나는 랭킹 관련 팝업창(모달)도 감지하여 즉시 제거합니다. 별도의 설정 없이 스크립트를 설치하기만 하면 백그라운드에서 자동으로 동작합니다.",
       "categories": [],
       "features": [],
-      "aliases": [],
+      "aliases": [
+        "랭킹",
+        "숨기기"
+      ],
       "tags": [
-        "뤼튼",
-        "wrtn",
         "랭킹 숨기기",
         "UI 개선",
         "팝업 차단"
@@ -532,14 +586,14 @@ window.CRACK_CATALOG_FALLBACK = {
         "pc": "yes",
         "mobile": "yes",
         "evidence": {
-          "pc": "reported",
-          "mobile": "reported"
+          "pc": "verified",
+          "mobile": "verified"
         }
       },
       "performance": {
-        "pc": "unknown",
-        "mobile": "unknown",
-        "evidence": "unknown"
+        "pc": "light",
+        "mobile": "light",
+        "evidence": "verified"
       },
       "relations": {
         "conflictsWith": [],
@@ -557,8 +611,8 @@ window.CRACK_CATALOG_FALLBACK = {
         "none"
       ],
       "runAt": "document-start",
-      "lastTestedAt": "",
-      "updatedAt": "2026-07-21T09:30:32.213Z",
+      "lastTestedAt": "2026-08-03",
+      "updatedAt": "2026-08-03T02:30:41.833Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
@@ -567,8 +621,13 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
-        "coverImageUrl": "",
+        "coverImageUrl": "https://gall.dcinside.com/mini/wrtnw/230968",
         "coverImageAlt": "",
         "coverImageCreditUrl": "",
         "coverImageCreditLabel": ""
@@ -592,16 +651,16 @@ window.CRACK_CATALOG_FALLBACK = {
       ],
       "platforms": {
         "pc": "yes",
-        "mobile": "unknown",
+        "mobile": "yes",
         "evidence": {
-          "pc": "reported",
-          "mobile": "reported"
+          "pc": "verified",
+          "mobile": "verified"
         }
       },
       "performance": {
-        "pc": "unknown",
-        "mobile": "unknown",
-        "evidence": "unknown"
+        "pc": "light",
+        "mobile": "light",
+        "evidence": "verified"
       },
       "relations": {
         "conflictsWith": [],
@@ -619,8 +678,8 @@ window.CRACK_CATALOG_FALLBACK = {
         "none"
       ],
       "runAt": "document-idle",
-      "lastTestedAt": "",
-      "updatedAt": "2026-07-21T09:33:33.362Z",
+      "lastTestedAt": "2026-08-03",
+      "updatedAt": "2026-08-03T02:31:22.252Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
@@ -629,8 +688,13 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
-        "coverImageUrl": "",
+        "coverImageUrl": "https://gall.dcinside.com/mini/wrtnw/225974",
         "coverImageAlt": "",
         "coverImageCreditUrl": "",
         "coverImageCreditLabel": ""
@@ -641,7 +705,7 @@ window.CRACK_CATALOG_FALLBACK = {
       "status": "active",
       "name": "👾 Crack INFO Game HUD (미니 RPG HUD)",
       "summary": "크랙 뤼튼 대화를 분석해 게임식 HUD와 로그로 보여주는 스크립트",
-      "description": "크랙 채팅 화면에 미니 RPG 스타일의 게임 HUD와 상태창을 추가합니다. Gemini, DeepSeek 등의 외부 AI API를 연동해 대화를 분석하고, 게임 알림, 성좌물, 인터넷 커뮤니티 등 다양한 스타일의 상황 로그를 생성합니다. 채팅을 통해 가상의 펫 경험치를 올리고 다이어리를 확인하는 기능을 포함합니다. 또한 API 토큰 사용량 확인 및 클라우드 데이터 세이브 기능을 제공하며, 사용 시 직접 외부 API 키나 Firebase 설정을 입력해야 합니다.",
+      "description": "채팅 화면에 미니 RPG 스타일의 게임 HUD와 상태창을 추가합니다. Gemini, DeepSeek 등의 외부 AI API를 연동해 대화를 분석하고, 게임 알림, 성좌물, 인터넷 커뮤니티 등 다양한 스타일의 상황 로그를 생성합니다. 채팅을 통해 가상의 펫 경험치를 올리고 다이어리를 확인하는 기능을 포함합니다. 또한 API 토큰 사용량 확인 및 클라우드 데이터 세이브 기능을 제공하며, 사용 시 직접 외부 API 키나 Firebase 설정을 입력해야 합니다.",
       "categories": [],
       "features": [],
       "aliases": [],
@@ -656,14 +720,14 @@ window.CRACK_CATALOG_FALLBACK = {
         "pc": "yes",
         "mobile": "yes",
         "evidence": {
-          "pc": "reported",
-          "mobile": "reported"
+          "pc": "verified",
+          "mobile": "verified"
         }
       },
       "performance": {
-        "pc": "unknown",
-        "mobile": "unknown",
-        "evidence": "unknown"
+        "pc": "light",
+        "mobile": "light",
+        "evidence": "verified"
       },
       "relations": {
         "conflictsWith": [],
@@ -685,8 +749,8 @@ window.CRACK_CATALOG_FALLBACK = {
         "unsafeWindow"
       ],
       "runAt": "document-idle",
-      "lastTestedAt": "",
-      "updatedAt": "2026-07-21T10:03:25.096Z",
+      "lastTestedAt": "2026-08-03",
+      "updatedAt": "2026-08-03T02:31:59.505Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
@@ -694,6 +758,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -723,14 +792,14 @@ window.CRACK_CATALOG_FALLBACK = {
         "pc": "yes",
         "mobile": "yes",
         "evidence": {
-          "pc": "reported",
-          "mobile": "reported"
+          "pc": "verified",
+          "mobile": "verified"
         }
       },
       "performance": {
-        "pc": "unknown",
-        "mobile": "unknown",
-        "evidence": "unknown"
+        "pc": "light",
+        "mobile": "light",
+        "evidence": "verified"
       },
       "relations": {
         "conflictsWith": [],
@@ -748,8 +817,8 @@ window.CRACK_CATALOG_FALLBACK = {
         "unsafeWindow"
       ],
       "runAt": "document-start",
-      "lastTestedAt": "",
-      "updatedAt": "2026-07-21T09:48:04.607Z",
+      "lastTestedAt": "2026-08-03",
+      "updatedAt": "2026-08-03T02:32:30.737Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
@@ -757,6 +826,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -770,30 +844,27 @@ window.CRACK_CATALOG_FALLBACK = {
       "status": "active",
       "name": "📊 Crack Chat Model Stats (채팅별 모델 통계)",
       "summary": "뤼튼 크랙 AI 채팅방별로 사용된 AI 모델 통계를 누적하여 화면에 보여줍니다.",
-      "description": "각 채팅방마다 어떤 AI 모델을 얼마나 사용했는지 리롤을 포함한 횟수를 집계하는 스크립트입니다. 네트워크 요청과 내부 이벤트를 가로채어 모델 정보를 추출한 뒤, 화면의 '나의 크래커' 영역 아래에 모델별 아이콘과 사용 횟수를 띄워줍니다. 새롭게 발견된 모델은 자동으로 등록되며, 수집된 전체 데이터는 로컬 스토리지에 저장되어 방을 이동해도 통계가 유지됩니다.",
+      "description": "각 채팅방마다 어떤 모델을 얼마나 사용했는지 리롤을 포함한 횟수를 집계하는 스크립트입니다. 모델 정보를 추출한 뒤, 화면의 '나의 크래커' 영역 아래에 모델별 아이콘과 사용 횟수를 띄워줍니다. 새롭게 발견된 모델은 자동으로 등록되며, 수집된 전체 데이터는 로컬 스토리지에 저장되어 방을 이동해도 통계가 유지됩니다.",
       "categories": [],
       "features": [],
       "aliases": [],
       "tags": [
-        "wrtn",
-        "뤼튼",
-        "크랙",
         "AI모델",
         "통계",
         "채팅방"
       ],
       "platforms": {
         "pc": "yes",
-        "mobile": "unknown",
+        "mobile": "yes",
         "evidence": {
-          "pc": "reported",
-          "mobile": "reported"
+          "pc": "verified",
+          "mobile": "verified"
         }
       },
       "performance": {
-        "pc": "unknown",
-        "mobile": "unknown",
-        "evidence": "unknown"
+        "pc": "light",
+        "mobile": "light",
+        "evidence": "verified"
       },
       "relations": {
         "conflictsWith": [],
@@ -811,8 +882,8 @@ window.CRACK_CATALOG_FALLBACK = {
         "unsafeWindow"
       ],
       "runAt": "document-start",
-      "lastTestedAt": "",
-      "updatedAt": "2026-07-21T09:44:05.733Z",
+      "lastTestedAt": "2026-08-03",
+      "updatedAt": "2026-08-03T02:33:19.790Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
@@ -820,6 +891,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -834,12 +910,17 @@ window.CRACK_CATALOG_FALLBACK = {
       "name": "📑 Crack Chat List Tuner (크랙 채팅방 목록 튜너)",
       "summary": "뤼튼 크랙 채팅방 색상 지정 및 보관함 검색, 높이 조절 기능 추가",
       "description": "채팅창 목록을 편리하게 개조하는 스크립트입니다. 채팅방 우클릭 메뉴에 색상 팔레트를 제공하여 항목을 원하는 색으로 강조 표시할 수 있고, 긴 채팅방 이름은 마우스 오버 시 자동으로 스크롤됩니다. 보관함 상단에 통합 검색창을 생성하여 제목으로 전체 채팅을 쉽게 찾을 수 있습니다. 또한, 보관함 영역의 스크롤 높이를 조절하고 상태를 유지할 수 있습니다.",
-      "categories": [],
+      "categories": [
+        "UI"
+      ],
       "features": [],
-      "aliases": [],
+      "aliases": [
+        "채팅방 목록",
+        "UI",
+        "검색",
+        "보관함"
+      ],
       "tags": [
-        "wrtn",
-        "뤼튼",
         "크랙",
         "채팅방",
         "검색",
@@ -876,7 +957,7 @@ window.CRACK_CATALOG_FALLBACK = {
       ],
       "runAt": "document-start",
       "lastTestedAt": "",
-      "updatedAt": "2026-07-21T10:13:59.488Z",
+      "updatedAt": "2026-08-03T02:36:08.090Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
@@ -884,6 +965,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -947,6 +1033,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1008,6 +1099,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1072,6 +1168,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1134,6 +1235,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1202,6 +1308,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1265,6 +1376,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "",
         "note": "https://gall.dcinside.com/mini/wrtnw/226241\nhttps://gall.dcinside.com/mini/wrtnw/210345\nhttps://gall.dcinside.com/mini/wrtnw/200605\nhttps://gall.dcinside.com/mini/board/view/?id=wrtnw&no=230899\nhttps://gall.dcinside.com/mini/wrtnw/231157\nhttps://gall.dcinside.com/mini/wrtnw/234063"
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1330,6 +1446,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1392,6 +1513,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "뤼갤러",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1457,6 +1583,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "ㄹㅅㄹ",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1516,6 +1647,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1578,6 +1714,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1652,6 +1793,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1715,6 +1861,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "ㅇㅇ",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1776,6 +1927,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1839,6 +1995,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -1900,6 +2061,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -1964,6 +2130,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -2032,6 +2203,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -2046,11 +2222,11 @@ window.CRACK_CATALOG_FALLBACK = {
       "summary": "크랙 커스텀 로어 주입 코어 스크립트",
       "description": "긴 채팅에서 캐릭터 설정, 관계, 약속, 과거 사건 같은 정보를 저장해두고, 현재 대화에 필요한 내용만 찾아 AI 답변 전에 참고자료로 넣어주는 확장 프로그램이다. 자동 삽입, 자동·수동 추출, 의미 검색, 로어팩 관리, 백업, 응답 교정 기능을 지원해 장기 RP에서 설정 오류와 기억 누락을 줄여준다.",
       "categories": [],
-      "features": [],
+      "features": [
+        "기억력 상승"
+      ],
       "aliases": [],
       "tags": [
-        "wrtn",
-        "뤼튼크랙",
         "API제어",
         "웹소켓",
         "로어북",
@@ -2065,9 +2241,9 @@ window.CRACK_CATALOG_FALLBACK = {
         }
       },
       "performance": {
-        "pc": "unknown",
-        "mobile": "unknown",
-        "evidence": "unknown"
+        "pc": "light",
+        "mobile": "light",
+        "evidence": "verified"
       },
       "relations": {
         "conflictsWith": [],
@@ -2089,15 +2265,20 @@ window.CRACK_CATALOG_FALLBACK = {
         "unsafeWindow"
       ],
       "runAt": "document-start",
-      "lastTestedAt": "",
-      "updatedAt": "2026-07-21T10:32:50.055Z",
+      "lastTestedAt": "2026-08-03",
+      "updatedAt": "2026-08-03T02:18:18.659Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
-        "url": "",
+        "url": "https://gall.dcinside.com/mini/board/view/?id=wrtnw&no=235401",
         "label": "",
-        "author": "",
+        "author": "로컬AI",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": true,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
@@ -2162,6 +2343,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "author": "",
         "note": ""
       },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
       "presentation": {
         "coverImageUrl": "",
         "coverImageAlt": "",
@@ -2224,6 +2410,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "label": "",
         "author": "",
         "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
       },
       "presentation": {
         "coverImageUrl": "",
