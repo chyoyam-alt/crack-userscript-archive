@@ -1,6 +1,6 @@
 window.CRACK_CATALOG_FALLBACK = {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T05:44:58.621Z",
+  "generatedAt": "2026-08-04T15:08:40.733Z",
   "sampleData": false,
   "extensions": [
     {
@@ -272,11 +272,11 @@ window.CRACK_CATALOG_FALLBACK = {
       ],
       "runAt": "",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-03T02:24:33.762Z",
+      "updatedAt": "2026-08-04T15:08:37.618Z",
       "history": [],
       "creatorNote": "",
       "introductionPage": {
-        "url": "",
+        "url": "https://gall.dcinside.com/mini/wrtnw/236158",
         "label": "소개 페이지"
       },
       "originalSource": {
@@ -291,7 +291,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "priority": 0
       },
       "presentation": {
-        "coverImageUrl": "https://gall.dcinside.com/mini/wrtnw/236158",
+        "coverImageUrl": "",
         "coverImageAlt": "",
         "coverImageCreditUrl": "",
         "coverImageCreditLabel": ""
@@ -348,11 +348,11 @@ window.CRACK_CATALOG_FALLBACK = {
       ],
       "runAt": "document-idle",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-03T02:25:44.399Z",
+      "updatedAt": "2026-08-04T12:54:27.886Z",
       "history": [],
-      "creatorNote": "",
+      "creatorNote": "굉장히 무거운 확프이므로 고사양 PC 환경에서만 돌리는 것을 추천합니다.",
       "introductionPage": {
-        "url": "",
+        "url": "https://gall.dcinside.com/mini/wrtnw/239032https://gall.dcinside.com/mini/wrtnw/239032",
         "label": "소개 페이지"
       },
       "originalSource": {
@@ -367,7 +367,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "priority": 0
       },
       "presentation": {
-        "coverImageUrl": "https://gall.dcinside.com/mini/wrtnw/239032",
+        "coverImageUrl": "",
         "coverImageAlt": "",
         "coverImageCreditUrl": "",
         "coverImageCreditLabel": ""
