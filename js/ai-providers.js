@@ -7,6 +7,7 @@
     gemini: {
       label: 'Gemini API',
       models: [
+        ['gemini-3.6-flash', 'Gemini 3.6 Flash · 최신'],
         ['gemini-3.5-flash', 'Gemini 3.5 Flash · 권장'],
         ['gemini-3.1-flash-lite', 'Gemini 3.1 Flash-Lite · 저비용'],
         ['gemini-3.1-pro-preview', 'Gemini 3.1 Pro Preview · 정밀'],
@@ -26,6 +27,7 @@
     firebase: {
       label: 'Firebase AI Logic (Gemini)',
       models: [
+        ['gemini-3.6-flash', 'Gemini 3.6 Flash · 최신'],
         ['gemini-3.5-flash', 'Gemini 3.5 Flash · 권장'],
         ['gemini-3.1-flash-lite', 'Gemini 3.1 Flash-Lite · 저비용'],
         ['gemini-3.1-pro-preview', 'Gemini 3.1 Pro Preview · 정밀'],
