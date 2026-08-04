@@ -167,20 +167,38 @@ body.ai-helper-open .selbar{z-index:55}
   .navlink{padding:7px 6px;font-size:10.5px}
   .row{min-height:112px}
   .row__desc{-webkit-line-clamp:3}
-  .dialog{width:calc(100vw - 16px);max-height:calc(100dvh - 16px);margin:auto}
+  dialog.dialog[open]{position:fixed;inset:max(6px,env(safe-area-inset-top)) 6px auto;height:calc(100dvh - max(6px,env(safe-area-inset-top)) - max(6px,env(safe-area-inset-bottom)));width:auto;max-width:none;max-height:none;margin:0}
+  .dialog__head,.dialog__foot,.ai-strip,.ai-composer,.warning-list,.queue-progress,.queue-current{flex:0 0 auto}
+  .dialog__title,.ai-head__id{min-width:0}
+  .dialog__title{flex:1}
+  .dialog__title h2{overflow-wrap:anywhere;line-height:1.35}
+  .dialog__head .icon-button{width:42px;height:42px;flex:0 0 auto}
   .dialog__head{padding:14px 14px 11px}
+  .dialog__body,.selection-list,.queue-list{min-height:0;flex:1 1 auto;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
   .dialog__body{padding:14px}
   .dialog__foot{padding:10px 12px calc(10px + env(safe-area-inset-bottom));flex-wrap:wrap}
   .dialog__foot--spread{align-items:stretch;flex-direction:column}
   .dialog__foot-group{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
   .dialog__foot-group .button{width:100%}
+  .dialog__foot .button{min-height:42px;height:auto;padding-top:8px;padding-bottom:8px}
+  #queueDialog .dialog__foot{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  #queueDialog .dialog__foot .button{width:100%;padding-left:6px;padding-right:6px}
   .detail-meta{grid-template-columns:1fr}
   .detail-cover{min-height:210px;margin:-14px -14px 16px}
   .original-source-choice{grid-template-columns:1fr}
   .original-source-choice .button{justify-self:start}
   .ai-recommend-item{grid-template-columns:auto minmax(0,1fr)}
   .ai-recommend-item__actions{grid-column:2;justify-content:flex-start;flex-wrap:wrap}
-  #aiRecommendDialog{max-height:none}
+  #aiRecommendDialog{inset:max(6px,env(safe-area-inset-top)) 6px auto;height:calc(100dvh - max(6px,env(safe-area-inset-top)) - max(6px,env(safe-area-inset-bottom)));width:auto;max-height:none}
+  #aiRecommendDialog .ai-head{padding:11px 12px 9px}
+  #aiRecommendDialog .ai-strip{flex-wrap:wrap;padding:8px 12px;row-gap:5px}
+  #aiRecommendDialog .ai-strip__state{margin-left:auto}
+  #aiRecommendDialog .ai-layout{min-height:0;overflow:hidden}
+  #aiRecommendDialog .ai-scroll{min-height:0;flex:1 1 auto;overflow-y:auto;padding:12px}
+  #aiRecommendDialog .ai-composer{padding:10px 12px}
+  #aiRecommendDialog .ai-prompt textarea{max-height:120px}
+  #aiRecommendDialog .ai-settings__head{padding:13px 14px 11px}
+  #aiRecommendDialog .ai-settings__scroll{min-height:0;padding:14px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
   .wizard-installed-list{max-height:180px}
   .block--recommended{margin-top:18px;padding:14px 12px 15px}
   .recommended-heading>div{align-items:flex-start;flex-direction:column;gap:1px}

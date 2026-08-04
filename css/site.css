@@ -162,7 +162,7 @@ h1,h2,h3,p,dl,dd{margin:0}
 }
 @media (max-width:520px){
   .ailauncher{right:14px;bottom:14px}
-  #aiRecommendDialog{inset:auto 12px 74px 12px;width:auto;height:min(72vh,540px)}
+  #aiRecommendDialog{inset:max(6px,env(safe-area-inset-top)) 6px auto;height:calc(100dvh - max(6px,env(safe-area-inset-top)) - max(6px,env(safe-area-inset-bottom)));width:auto}
 }
 
 /* ---- 다이얼로그 ---- */
