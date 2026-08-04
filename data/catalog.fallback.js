@@ -1,6 +1,6 @@
 window.CRACK_CATALOG_FALLBACK = {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-04T15:11:15.489Z",
+  "generatedAt": "2026-08-04T15:52:59.169Z",
   "sampleData": false,
   "extensions": [
     {
@@ -887,12 +887,12 @@ window.CRACK_CATALOG_FALLBACK = {
       ],
       "runAt": "document-start",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-03T02:32:30.737Z",
+      "updatedAt": "2026-08-04T15:52:36.415Z",
       "history": [],
       "creatorNote": "",
       "introductionPage": {
-        "url": "",
-        "label": "소개 페이지"
+        "url": "https://gall.dcinside.com/mini/wrtnw/248129",
+        "label": "08\t좋아요 보관함"
       },
       "originalSources": [],
       "originalSource": {
@@ -957,12 +957,12 @@ window.CRACK_CATALOG_FALLBACK = {
       ],
       "runAt": "document-start",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-03T02:33:19.790Z",
+      "updatedAt": "2026-08-04T15:52:54.039Z",
       "history": [],
       "creatorNote": "",
       "introductionPage": {
-        "url": "",
-        "label": "소개 페이지"
+        "url": "https://gall.dcinside.com/mini/wrtnw/248129",
+        "label": "09\t채팅별 모델 통계"
       },
       "originalSources": [],
       "originalSource": {
@@ -1200,12 +1200,12 @@ window.CRACK_CATALOG_FALLBACK = {
       ],
       "runAt": "document-idle",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-03T04:13:18.283Z",
+      "updatedAt": "2026-08-04T15:51:00.320Z",
       "history": [],
       "creatorNote": "순정 버튼 class 보존 및 가벼운 감지 구조를 적용했습니다.",
       "introductionPage": {
-        "url": "",
-        "label": "소개 페이지"
+        "url": "https://gall.dcinside.com/mini/wrtnw/248129",
+        "label": "02\t채팅 템플릿 매니저"
       },
       "originalSources": [],
       "originalSource": {
@@ -1371,12 +1371,12 @@ window.CRACK_CATALOG_FALLBACK = {
       ],
       "runAt": "",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-03T04:20:49.620Z",
+      "updatedAt": "2026-08-04T15:50:47.612Z",
       "history": [],
       "creatorNote": "",
       "introductionPage": {
-        "url": "https://gall.dcinside.com/mini/wrtnw/243435",
-        "label": "소개 페이지"
+        "url": "https://gall.dcinside.com/mini/wrtnw/248129",
+        "label": "01\t라디오존데 팝업"
       },
       "originalSources": [],
       "originalSource": {
@@ -1667,12 +1667,12 @@ window.CRACK_CATALOG_FALLBACK = {
       ],
       "runAt": "document-idle",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-03T04:29:46.251Z",
+      "updatedAt": "2026-08-04T15:52:15.301Z",
       "history": [],
       "creatorNote": "",
       "introductionPage": {
-        "url": "",
-        "label": "소개 페이지"
+        "url": "https://gall.dcinside.com/mini/wrtnw/248129",
+        "label": "06\t글자수·시간 배지"
       },
       "originalSources": [],
       "originalSource": {
@@ -2214,12 +2214,12 @@ window.CRACK_CATALOG_FALLBACK = {
       ],
       "runAt": "document-idle",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-03T04:53:31.294Z",
+      "updatedAt": "2026-08-04T15:52:02.589Z",
       "history": [],
       "creatorNote": "",
       "introductionPage": {
-        "url": "",
-        "label": "소개 페이지"
+        "url": "https://gall.dcinside.com/mini/wrtnw/248129",
+        "label": "05\t리롤 믹서"
       },
       "originalSources": [],
       "originalSource": {
@@ -2363,12 +2363,12 @@ window.CRACK_CATALOG_FALLBACK = {
       ],
       "runAt": "document-idle",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-03T04:53:43.483Z",
+      "updatedAt": "2026-08-04T15:52:25.821Z",
       "history": [],
       "creatorNote": "",
       "introductionPage": {
-        "url": "",
-        "label": "소개 페이지"
+        "url": "https://gall.dcinside.com/mini/wrtnw/248129",
+        "label": "07\t수정창 단어 청소기"
       },
       "originalSources": [],
       "originalSource": {
@@ -2439,12 +2439,12 @@ window.CRACK_CATALOG_FALLBACK = {
       ],
       "runAt": "document-start",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-03T04:45:47.571Z",
+      "updatedAt": "2026-08-04T15:51:48.926Z",
       "history": [],
       "creatorNote": "",
       "introductionPage": {
-        "url": "",
-        "label": "소개 페이지"
+        "url": "https://gall.dcinside.com/mini/wrtnw/248129",
+        "label": "04\t모바일 화면 잘림 방지"
       },
       "originalSources": [],
       "originalSource": {
@@ -3310,6 +3310,86 @@ window.CRACK_CATALOG_FALLBACK = {
       "introductionPage": {
         "url": "https://gall.dcinside.com/wrtnai/1009809",
         "label": "메시지 글자 수 제한 해제 확프"
+      },
+      "originalSources": [],
+      "originalSource": {
+        "url": "",
+        "label": "",
+        "author": "",
+        "note": ""
+      },
+      "recommendation": {
+        "enabled": false,
+        "label": "추천",
+        "priority": 0
+      },
+      "presentation": {
+        "coverImageUrl": "",
+        "coverImageAlt": "",
+        "coverImageCreditUrl": "",
+        "coverImageCreditLabel": ""
+      }
+    },
+    {
+      "id": "auto-save-memo",
+      "status": "active",
+      "name": "📝 자동저장 메모장",
+      "summary": "채팅방마다 개별적으로 내용을 자동 저장하고 마크다운을 지원하는 미니 메모장을 추가합니다.",
+      "description": "채팅 입력창의 전송 버튼 옆에 작은 메모장 버튼을 추가합니다. 버튼을 누르면 나타나는 메모장은 채팅방별로 내용을 따로 로컬에 자동 저장하며, 드래그로 위치를 옮기거나 크기를 조절할 수 있습니다. 또한 작성한 메모를 마크다운 형식으로 미리 보는 기능과 화면 테마 자동 감지 기능을 제공합니다.",
+      "categories": [
+        "편의성",
+        "UI/UX"
+      ],
+      "features": [
+        "채팅방별 개별 메모 자동 저장",
+        "전송 버튼 옆 미니 메모 버튼 추가",
+        "메모장 창 드래그 이동 및 크기 조절",
+        "마크다운 미리보기 지원",
+        "다크/라이트 테마 자동 감지",
+        "메모장 창 위치 및 크기 기억"
+      ],
+      "aliases": [
+        "크랙 메모장",
+        "crack memo"
+      ],
+      "tags": [
+        "메모",
+        "자동저장",
+        "마크다운",
+        "채팅방"
+      ],
+      "platforms": {
+        "pc": "yes",
+        "mobile": "yes",
+        "evidence": {
+          "pc": "verified",
+          "mobile": "verified"
+        }
+      },
+      "performance": {
+        "pc": "light",
+        "mobile": "light",
+        "evidence": "verified"
+      },
+      "relations": {
+        "conflictsWith": [],
+        "requires": [],
+        "goodWith": []
+      },
+      "version": "1.3.2",
+      "installUrl": "https://gist.github.com/chyoyam-alt/b608d489ad75f0531720932e46736bfe/raw/crack_memo.user.js",
+      "file": "",
+      "namespace": "",
+      "match": [],
+      "grant": [],
+      "runAt": "",
+      "lastTestedAt": "2026-08-05",
+      "updatedAt": "2026-08-04T15:51:31.769Z",
+      "history": [],
+      "creatorNote": "채팅방 URL을 기준으로 로컬 스토리지에 메모를 저장하므로 브라우저 데이터를 삭제하면 메모가 지워질 수 있습니다.",
+      "introductionPage": {
+        "url": "https://gall.dcinside.com/mini/wrtnw/248129",
+        "label": "03\t자동저장 메모장"
       },
       "originalSources": [],
       "originalSource": {
