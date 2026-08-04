@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sampleData": false,
-  "updatedAt": "2026-08-04T15:52:58.014Z",
+  "updatedAt": "2026-08-04T16:54:42.746Z",
   "extensions": [
     {
       "id": "crack-composer-expander",
@@ -1504,7 +1504,7 @@
       ],
       "runAt": "document-idle",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-03T04:17:22.081Z",
+      "updatedAt": "2026-08-04T16:54:39.086Z",
       "history": [],
       "creatorNote": "외부 API 사용 시 토큰 요금이 발생할 수 있으므로 주의가 필요합니다.",
       "originalSource": {
@@ -1528,7 +1528,7 @@
         "installUrlOverride": "https://github.com/h-ap5/userscripts/raw/refs/heads/main/scripts/automemory.user.js"
       },
       "introductionPage": {
-        "url": "https://github.com/h-ap5/userscripts/blob/main/PatchNotes/automemory.md",
+        "url": "https://github.com/h-ap5/userscripts/tree/main#%EC%9A%94%EC%95%BD-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%9E%90%EB%8F%99-%EC%83%9D%EC%84%B1%EA%B8%B0",
         "label": "크랙 요약 메모리 편집 & AI 자동 요약"
       },
       "autoFallback": {
@@ -1542,7 +1542,8 @@
           "none"
         ],
         "runAt": "document-idle"
-      }
+      },
+      "originalSources": []
     },
     {
       "id": "crack-radiosonde",
@@ -3528,7 +3529,7 @@
         "installUrlOverride": "https://github.com/h-ap5/crack-translator/raw/refs/heads/main/crack-translator.user.js"
       },
       "introductionPage": {
-        "url": "https://github.com/h-ap5/crack-translator",
+        "url": "https://github.com/h-ap5/userscripts/tree/main#%EC%B4%88%EC%9B%94-%EB%B2%88%EC%97%AD%EA%B8%B0",
         "label": "크랙 초월 번역기"
       },
       "originalSource": {
@@ -3559,7 +3560,8 @@
       "lastTestedAt": "2026-08-03",
       "history": [],
       "creatorNote": "사용을 위하여 AI 메시지 본문을 영어로 출력해야합니다.",
-      "updatedAt": "2026-08-03T05:11:06.591Z"
+      "updatedAt": "2026-08-04T16:54:14.987Z",
+      "originalSources": []
     },
     {
       "id": "Summary-Memo-Editor",
