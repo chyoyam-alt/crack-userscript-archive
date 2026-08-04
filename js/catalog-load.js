@@ -2,7 +2,8 @@
   'use strict';
 
   const NS = window.CrackArchive = window.CrackArchive || {};
-  const CACHE_KEY = 'crack-archive:last-catalog:v2';
+  const CACHE_KEY = 'crack-archive:last-catalog:v3';
+  const RAW_REPOSITORY_BASE = 'https://raw.githubusercontent.com/chyoyam-alt/crack-userscript-archive/main/';
   const RECOMMENDATION_TAGS = new Set(['추천', '에디터 추천', '관리자 추천', '공식 추천']);
 
   function asArray(value) { return Array.isArray(value) ? value : []; }
@@ -56,6 +57,10 @@
       updatedAt,
       history: Array.isArray(extension.history) ? extension.history.slice() : [],
       creatorNote: clean(extension.creatorNote),
+      introductionPage: {
+        url: isSafeWebUrl(extension.introductionPage?.url || extension.introduction?.url) ? clean(extension.introductionPage?.url || extension.introduction?.url) : '',
+        label: clean(extension.introductionPage?.label || extension.introduction?.label) || '소개 페이지'
+      },
       originalSource: {
         url: isSafeWebUrl(extension.originalSource?.url) ? clean(extension.originalSource.url) : '',
         label: clean(extension.originalSource?.label),
@@ -100,16 +105,31 @@
 
   async function loadAll() {
     const [site, presets] = await Promise.all([
-      fetchJson('data/site.json', { schemaVersion: 1, staleAfterDays: 120, issueNewUrl: '', repositoryUrl: '', assistant: { name: '모아', role: '확프 추천 도우미' }, heroMedia: {} }),
-      fetchJson('data/presets.json', { schemaVersion: 1, presets: [] })
+      fetchFreshJson('data/site.json', { schemaVersion: 1, staleAfterDays: 120, issueNewUrl: '', repositoryUrl: '', assistant: { name: '모아', role: '확프 추천 도우미' }, heroMedia: {} }),
+      fetchFreshJson('data/presets.json', { schemaVersion: 1, presets: [] })
     ]);
+    const loadedCatalog = await loadCatalog(site);
+    return {
+      ...loadedCatalog,
+      presets: Array.isArray(presets.presets) ? presets.presets : [],
+      site
+    };
+  }
+
+  async function refreshCatalog(site) {
+    return loadCatalog(site || {});
+  }
+
+  async function loadCatalog(site) {
     let rawCatalog;
     let source = 'network';
     if (window.CRACK_ARCHIVE_PREVIEW && window.CRACK_CATALOG_FALLBACK) {
       rawCatalog = window.CRACK_CATALOG_FALLBACK;
       source = 'preview';
     } else try {
-      rawCatalog = await fetchJsonRequired('data/catalog.json');
+      const freshCatalog = await fetchFreshJsonRequired('data/catalog.json');
+      rawCatalog = freshCatalog.value;
+      source = freshCatalog.source;
       try { localStorage.setItem(CACHE_KEY, JSON.stringify(rawCatalog)); } catch (_) { /* cache is optional */ }
     } catch (error) {
       if (window.CRACK_CATALOG_FALLBACK) {
@@ -127,20 +147,33 @@
     }
     return {
       catalog: normalizeCatalog(rawCatalog, site),
-      presets: Array.isArray(presets.presets) ? presets.presets : [],
-      site,
       dataSource: source
     };
   }
 
-  async function fetchJson(url, fallback) {
-    try { return await fetchJsonRequired(url); } catch (_) { return fallback; }
+  async function fetchFreshJson(path, fallback) {
+    try { return (await fetchFreshJsonRequired(path)).value; } catch (_) { return fallback; }
   }
 
   async function fetchJsonRequired(url) {
-    const response = await fetch(url, { cache: 'no-cache' });
+    const response = await fetch(url, { cache: 'no-store' });
     if (!response.ok) throw new Error(`${url} HTTP ${response.status}`);
     return response.json();
+  }
+
+  async function fetchFreshJsonRequired(path) {
+    const stamp = Date.now();
+    const separator = path.includes('?') ? '&' : '?';
+    const localUrl = `${path}${separator}v=${stamp}`;
+    const candidates = window.CRACK_ARCHIVE_PREVIEW
+      ? [[localUrl, 'preview']]
+      : [[`${RAW_REPOSITORY_BASE}${path}${separator}v=${stamp}`, 'github'], [localUrl, 'network']];
+    let lastError;
+    for (const [url, source] of candidates) {
+      try { return { value: await fetchJsonRequired(url), source }; }
+      catch (error) { lastError = error; }
+    }
+    throw lastError || new Error(`${path}을(를) 불러오지 못했습니다.`);
   }
 
   function getSearchText(extension) {
@@ -176,5 +209,5 @@
     return Date.now() - date.getTime() > days * 86400000;
   }
 
-  NS.catalog = { loadAll, getSearchText, isSafeInstallUrl, isSafeWebUrl, isSafeMediaUrl, normalizeCatalog };
+  NS.catalog = { loadAll, refreshCatalog, getSearchText, isSafeInstallUrl, isSafeWebUrl, isSafeMediaUrl, normalizeCatalog };
 })();

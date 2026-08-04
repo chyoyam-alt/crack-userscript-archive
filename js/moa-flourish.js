@@ -286,6 +286,14 @@
   }
   function ownOpen(event) {
     if (event) event.stopImmediatePropagation();
+    if (window.CrackArchive && window.CrackArchive.aiRecommend && window.CrackArchive.aiRecommend.open) {
+      window.CrackArchive.aiRecommend.open();
+      if (!greeted && greetEl) {
+        greeted = true;
+        setTimeout(function () { type(greetEl, '어서 오십셔. 필요한 걸 말해주시면 카탈로그 안에서만 골라오겠슴다.'); }, 260);
+      }
+      return;
+    }
     moaOpen();
   }
   if (openBtn) openBtn.addEventListener('click', ownOpen, true);

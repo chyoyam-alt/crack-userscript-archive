@@ -97,6 +97,16 @@
     const tags = create('span', 'row__tags', `${platformCode(extension)} · LOAD ${labels.performance[relevantPerformance(extension)]}${versionCode(extension)}`);
     const links = create('span', 'row__links');
 
+    if (extension.introductionPage?.url) {
+      const introduction = create('a', 'row__source card-introduction-link', '소개↗');
+      introduction.href = extension.introductionPage.url;
+      introduction.target = '_blank';
+      introduction.rel = 'noopener noreferrer';
+      introduction.setAttribute('aria-label', `${extension.name} 소개 페이지 새 탭에서 열기`);
+      introduction.addEventListener('click', (event) => event.stopPropagation());
+      links.append(introduction);
+    }
+
     if (extension.originalSource?.url) {
       const source = create('a', 'row__source card-source-link', '원본↗');
       source.href = extension.originalSource.url;
@@ -259,6 +269,7 @@
       section('RELATIONS', relationGrid(extension))
     );
 
+    if (extension.introductionPage?.url) content.append(section('소개 페이지', introductionPageInfo(extension.introductionPage)));
     if (extension.originalSource?.url) content.append(section('원본 링크', originalSourceInfo(extension.originalSource)));
     content.append(section('DISTRIBUTION', distributionInfo(extension)));
     if (extension.history.length) content.append(section('CHANGELOG', historyList(extension.history)));
@@ -317,6 +328,18 @@
 
     const link = create('a', 'button button--secondary', '원본 링크 열기');
     link.href = source.url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    box.append(link);
+    return box;
+  }
+
+  function introductionPageInfo(page) {
+    const box = create('div', 'original-source-box introduction-page-box');
+    box.append(create('strong', '', page.label || '이 확프의 소개 페이지'));
+
+    const link = create('a', 'button button--secondary', '소개 페이지 열기');
+    link.href = page.url;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     box.append(link);

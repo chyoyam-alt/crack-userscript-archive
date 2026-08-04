@@ -6,6 +6,7 @@
   let busy = false;
   let resultItems = [];
   let recommendationInstruction = '';
+  let catalogRefreshPromise = null;
 
   function init() {
     recommendationInstruction = NS.aiInstructions.DEFAULT_RECOMMENDATION_INSTRUCTIONS;
@@ -35,7 +36,35 @@
     document.getElementById('aiLauncherButton').hidden = true;
     document.body.classList.add('ai-helper-open');
     NS.assistantAvatar?.wave();
+    updateCandidateCount();
+    refreshCatalogForAi();
     setTimeout(() => document.getElementById('recommendPrompt').focus(), 160);
+  }
+
+  function updateCandidateCount(stateText) {
+    const count = NS.state.value.catalog?.extensions?.length || 0;
+    document.getElementById('recommendCandidateCount').textContent = String(count);
+    document.getElementById('recommendCatalogFreshness').textContent = stateText || '현재 카탈로그';
+    return count;
+  }
+
+  function refreshCatalogForAi() {
+    if (catalogRefreshPromise) return catalogRefreshPromise;
+    updateCandidateCount('최신 확인 중…');
+    catalogRefreshPromise = (async () => {
+      try {
+        const result = await NS.app.refreshCatalog();
+        updateCandidateCount(result.dataSource === 'cache' ? '이전 저장본 사용 중' : '최신 확인됨');
+        return result;
+      } catch (error) {
+        console.error(error);
+        updateCandidateCount('갱신 실패 · 현재 목록 사용');
+        return { count: NS.state.value.catalog?.extensions?.length || 0, changed: false, dataSource: 'current' };
+      } finally {
+        catalogRefreshPromise = null;
+      }
+    })();
+    return catalogRefreshPromise;
   }
 
   function openSettings(open) {
@@ -148,15 +177,20 @@
     if (!request) { NS.render.toast('원하는 기능을 입력하세요.'); return; }
     try {
       setBusy(true); setRunStatus('카탈로그를 확인하고 있습니다…', 'working');
+      await refreshCatalogForAi();
       const catalogCandidates = NS.state.value.catalog.extensions.map((item) => ({
         id: item.id, status: item.status, name: item.name, summary: item.summary,
         categories: item.categories, features: item.features, aliases: item.aliases, tags: item.tags,
         platforms: item.platforms, performance: item.performance, relations: item.relations
       }));
+      const catalogCandidateCount = catalogCandidates.length;
+      updateCandidateCount('AI 전달 준비 완료');
       const prompt = [
         '다음 사용자 요청에 맞는 확프를 추천하세요.',
         '', '## 사용자 요청', request,
         '', '## 현재 사이트에서 선택된 항목', JSON.stringify([...NS.state.value.selected]),
+        '', '## catalogCandidateCount', String(catalogCandidateCount),
+        '위 숫자는 사이트가 배열 길이로 확인한 정확한 값입니다. 다시 세거나 다른 숫자로 표현하지 마세요.',
         '', '## catalogCandidates', JSON.stringify(catalogCandidates, null, 2)
       ].join('\n');
       const raw = await NS.aiProviders.analyze(settings(), {
@@ -167,7 +201,7 @@
       });
       const normalized = normalizeResult(raw);
       renderResult(normalized);
-      setRunStatus('추천이 완료되었습니다.', 'success');
+      setRunStatus(`${catalogCandidateCount}개 후보 확인 · 추천 완료`, 'success');
     } catch (error) {
       console.error(error); NS.assistantAvatar?.setState('error'); setTimeout(() => NS.assistantAvatar?.setState('idle'), 1800); setRunStatus(error.message || 'AI 추천에 실패했습니다.', 'error'); NS.render.toast('AI 추천에 실패했습니다. API 연결 상태를 확인하세요.');
     } finally { setBusy(false); }

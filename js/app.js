@@ -185,37 +185,51 @@
 
     NS.state.value.detailId = id;
     NS.render.renderDetail(extension);
-    syncDetailOriginalButton(extension);
+    syncDetailLinkButtons(extension);
 
     const dialog = byId('detailDialog');
     if (!dialog.open) dialog.showModal();
   }
 
-  function syncDetailOriginalButton(extension) {
+  function syncDetailLinkButtons(extension) {
     const group = document.querySelector('#detailDialog .dialog__foot-group');
     if (!group) return;
 
-    let button = byId('detailOriginalButton');
+    syncDetailLinkButton(group, {
+      id: 'detailIntroductionButton',
+      url: extension?.introductionPage?.url || '',
+      text: '소개 페이지',
+      ariaLabel: `${extension.name} 소개 페이지 새 탭에서 열기`
+    });
+    syncDetailLinkButton(group, {
+      id: 'detailOriginalButton',
+      url: extension?.originalSource?.url || '',
+      text: '원본 링크',
+      ariaLabel: `${extension.name} 원본 링크 새 탭에서 열기`
+    });
+  }
+
+  function syncDetailLinkButton(group, options) {
+    let button = byId(options.id);
     if (!button) {
       button = document.createElement('a');
-      button.id = 'detailOriginalButton';
+      button.id = options.id;
       button.className = 'button button--ghost detail-original-button';
       button.target = '_blank';
       button.rel = 'noopener noreferrer';
       group.insertBefore(button, byId('detailSelectButton'));
     }
 
-    const url = extension?.originalSource?.url || '';
-    button.hidden = !url;
-    if (!url) {
+    button.hidden = !options.url;
+    if (!options.url) {
       button.removeAttribute('href');
       button.textContent = '';
       return;
     }
 
-    button.href = url;
-    button.textContent = '원본 링크';
-    button.setAttribute('aria-label', `${extension.name} 원본 링크 새 탭에서 열기`);
+    button.href = options.url;
+    button.textContent = options.text;
+    button.setAttribute('aria-label', options.ariaLabel);
   }
 
   function toggleSelection(id, fromDialog) {
@@ -225,7 +239,7 @@
     if (fromDialog && NS.state.value.detailId === id) {
       const extension = NS.state.value.catalog.byId.get(id);
       NS.render.renderDetail(extension);
-      syncDetailOriginalButton(extension);
+      syncDetailLinkButtons(extension);
     }
 
     NS.render.toast(selected ? '선택 목록에 추가했습니다.' : '선택에서 제외했습니다.');
@@ -256,6 +270,40 @@
     syncCardSelectionState();
     NS.render.renderSelectionBar();
     if (byId('selectionDialog')?.open) NS.render.renderSelectionDialog();
+  }
+
+  async function refreshCatalog() {
+    const loaded = await NS.catalog.refreshCatalog(NS.state.value.site);
+    const previousCatalog = NS.state.value.catalog;
+    NS.state.value.catalog = loaded.catalog;
+    NS.state.value.dataSource = loaded.dataSource;
+    NS.state.sanitizeSelection();
+
+    showDataNotice();
+    renderHeroInfo();
+    NS.render.renderRecommended(NS.state.value.catalog);
+    NS.render.renderRecent(NS.state.value.catalog);
+    applyFilters();
+    NS.render.renderSelectionBar();
+
+    const detailDialog = byId('detailDialog');
+    if (detailDialog?.open && NS.state.value.detailId) {
+      const extension = NS.state.value.catalog.byId.get(NS.state.value.detailId);
+      if (extension) {
+        NS.render.renderDetail(extension);
+        syncDetailLinkButtons(extension);
+      } else {
+        detailDialog.close();
+      }
+    }
+
+    const previousIds = previousCatalog?.extensions?.map((item) => item.id).join('\n') || '';
+    const currentIds = loaded.catalog.extensions.map((item) => item.id).join('\n');
+    return {
+      count: loaded.catalog.extensions.length,
+      changed: previousIds !== currentIds || previousCatalog?.generatedAt !== loaded.catalog.generatedAt,
+      dataSource: loaded.dataSource
+    };
   }
 
   function openSelectionDialog() {
@@ -387,6 +435,7 @@
     openInstallUrl,
     getSelectionWarnings,
     refreshAll,
+    refreshCatalog,
     applyPreset,
     syncPlatformButtons,
     reportIssue
