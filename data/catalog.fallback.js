@@ -1,6 +1,6 @@
 window.CRACK_CATALOG_FALLBACK = {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-04T15:08:40.733Z",
+  "generatedAt": "2026-08-04T15:11:15.489Z",
   "sampleData": false,
   "extensions": [
     {
@@ -57,10 +57,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
-        "author": "묘기",
+        "author": "",
         "note": ""
       },
       "recommendation": {
@@ -128,6 +129,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -200,6 +202,14 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/177972",
+          "label": "",
+          "author": "뤼갤러",
+          "note": ""
+        }
+      ],
       "originalSource": {
         "url": "https://gall.dcinside.com/mini/wrtnw/177972",
         "label": "",
@@ -272,13 +282,21 @@ window.CRACK_CATALOG_FALLBACK = {
       ],
       "runAt": "",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-04T15:08:37.618Z",
+      "updatedAt": "2026-08-04T15:11:10.115Z",
       "history": [],
       "creatorNote": "",
       "introductionPage": {
         "url": "https://gall.dcinside.com/mini/wrtnw/236158",
         "label": "소개 페이지"
       },
+      "originalSources": [
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/185144",
+          "label": "",
+          "author": "ㅇㅇ",
+          "note": ""
+        }
+      ],
       "originalSource": {
         "url": "https://gall.dcinside.com/mini/wrtnw/185144",
         "label": "",
@@ -348,13 +366,14 @@ window.CRACK_CATALOG_FALLBACK = {
       ],
       "runAt": "document-idle",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-04T12:54:27.886Z",
+      "updatedAt": "2026-08-03T02:25:44.399Z",
       "history": [],
-      "creatorNote": "굉장히 무거운 확프이므로 고사양 PC 환경에서만 돌리는 것을 추천합니다.",
+      "creatorNote": "",
       "introductionPage": {
-        "url": "https://gall.dcinside.com/mini/wrtnw/239032https://gall.dcinside.com/mini/wrtnw/239032",
+        "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -367,7 +386,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "priority": 0
       },
       "presentation": {
-        "coverImageUrl": "",
+        "coverImageUrl": "https://gall.dcinside.com/mini/wrtnw/239032",
         "coverImageAlt": "",
         "coverImageCreditUrl": "",
         "coverImageCreditLabel": ""
@@ -429,6 +448,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -503,6 +523,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -579,6 +600,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -651,6 +673,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -722,6 +745,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -797,6 +821,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -869,6 +894,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -938,6 +964,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -1025,6 +1052,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://gall.dcinside.com/mini/board/view/?id=wrtnw&no=246592",
         "label": "[확프] 크랙 채팅 목록 튜너 | 검색·색상·보관함 정리"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -1096,6 +1124,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://gall.dcinside.com/mini/board/view/?id=wrtnw&no=167143",
         "label": "장기기억 백업/복원 확프"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -1178,6 +1207,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -1270,6 +1300,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://github.com/h-ap5/userscripts/blob/main/PatchNotes/automemory.md",
         "label": "크랙 요약 메모리 편집 & AI 자동 요약"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -1347,6 +1378,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://gall.dcinside.com/mini/wrtnw/243435",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -1431,6 +1463,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -1498,7 +1531,9 @@ window.CRACK_CATALOG_FALLBACK = {
           "crack-answer-cost",
           "crack-dashboard",
           "crack-char-clock-badge",
-          "crack-chat-draft-saver"
+          "crack-chat-draft-saver",
+          "Crack-UI-Plus",
+          "Novel-Theme-Model-Icon"
         ],
         "requires": [],
         "goodWith": []
@@ -1517,18 +1552,56 @@ window.CRACK_CATALOG_FALLBACK = {
       ],
       "runAt": "document-idle",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-03T04:28:24.355Z",
+      "updatedAt": "2026-08-04T15:10:54.031Z",
       "history": [],
       "creatorNote": "충돌하는 확프가 많으니 사전에 꼭 확인 후 설치하시길 바랍니다.",
       "introductionPage": {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/226241",
+          "label": "UI Plus",
+          "author": "",
+          "note": ""
+        },
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/210345",
+          "label": "턴수&크래커표시 + 미니사이드바",
+          "author": "",
+          "note": ""
+        },
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/200605",
+          "label": "와이드뷰",
+          "author": "",
+          "note": ""
+        },
+        {
+          "url": "https://gall.dcinside.com/mini/board/view/?id=wrtnw&no=230899",
+          "label": "소설형 채팅 모델 아이콘 표시",
+          "author": "",
+          "note": ""
+        },
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/231157",
+          "label": "채팅 모델 감추기",
+          "author": "",
+          "note": ""
+        },
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/234063",
+          "label": "모바일 웹 전체화면 확프",
+          "author": "",
+          "note": ""
+        }
+      ],
       "originalSource": {
-        "url": "",
-        "label": "",
+        "url": "https://gall.dcinside.com/mini/wrtnw/226241",
+        "label": "UI Plus",
         "author": "",
-        "note": "https://gall.dcinside.com/mini/wrtnw/226241\nhttps://gall.dcinside.com/mini/wrtnw/210345\nhttps://gall.dcinside.com/mini/wrtnw/200605\nhttps://gall.dcinside.com/mini/board/view/?id=wrtnw&no=230899\nhttps://gall.dcinside.com/mini/wrtnw/231157\nhttps://gall.dcinside.com/mini/wrtnw/234063"
+        "note": ""
       },
       "recommendation": {
         "enabled": true,
@@ -1601,6 +1674,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -1673,6 +1747,14 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/178146",
+          "label": "",
+          "author": "뤼갤러",
+          "note": ""
+        }
+      ],
       "originalSource": {
         "url": "https://gall.dcinside.com/mini/wrtnw/178146",
         "label": "",
@@ -1750,6 +1832,14 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/210345",
+          "label": "",
+          "author": "ㄹㅅㄹ",
+          "note": ""
+        }
+      ],
       "originalSource": {
         "url": "https://gall.dcinside.com/mini/wrtnw/210345",
         "label": "",
@@ -1819,6 +1909,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -1892,6 +1983,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -1977,6 +2069,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://gall.dcinside.com/mini/wrtnw/235410",
         "label": "OOC·로그 기록보관소 확프 (캡처·HTML·DC HTML 코드 지원)"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -2047,6 +2140,14 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/185119",
+          "label": "",
+          "author": "ㅇㅇ",
+          "note": ""
+        }
+      ],
       "originalSource": {
         "url": "https://gall.dcinside.com/mini/wrtnw/185119",
         "label": "",
@@ -2120,6 +2221,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -2192,6 +2294,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://gall.dcinside.com/mini/wrtnw/225302",
         "label": "내부이미지 보관함 스크롤/해금 이미지 복구 확프"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -2267,6 +2370,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -2342,6 +2446,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -2420,6 +2525,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://gall.dcinside.com/mini/wrtnw/225942",
         "label": "채팅 휴지통 확프"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -2496,10 +2602,11 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://gall.dcinside.com/mini/board/view/?id=wrtnw&no=235401",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
-        "author": "로컬AI",
+        "author": "",
         "note": ""
       },
       "recommendation": {
@@ -2572,6 +2679,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://gall.dcinside.com/mini/wrtnw/234066",
         "label": "단축어 커스텀"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -2647,6 +2755,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://gall.dcinside.com/mini/wrtnw/238041",
         "label": "채팅 다운로더(CrackSafe) - 편의성추가"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -2723,6 +2832,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://gall.dcinside.com/mini/board/view/?id=wrtnw&no=231353",
         "label": "나 그날 뭐 했는데? 알리바이 확프 (유사빨간약)"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -2808,6 +2918,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://gall.dcinside.com/mini/wrtnw/234066",
         "label": "크랙 UI Plus"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -2886,6 +2997,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://github.com/h-ap5/crack-translator",
         "label": "크랙 초월 번역기"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -2966,6 +3078,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://github.com/hamster4762/crack-summary-editor",
         "label": "크랙 장기 요약 메모리 편집기"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -3042,6 +3155,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://gall.dcinside.com/mini/wrtnw/230899",
         "label": "소개 페이지"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -3122,6 +3236,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://gall.dcinside.com/wrtnai/1042108",
         "label": "ㄹㅇ이가ㅏㅏㅏㅏㅏㅏㅏㅏㅏ"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
@@ -3196,6 +3311,7 @@ window.CRACK_CATALOG_FALLBACK = {
         "url": "https://gall.dcinside.com/wrtnai/1009809",
         "label": "메시지 글자 수 제한 해제 확프"
       },
+      "originalSources": [],
       "originalSource": {
         "url": "",
         "label": "",
