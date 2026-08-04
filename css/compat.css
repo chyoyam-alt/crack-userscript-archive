@@ -131,15 +131,16 @@ html.detail-dialog-open,body.detail-dialog-open{overflow:hidden!important;oversc
 .ai-recommend-summary{padding:10px 11px;border:1px solid var(--line-2);background:var(--panel-2);font-size:12px;line-height:1.65;color:var(--ink-2)}
 .ai-recommend-group{display:flex;flex-direction:column;gap:7px}
 .ai-recommend-group>h3,.ai-recommend-warnings>h3{font:700 9.5px var(--mono);letter-spacing:.1em;color:var(--muted)}
-.ai-recommend-item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:center;padding:9px;border:1px solid var(--line-2);background:var(--panel-2)}
+.ai-recommend-item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 11px;border:1px solid var(--line-2);background:var(--panel-2)}
 .ai-recommend-item>input{accent-color:var(--accent)}
 .ai-recommend-item__body{display:flex;min-width:0;flex-direction:column;gap:3px}
 .ai-recommend-item__name{font-size:12px;font-weight:750}
 .ai-recommend-item__body small{font-size:10.5px;line-height:1.45;color:var(--muted)}
-.ai-recommend-item__actions{display:flex;flex-direction:column;gap:5px}
-.ai-recommend-item__actions button{padding:4px 7px;border:1px solid var(--line-2);font:700 9px var(--mono);color:var(--muted)}
-.ai-recommend-item__actions button:hover{border-color:var(--accent);color:var(--accent)}
+.ai-recommend-item__actions{display:flex;align-items:center;justify-content:flex-end;gap:5px;white-space:nowrap}
+.ai-recommend-item__actions :is(button,a){display:inline-flex;align-items:center;justify-content:center;min-height:29px;padding:0 9px;border:1px solid var(--line-2);font:700 9.5px var(--mono);color:var(--muted);text-decoration:none;background:var(--panel);transition:.18s}
+.ai-recommend-item__actions :is(button,a):hover{border-color:var(--accent);color:var(--accent)}
 .ai-recommend-item__actions button:disabled{opacity:.55}
+.ai-recommend-item__actions .ai-item-add{border-color:var(--accent);color:var(--accent);background:var(--accent-weak)}
 .ai-recommend-warnings,.ai-recommend-excluded{padding:10px;border:1px solid var(--line-2);background:var(--panel-2);font-size:10.5px;color:var(--muted)}
 .ai-recommend-warnings ul,.ai-recommend-excluded ul{margin:7px 0 0;padding-left:18px}
 .ai-recommend-excluded summary{cursor:pointer;font-family:var(--mono)}
@@ -168,7 +169,7 @@ body.ai-helper-open .selbar{z-index:55}
   .detail-meta{grid-template-columns:1fr}
   .detail-cover{min-height:210px;margin:-14px -14px 16px}
   .ai-recommend-item{grid-template-columns:auto minmax(0,1fr)}
-  .ai-recommend-item__actions{grid-column:2;flex-direction:row}
+  .ai-recommend-item__actions{grid-column:2;justify-content:flex-start;flex-wrap:wrap}
   #aiRecommendDialog{max-height:none}
   .wizard-installed-list{max-height:180px}
   .block--recommended{margin-top:18px;padding:14px 12px 15px}

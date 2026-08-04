@@ -7,8 +7,8 @@
 <meta content="크랙 유저스크립트 검색·추천·선택·설치 도우미" name="description"/>
 <title>크랙 확프 보관소 — SYSTEM</title>
 <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet"/>
-<link rel="stylesheet" href="css/site.css"/>
-<link rel="stylesheet" href="css/compat.css"/>
+<link rel="stylesheet" href="css/site.css?v=20260804-2"/>
+<link rel="stylesheet" href="css/compat.css?v=20260804-2"/>
 <style>
 .controls__filter-clear{height:44px;white-space:nowrap}
 .navlink.is-active{color:var(--accent)}
@@ -116,7 +116,7 @@
   </div>
   <div class="ai-strip"><span class="badge" id="recommendConnectionBadge">READY</span><span>AI 전달 후보 <b id="recommendCandidateCount">0</b>개</span><span class="ai-strip__state" id="recommendCatalogFreshness">최신 확인 전</span></div>
   <div class="dialog__body ai-layout">
-    <div class="ai-scroll"><div class="ai-msg"><span class="ai-msg__face" aria-hidden="true">•ᴗ•</span><div class="ai-msg__bubble"><strong>모아</strong><p class="ai-greet-text"></p></div></div><p class="ai-chips-label">이렇게 물어보십셔</p><div class="ai-chips"><button class="ai-chip" type="button">모바일 로그 저장</button><button class="ai-chip" type="button">가벼운 꾸미기만</button><button class="ai-chip" type="button">관리·정리용</button><button class="ai-chip" type="button">무거워도 상관없음</button></div><div class="ai-result" id="recommendResult"></div></div>
+    <div class="ai-scroll"><div class="ai-msg"><span class="ai-msg__face" aria-hidden="true">•ᴗ•</span><div class="ai-msg__bubble"><strong>모아</strong><p class="ai-greet-text"></p></div></div><div class="ai-examples" id="recommendExamples"><p class="ai-chips-label">이렇게 물어보십셔</p><div class="ai-chips"><button class="ai-chip" type="button">모바일 로그 저장</button><button class="ai-chip" type="button">가벼운 꾸미기만</button><button class="ai-chip" type="button">관리·정리용</button><button class="ai-chip" type="button">무거워도 상관없음</button></div></div><div class="ai-result" id="recommendResult"></div></div>
     <div class="ai-composer"><label class="ai-prompt"><span class="sr-only">요청</span><textarea id="recommendPrompt" placeholder="예: 모바일에서 쓸 로그 저장 확프. 무거운 효과 제외." rows="3"></textarea></label><div class="ai-composer__bar"><div class="ai-composer__buttons"><button class="button button--primary" id="recommendRunButton" type="button">추천받기</button><button class="button button--secondary" disabled id="recommendApplyButton" type="button">담기</button></div><span class="ai-run-status" hidden id="recommendRunStatus"></span></div></div>
   </div>
   <section class="ai-settings" hidden id="aiSettingsPanel" aria-label="API 연결 설정">
@@ -155,8 +155,8 @@
 <script defer src="js/ai-instructions.js"></script>
 <script defer src="js/ai-providers.js?v=20260804-1"></script>
 <script defer src="js/assistant-avatar.js"></script>
-<script defer src="js/ai-recommend.js"></script>
+<script defer src="js/ai-recommend.js?v=20260804-2"></script>
 <script defer src="js/app.js"></script>
-<script defer src="js/moa-flourish.js"></script>
+<script defer src="js/moa-flourish.js?v=20260804-2"></script>
 </body>
 </html>

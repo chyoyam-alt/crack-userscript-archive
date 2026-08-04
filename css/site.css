@@ -154,8 +154,12 @@ h1,h2,h3,p,dl,dd{margin:0}
 .ailauncher__txt span{font-family:var(--mono);font-size:9px;letter-spacing:.04em;color:var(--muted)}
 
 /* 모아 대화창 = 우하단 도킹(비모달 → 검색·목록 그대로 사용) */
-#aiRecommendDialog{position:fixed;inset:auto 18px 80px auto;margin:0;z-index:70;width:min(388px,calc(100vw - 28px));height:min(560px,calc(100vh - 120px))}
+#aiRecommendDialog{position:fixed;inset:auto 18px 80px auto;margin:0;z-index:70;width:min(720px,calc(100vw - 36px));height:min(680px,calc(100vh - 100px))}
 #aiRecommendDialog::backdrop{background:none}
+@media (min-width:641px){
+  #aiRecommendDialog>.dialog__head{padding:13px 14px 11px}
+  #aiRecommendDialog>.ai-strip{padding:8px 14px}
+}
 @media (max-width:520px){
   .ailauncher{right:14px;bottom:14px}
   #aiRecommendDialog{inset:auto 12px 74px 12px;width:auto;height:min(72vh,540px)}
@@ -201,23 +205,27 @@ dialog[open]::backdrop{animation:fadeIn .28s ease both}
 .ai-strip b{color:var(--ink)}
 .ai-strip__state{margin-left:auto;color:var(--faint)}
 .ai-layout{display:flex;flex-direction:column;padding:0}
-.ai-scroll{flex:1;overflow-y:auto;padding:16px 18px}
+.ai-scroll{flex:1;overflow-y:auto;padding:13px 14px}
 .ai-msg{display:flex;gap:9px;align-items:flex-start}
 .ai-msg__face{flex:0 0 auto;width:32px;height:32px;display:grid;place-items:center;border:1.5px solid var(--ink);border-radius:50%;background:var(--panel-2);font-family:var(--mono);font-size:11px;color:var(--ink)}
 .ai-msg__bubble{flex:1;position:relative;border:1px solid var(--line-2);background:var(--panel-2);padding:9px 12px}
 .ai-msg__bubble::before{content:"";position:absolute;left:-5px;top:13px;width:8px;height:8px;background:var(--panel-2);border-left:1px solid var(--line-2);border-bottom:1px solid var(--line-2);transform:rotate(45deg)}
 .ai-msg__bubble strong{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--muted);margin-bottom:4px}
 .ai-msg__bubble p{font-size:12.5px;line-height:1.65;color:var(--ink-2);min-height:1.2em}
-.ai-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px;padding-left:41px}
-.ai-chips-label{margin:16px 0 0;padding-left:41px;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--faint)}
+.ai-examples[hidden]{display:none}
+.ai-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px;padding-left:41px}
+.ai-chips-label{margin:13px 0 0;padding-left:41px;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--faint)}
 .ai-chip{padding:7px 11px;border:1px solid var(--line-2);background:var(--panel);font-family:var(--mono);font-size:11px;color:var(--ink-2);transition:.18s}
 .ai-chip::before{content:"› ";color:var(--muted)}
 .ai-chip:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
-.ai-result{margin-top:12px;display:flex;flex-direction:column;gap:9px}
-.ai-composer{border-top:1px solid var(--line);padding:13px 18px;background:var(--panel-2)}
+.ai-result{margin-top:10px;display:flex;flex-direction:column;gap:9px}
+.ai-user-message{display:flex;align-items:flex-start;justify-content:flex-end;gap:7px;margin-left:52px}
+.ai-user-message>span{order:2;display:grid;place-items:center;width:25px;height:25px;flex:0 0 auto;border:1px solid var(--line-2);border-radius:50%;font:700 9px var(--mono);color:var(--muted);background:var(--panel)}
+.ai-user-message>p{max-width:82%;padding:8px 10px;border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line-2));background:var(--accent-weak);font-size:12px;line-height:1.55;color:var(--ink-2);white-space:pre-wrap;overflow-wrap:anywhere}
+.ai-composer{border-top:1px solid var(--line);padding:11px 14px;background:var(--panel-2)}
 .ai-prompt textarea{width:100%;padding:10px 11px;border:1px solid var(--line-2);background:var(--panel);font-family:var(--mono);font-size:12.5px;line-height:1.6;resize:vertical;outline:0}
 .ai-prompt textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-weak)}
-.ai-composer__bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;flex-wrap:wrap}
+.ai-composer__bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;flex-wrap:wrap}
 .ai-composer__buttons{display:flex;gap:7px}
 .ai-run-status{font-family:var(--mono);font-size:11px;color:var(--muted)}
 .ai-settings{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;background:var(--panel);animation:dlgIn .26s var(--ease) both}

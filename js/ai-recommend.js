@@ -27,7 +27,20 @@
     document.getElementById('recommendTestButton').addEventListener('click', testConnection);
     document.getElementById('recommendRunButton').addEventListener('click', run);
     document.getElementById('recommendApplyButton').addEventListener('click', apply);
+    document.getElementById('recommendPrompt').addEventListener('keydown', handlePromptKeydown);
+    document.querySelectorAll('.ai-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        document.getElementById('recommendPrompt').value = chip.textContent.trim();
+        run();
+      });
+    });
     restorePrefs();
+  }
+
+  function handlePromptKeydown(event) {
+    if (event.key !== 'Enter' || event.shiftKey || event.isComposing || event.keyCode === 229) return;
+    event.preventDefault();
+    run();
   }
 
   function open() {
@@ -175,6 +188,7 @@
     if (busy) return;
     const request = document.getElementById('recommendPrompt').value.trim();
     if (!request) { NS.render.toast('원하는 기능을 입력하세요.'); return; }
+    beginConversation(request);
     try {
       setBusy(true); setRunStatus('카탈로그를 확인하고 있습니다…', 'working');
       await refreshCatalogForAi();
@@ -200,11 +214,34 @@
         maxOutputTokens: 4096
       });
       const normalized = normalizeResult(raw);
-      renderResult(normalized);
+      renderResult(normalized, request);
+      document.getElementById('recommendPrompt').value = '';
       setRunStatus(`${catalogCandidateCount}개 후보 확인 · 추천 완료`, 'success');
     } catch (error) {
       console.error(error); NS.assistantAvatar?.setState('error'); setTimeout(() => NS.assistantAvatar?.setState('idle'), 1800); setRunStatus(error.message || 'AI 추천에 실패했습니다.', 'error'); NS.render.toast('AI 추천에 실패했습니다. API 연결 상태를 확인하세요.');
     } finally { setBusy(false); }
+  }
+
+  function beginConversation(request) {
+    document.getElementById('recommendExamples').hidden = true;
+    const container = document.getElementById('recommendResult');
+    container.replaceChildren(createUserMessage(request));
+    resultItems = [];
+    document.getElementById('recommendApplyButton').disabled = true;
+    scrollConversationToBottom();
+  }
+
+  function createUserMessage(request) {
+    const message = create('div', 'ai-user-message');
+    message.append(create('span', '', '나'), create('p', '', request));
+    return message;
+  }
+
+  function scrollConversationToBottom() {
+    requestAnimationFrame(() => {
+      const scroll = document.querySelector('#aiRecommendDialog .ai-scroll');
+      if (scroll) scroll.scrollTop = scroll.scrollHeight;
+    });
   }
 
   function normalizeResult(raw) {
@@ -268,9 +305,9 @@
     return items.filter((item) => !selectedIds.has(item.id) && !seen.has(item.id) && seen.add(item.id));
   }
 
-  function renderResult(result) {
+  function renderResult(result, request) {
     const container = document.getElementById('recommendResult');
-    container.replaceChildren(); resultItems = [];
+    container.replaceChildren(createUserMessage(request)); resultItems = [];
     if (result.summary) container.append(create('p', 'ai-recommend-summary', result.summary));
     appendGroup(container, '기본 추천', result.selected, true);
     appendGroup(container, '선택 추천', result.optional, false);
@@ -280,6 +317,7 @@
       const list = document.createElement('ul'); result.warnings.forEach((item) => list.append(create('li', '', item))); box.append(list); container.append(box);
     }
     document.getElementById('recommendApplyButton').disabled = !resultItems.length;
+    scrollConversationToBottom();
   }
 
   function appendGroup(parent, title, items, checked) {
@@ -309,10 +347,19 @@
         add.disabled = true;
         NS.render.toast(`${extension.name}을(를) 선택 목록에 담았습니다.`);
       });
+      const introduction = extension.introductionPage?.url ? create('a', 'ai-item-introduction', '↗ 소개') : null;
+      if (introduction) {
+        introduction.href = extension.introductionPage.url;
+        introduction.target = '_blank';
+        introduction.rel = 'noopener noreferrer';
+        introduction.setAttribute('aria-label', `${extension.name} 소개 페이지 새 탭에서 열기`);
+      }
       const detail = create('button', '', '상세');
       detail.type = 'button';
       detail.addEventListener('click', () => NS.app.openDetail(item.id));
-      actions.append(add, detail);
+      actions.append(add);
+      if (introduction) actions.append(introduction);
+      actions.append(detail);
       row.append(input, body, actions);
       section.append(row);
       resultItems.push(input);

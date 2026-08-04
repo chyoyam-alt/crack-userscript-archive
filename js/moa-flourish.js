@@ -308,14 +308,4 @@
     });
   }
 
-  /* ── 예시 칩 → 입력창 자동 입력 ── */
-  var chips = document.querySelectorAll('.ai-chip');
-  for (var k = 0; k < chips.length; k++) {
-    (function (c) {
-      c.addEventListener('click', function () {
-        var t = document.getElementById('recommendPrompt');
-        if (t) { t.value = c.textContent; t.focus(); }
-      });
-    })(chips[k]);
-  }
 })();
