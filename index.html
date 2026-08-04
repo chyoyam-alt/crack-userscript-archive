@@ -77,7 +77,7 @@
 
 <aside class="selbar" hidden id="selectionBar">
   <button class="selbar__summary" id="openSelectionButton" type="button"><strong id="selectedCount">0</strong><span>selected</span><span class="selbar__warn" hidden id="warningCount"></span></button>
-  <div class="selbar__actions"><button class="button button--ghost" id="shareSelectionButton" type="button">공유</button><button class="button button--primary" id="startInstallButton" type="button">설치 시작</button></div>
+  <div class="selbar__actions"><button class="button button--ghost" id="clearSelectionBarButton" type="button">전체 해제</button><button class="button button--primary" id="startInstallButton" type="button">설치 시작</button></div>
 </aside>
 
 <button class="ailauncher" id="aiLauncherButton" type="button" aria-label="모아에게 물어보기">
@@ -93,7 +93,7 @@
 <dialog class="dialog" id="selectionDialog">
   <div class="dialog__head"><div class="dialog__title"><span class="kicker">SELECTED</span><h2>선택한 확프</h2></div><button class="icon-button dialog-close" aria-label="닫기" type="button">×</button></div>
   <div class="warning-list" id="selectionWarnings"></div><div class="selection-list" id="selectionList"></div>
-  <div class="dialog__foot dialog__foot--spread"><button class="button button--ghost" id="clearSelectionButton" type="button">모두 해제</button><div class="dialog__foot-group"><button class="button button--ghost" id="selectionShareButton" type="button">공유</button><button class="button button--primary" id="selectionInstallButton" type="button">설치 큐</button></div></div>
+  <div class="dialog__foot dialog__foot--spread"><button class="button button--ghost" id="clearSelectionButton" type="button">전체 해제</button><div class="dialog__foot-group"><button class="button button--primary" id="selectionInstallButton" type="button">설치 큐</button></div></div>
 </dialog>
 <dialog class="dialog dialog--queue" id="queueDialog">
   <div class="dialog__head"><div class="dialog__title"><span class="kicker">INSTALL QUEUE</span><h2>하나씩 설치하기</h2></div><button class="icon-button dialog-close" aria-label="닫기" type="button">×</button></div>

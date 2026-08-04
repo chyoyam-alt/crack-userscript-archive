@@ -153,7 +153,7 @@
       setBusy(true); setBadge('조회 중', 'working');
       const models = await NS.aiProviders.listModels(settings());
       populateModels([...models, ['custom', '직접 입력']], NS.aiProviders.resolveModel(settings()));
-      refreshReasoning(); setBadge(`${models.length}개`, 'success');
+      refreshReasoning(); setBadge(`모델 ${models.length}개`, 'success');
       NS.render.toast(`모델 ${models.length}개를 불러왔어요.`);
     } catch (error) {
       console.error(error); NS.assistantAvatar?.setState('error'); setTimeout(() => NS.assistantAvatar?.setState('idle'), 1600); setBadge('조회 실패', 'error'); NS.render.toast(error.message || '모델을 불러오지 못했습니다.');

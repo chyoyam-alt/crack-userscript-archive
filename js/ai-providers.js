@@ -84,8 +84,9 @@
 
   async function testConnection(settings) {
     if (settings.provider === 'gemini' || settings.provider === 'deepseek') {
-      const models = await listModels(settings);
-      return { ok: true, message: `연결됨 · 사용 가능한 모델 ${models.length}개` };
+      await listModels(settings);
+      const providerName = settings.provider === 'gemini' ? 'Gemini API' : 'DeepSeek API';
+      return { ok: true, message: `${providerName} 연결됨` };
     }
     const result = await generateFirebase(settings, {
       systemInstruction: 'Return only valid JSON.', prompt: 'Return {"ok":true}.',

@@ -1,7 +1,7 @@
 /* moa-flourish.js
  * 모아 연출 전용 (기존 app.js / render.js 와 충돌하지 않는 새 UI 동작만 담당)
  *  - 목록 옆 모아 코멘트: 카오모지 + 말풍선 순환 / 클릭하면 조용 / 다시 클릭하면 재개
- *  - 비주얼노벨·동숲식 비프음(글자마다 띠딕) — 첫 사용자 입력 후 활성(브라우저 자동재생 정책)
+ *  - AI 대화창 타이핑 비프음(메인 목록 코멘트는 무음) — 첫 사용자 입력 후 활성
  *  - 우하단 모아 대화창: 비모달 도킹(showModal ❌ → show ✅)이라 열려 있어도 검색·목록 그대로 사용
  *  - 방문자가 보는 안내 문구는 기술 약어를 제외하고 최대한 한글로 표시
  *  - '모션 줄이기' OS 설정이면 타이핑·소리 자동 비활성
@@ -213,7 +213,7 @@
   }
 
   /* ── 타이핑 효과 ── */
-  function type(el, text, done) {
+  function type(el, text, done, soundEnabled) {
     if (!el) return;
     el.textContent = '';
     if (reduce) { el.textContent = text; if (done) done(); return; }
@@ -221,7 +221,7 @@
     (function step() {
       if (i >= text.length) { if (done) done(); return; }
       var ch = text[i++]; el.textContent += ch;
-      if (ch.trim()) blip(ch);
+      if (soundEnabled && ch.trim()) blip(ch);
       setTimeout(step, 46 + Math.random() * 40);
     })();
   }
@@ -281,7 +281,7 @@
     }, 160);
     if (!greeted && greetEl) {
       greeted = true;
-      setTimeout(function () { type(greetEl, '어서 오십셔. 필요한 걸 말해주시면 카탈로그 안에서만 골라오겠슴다.'); }, 260);
+      setTimeout(function () { type(greetEl, '어서 오십셔. 필요한 걸 말해주시면 카탈로그 안에서만 골라오겠슴다.', null, true); }, 260);
     }
   }
   function ownOpen(event) {
@@ -290,7 +290,7 @@
       window.CrackArchive.aiRecommend.open();
       if (!greeted && greetEl) {
         greeted = true;
-        setTimeout(function () { type(greetEl, '어서 오십셔. 필요한 걸 말해주시면 카탈로그 안에서만 골라오겠슴다.'); }, 260);
+        setTimeout(function () { type(greetEl, '어서 오십셔. 필요한 걸 말해주시면 카탈로그 안에서만 골라오겠슴다.', null, true); }, 260);
       }
       return;
     }

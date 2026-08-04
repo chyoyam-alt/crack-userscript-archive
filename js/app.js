@@ -67,15 +67,8 @@
       NS.queue.startFromSelection();
     });
 
-    byId('clearSelectionButton')?.addEventListener('click', () => {
-      NS.state.clearSelected();
-      refreshAll();
-      byId('selectionDialog').close();
-    });
-
-    ['shareSelectionButton', 'selectionShareButton'].forEach((id) => {
-      byId(id)?.addEventListener('click', shareSelection);
-    });
+    byId('clearSelectionBarButton')?.addEventListener('click', () => clearSelection(false));
+    byId('clearSelectionButton')?.addEventListener('click', () => clearSelection(true));
 
     byId('queueOpenButton')?.addEventListener('click', NS.queue.openCurrent);
     byId('queueDoneButton')?.addEventListener('click', NS.queue.markDone);
@@ -272,6 +265,14 @@
     if (byId('selectionDialog')?.open) NS.render.renderSelectionDialog();
   }
 
+  function clearSelection(closeDialog) {
+    if (!NS.state.value.selected.size) return;
+    NS.state.clearSelected();
+    refreshAll();
+    if (closeDialog && byId('selectionDialog')?.open) byId('selectionDialog').close();
+    NS.render.toast('선택한 확프를 모두 해제했습니다.');
+  }
+
   async function refreshCatalog() {
     const loaded = await NS.catalog.refreshCatalog(NS.state.value.site);
     const previousCatalog = NS.state.value.catalog;
@@ -361,25 +362,6 @@
       if (Math.max(...values.map((value) => rank[value])) > max) return false;
       return !(rules.categories || []).length || item.categories.some((category) => rules.categories.includes(category));
     }).map((item) => item.id).slice(0, 8);
-  }
-
-  async function shareSelection() {
-    const ids = [...NS.state.value.selected];
-    if (!ids.length) {
-      NS.render.toast('공유할 선택 항목이 없습니다.');
-      return;
-    }
-
-    const url = new URL(window.location.href);
-    url.searchParams.set('set', ids.join(','));
-    url.hash = '';
-
-    try {
-      await navigator.clipboard.writeText(url.toString());
-      NS.render.toast('선택 목록 링크를 복사했습니다.');
-    } catch (_) {
-      window.prompt('아래 링크를 복사하세요.', url.toString());
-    }
   }
 
   function applySharedSelection() {
