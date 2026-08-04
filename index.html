@@ -7,8 +7,8 @@
 <meta content="크랙 유저스크립트 검색·추천·선택·설치 도우미" name="description"/>
 <title>크랙 확프 보관소 — SYSTEM</title>
 <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet"/>
-<link rel="stylesheet" href="css/site.css?v=20260804-2"/>
-<link rel="stylesheet" href="css/compat.css?v=20260804-2"/>
+<link rel="stylesheet" href="css/site.css?v=20260804-3"/>
+<link rel="stylesheet" href="css/compat.css?v=20260804-3"/>
 <style>
 .controls__filter-clear{height:44px;white-space:nowrap}
 .navlink.is-active{color:var(--accent)}
@@ -90,6 +90,10 @@
   <div class="dialog__body" id="detailContent"></div>
   <div class="dialog__foot dialog__foot--spread"><button class="button button--ghost" hidden id="detailReportButton" type="button">문제 제보</button><div class="dialog__foot-group"><button class="button button--secondary" id="detailSelectButton" type="button">담기</button><button class="button button--primary" id="detailInstallButton" type="button">설치</button></div></div>
 </dialog>
+<dialog class="dialog dialog--sources" id="originalSourcesDialog">
+  <div class="dialog__head"><div class="dialog__title"><span class="kicker">ORIGINAL LINKS</span><h2 id="originalSourcesTitle">원본 링크</h2></div><button class="icon-button dialog-close" aria-label="닫기" type="button">×</button></div>
+  <div class="dialog__body"><p class="original-sources-help">열어볼 원본을 선택하세요.</p><div class="original-sources-list" id="originalSourcesList"></div></div>
+</dialog>
 <dialog class="dialog" id="selectionDialog">
   <div class="dialog__head"><div class="dialog__title"><span class="kicker">SELECTED</span><h2>선택한 확프</h2></div><button class="icon-button dialog-close" aria-label="닫기" type="button">×</button></div>
   <div class="warning-list" id="selectionWarnings"></div><div class="selection-list" id="selectionList"></div>
@@ -146,17 +150,17 @@
 <div class="toast-region" aria-atomic="true" aria-live="polite" id="toastRegion"></div>
 
 <script defer src="data/catalog.fallback.js"></script>
-<script defer src="js/catalog-load.js"></script>
+<script defer src="js/catalog-load.js?v=20260804-3"></script>
 <script defer src="js/state.js"></script>
 <script defer src="js/rules.js"></script>
-<script defer src="js/render.js"></script>
+<script defer src="js/render.js?v=20260804-3"></script>
 <script defer src="js/queue.js"></script>
 <script defer src="js/wizard.js"></script>
 <script defer src="js/ai-instructions.js"></script>
 <script defer src="js/ai-providers.js?v=20260804-1"></script>
 <script defer src="js/assistant-avatar.js"></script>
 <script defer src="js/ai-recommend.js?v=20260804-2"></script>
-<script defer src="js/app.js"></script>
+<script defer src="js/app.js?v=20260804-3"></script>
 <script defer src="js/moa-flourish.js?v=20260804-2"></script>
 </body>
 </html>

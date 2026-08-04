@@ -107,13 +107,20 @@
       links.append(introduction);
     }
 
-    if (extension.originalSource?.url) {
+    const originalSources = extension.originalSources || (extension.originalSource?.url ? [extension.originalSource] : []);
+    if (originalSources.length === 1) {
       const source = create('a', 'row__source card-source-link', '원본↗');
-      source.href = extension.originalSource.url;
+      source.href = originalSources[0].url;
       source.target = '_blank';
       source.rel = 'noopener noreferrer';
       source.setAttribute('aria-label', `${extension.name} 원본 링크 새 탭에서 열기`);
       source.addEventListener('click', (event) => event.stopPropagation());
+      links.append(source);
+    } else if (originalSources.length > 1) {
+      const source = create('button', 'row__source card-source-link', `원본 ${originalSources.length}개`);
+      source.type = 'button';
+      source.setAttribute('aria-label', `${extension.name} 원본 링크 ${originalSources.length}개 보기`);
+      source.addEventListener('click', (event) => { event.stopPropagation(); NS.app.openOriginalSources(extension.id); });
       links.append(source);
     }
 
@@ -270,7 +277,8 @@
     );
 
     if (extension.introductionPage?.url) content.append(section('소개 페이지', introductionPageInfo(extension.introductionPage)));
-    if (extension.originalSource?.url) content.append(section('원본 링크', originalSourceInfo(extension.originalSource)));
+    const originalSources = extension.originalSources || (extension.originalSource?.url ? [extension.originalSource] : []);
+    if (originalSources.length) content.append(section('원본 링크', originalSourcesInfo(originalSources)));
     content.append(section('DISTRIBUTION', distributionInfo(extension)));
     if (extension.history.length) content.append(section('CHANGELOG', historyList(extension.history)));
     if (extension.stale) content.append(section('RECHECK', create('p', 'muted', '마지막 실사용 확인일이 오래되었습니다. 현재 크랙 UI에서 다시 확인하는 편이 안전합니다.')));
@@ -332,6 +340,12 @@
     link.rel = 'noopener noreferrer';
     box.append(link);
     return box;
+  }
+
+  function originalSourcesInfo(sources) {
+    const list = create('div', 'original-sources-grid');
+    sources.forEach((source) => list.append(originalSourceInfo(source)));
+    return list;
   }
 
   function introductionPageInfo(page) {

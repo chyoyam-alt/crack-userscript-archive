@@ -2,7 +2,7 @@
   'use strict';
 
   const NS = window.CrackArchive = window.CrackArchive || {};
-  const modalDialogIds = ['detailDialog', 'selectionDialog', 'queueDialog', 'wizardDialog', 'guideDialog'];
+  const modalDialogIds = ['detailDialog', 'originalSourcesDialog', 'selectionDialog', 'queueDialog', 'wizardDialog', 'guideDialog'];
 
   function byId(id) { return document.getElementById(id); }
 
@@ -194,12 +194,65 @@
       text: '소개 페이지',
       ariaLabel: `${extension.name} 소개 페이지 새 탭에서 열기`
     });
-    syncDetailLinkButton(group, {
-      id: 'detailOriginalButton',
-      url: extension?.originalSource?.url || '',
-      text: '원본 링크',
-      ariaLabel: `${extension.name} 원본 링크 새 탭에서 열기`
+    syncOriginalSourceButton(group, extension);
+  }
+
+  function syncOriginalSourceButton(group, extension) {
+    byId('detailOriginalButton')?.remove();
+    const sources = extension?.originalSources || (extension?.originalSource?.url ? [extension.originalSource] : []);
+    if (!sources.length) return;
+
+    const button = document.createElement(sources.length === 1 ? 'a' : 'button');
+    button.id = 'detailOriginalButton';
+    button.className = 'button button--ghost detail-original-button';
+    if (sources.length === 1) {
+      button.href = sources[0].url;
+      button.target = '_blank';
+      button.rel = 'noopener noreferrer';
+      button.textContent = '원본 링크';
+      button.setAttribute('aria-label', `${extension.name} 원본 링크 새 탭에서 열기`);
+    } else {
+      button.type = 'button';
+      button.textContent = `원본 링크 ${sources.length}개`;
+      button.setAttribute('aria-label', `${extension.name} 원본 링크 ${sources.length}개 보기`);
+      button.addEventListener('click', () => openOriginalSources(extension.id));
+    }
+    group.insertBefore(button, byId('detailSelectButton'));
+  }
+
+  function openOriginalSources(id) {
+    const extension = NS.state.value.catalog.byId.get(id);
+    if (!extension) return;
+    const sources = extension.originalSources || (extension.originalSource?.url ? [extension.originalSource] : []);
+    if (!sources.length) return;
+    if (sources.length === 1) {
+      window.open(sources[0].url, '_blank', 'noopener');
+      return;
+    }
+
+    byId('originalSourcesTitle').textContent = `${extension.name} 원본 링크`;
+    const list = byId('originalSourcesList');
+    list.replaceChildren();
+    sources.forEach((source, index) => {
+      const item = document.createElement('article');
+      item.className = 'original-source-choice';
+      const body = document.createElement('div');
+      const title = document.createElement('strong');
+      title.textContent = source.label || `원본 링크 ${index + 1}`;
+      body.append(title);
+      const details = [source.author ? `작성자: ${source.author}` : '', source.note || ''].filter(Boolean).join(' · ');
+      if (details) { const description = document.createElement('small'); description.textContent = details; body.append(description); }
+      const link = document.createElement('a');
+      link.className = 'button button--secondary';
+      link.href = source.url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = '열기 ↗';
+      item.append(body, link);
+      list.append(item);
     });
+    const dialog = byId('originalSourcesDialog');
+    if (!dialog.open) dialog.showModal();
   }
 
   function syncDetailLinkButton(group, options) {
@@ -413,6 +466,7 @@
     init,
     applyFilters,
     openDetail,
+    openOriginalSources,
     toggleSelection,
     openInstallUrl,
     getSelectionWarnings,

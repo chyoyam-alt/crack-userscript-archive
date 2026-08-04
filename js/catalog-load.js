@@ -11,10 +11,21 @@
   function normalizePerformance(value) { return ['light', 'medium', 'heavy', 'unknown'].includes(value) ? value : 'unknown'; }
   function normalizeSupport(value) { return ['yes', 'no', 'unknown'].includes(value) ? value : 'unknown'; }
 
+  function normalizeOriginalSources(extension) {
+    const seen = new Set();
+    return [...asArray(extension.originalSources), extension.originalSource].filter(Boolean).map((source) => ({
+      url: isSafeWebUrl(source?.url) ? clean(source.url) : '',
+      label: clean(source?.label),
+      author: clean(source?.author),
+      note: clean(source?.note)
+    })).filter((source) => source.url && !seen.has(source.url) && seen.add(source.url));
+  }
+
   function normalizeExtension(raw) {
     const extension = raw && typeof raw === 'object' ? raw : {};
     const updatedAt = clean(extension.updatedAt) || newestHistoryDate(extension.history);
     const tags = uniqueStrings(extension.tags);
+    const originalSources = normalizeOriginalSources(extension);
     const recommendationEnabled = Boolean(
       extension.recommendation?.enabled
       || extension.recommended
@@ -61,12 +72,8 @@
         url: isSafeWebUrl(extension.introductionPage?.url || extension.introduction?.url) ? clean(extension.introductionPage?.url || extension.introduction?.url) : '',
         label: clean(extension.introductionPage?.label || extension.introduction?.label) || '소개 페이지'
       },
-      originalSource: {
-        url: isSafeWebUrl(extension.originalSource?.url) ? clean(extension.originalSource.url) : '',
-        label: clean(extension.originalSource?.label),
-        author: clean(extension.originalSource?.author),
-        note: clean(extension.originalSource?.note)
-      },
+      originalSources,
+      originalSource: originalSources[0] || { url: '', label: '', author: '', note: '' },
       recommendation: {
         enabled: recommendationEnabled,
         label: clean(extension.recommendation?.label || extension.recommendationLabel) || '추천',
