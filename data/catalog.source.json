@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sampleData": false,
-  "updatedAt": "2026-08-04T15:08:39.575Z",
+  "updatedAt": "2026-08-04T15:11:14.304Z",
   "extensions": [
     {
       "id": "crack-composer-expander",
@@ -298,7 +298,7 @@
       ],
       "runAt": "",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-04T15:08:37.618Z",
+      "updatedAt": "2026-08-04T15:11:10.115Z",
       "history": [],
       "creatorNote": "",
       "originalSource": {
@@ -341,7 +341,15 @@
       "introductionPage": {
         "url": "https://gall.dcinside.com/mini/wrtnw/236158",
         "label": "소개 페이지"
-      }
+      },
+      "originalSources": [
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/185144",
+          "label": "",
+          "author": "ㅇㅇ",
+          "note": ""
+        }
+      ]
     },
     {
       "id": "crack-ambient-weather-fx",
@@ -396,9 +404,9 @@
       ],
       "runAt": "document-idle",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-04T12:54:27.886Z",
+      "updatedAt": "2026-08-03T02:25:44.399Z",
       "history": [],
-      "creatorNote": "굉장히 무거운 확프이므로 고사양 PC 환경에서만 돌리는 것을 추천합니다.",
+      "creatorNote": "",
       "originalSource": {
         "url": "",
         "label": "",
@@ -411,7 +419,7 @@
         "priority": 0
       },
       "presentation": {
-        "coverImageUrl": "",
+        "coverImageUrl": "https://gall.dcinside.com/mini/wrtnw/239032",
         "coverImageAlt": "",
         "coverImageCreditUrl": "",
         "coverImageCreditLabel": ""
@@ -431,10 +439,6 @@
           "unsafeWindow"
         ],
         "runAt": "document-idle"
-      },
-      "introductionPage": {
-        "url": "https://gall.dcinside.com/mini/wrtnw/239032https://gall.dcinside.com/mini/wrtnw/239032",
-        "label": "소개 페이지"
       }
     },
     {
@@ -1780,7 +1784,9 @@
           "crack-answer-cost",
           "crack-dashboard",
           "crack-char-clock-badge",
-          "crack-chat-draft-saver"
+          "crack-chat-draft-saver",
+          "Crack-UI-Plus",
+          "Novel-Theme-Model-Icon"
         ],
         "requires": [],
         "goodWith": []
@@ -1799,14 +1805,14 @@
       ],
       "runAt": "document-idle",
       "lastTestedAt": "2026-08-03",
-      "updatedAt": "2026-08-03T04:28:24.355Z",
+      "updatedAt": "2026-08-04T15:10:54.031Z",
       "history": [],
       "creatorNote": "충돌하는 확프가 많으니 사전에 꼭 확인 후 설치하시길 바랍니다.",
       "originalSource": {
-        "url": "",
-        "label": "",
+        "url": "https://gall.dcinside.com/mini/wrtnw/226241",
+        "label": "UI Plus",
         "author": "",
-        "note": "https://gall.dcinside.com/mini/wrtnw/226241\nhttps://gall.dcinside.com/mini/wrtnw/210345\nhttps://gall.dcinside.com/mini/wrtnw/200605\nhttps://gall.dcinside.com/mini/board/view/?id=wrtnw&no=230899\nhttps://gall.dcinside.com/mini/wrtnw/231157\nhttps://gall.dcinside.com/mini/wrtnw/234063"
+        "note": ""
       },
       "recommendation": {
         "enabled": true,
@@ -1839,7 +1845,45 @@
           "unsafeWindow"
         ],
         "runAt": "document-idle"
-      }
+      },
+      "originalSources": [
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/226241",
+          "label": "UI Plus",
+          "author": "",
+          "note": ""
+        },
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/210345",
+          "label": "턴수&크래커표시 + 미니사이드바",
+          "author": "",
+          "note": ""
+        },
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/200605",
+          "label": "와이드뷰",
+          "author": "",
+          "note": ""
+        },
+        {
+          "url": "https://gall.dcinside.com/mini/board/view/?id=wrtnw&no=230899",
+          "label": "소설형 채팅 모델 아이콘 표시",
+          "author": "",
+          "note": ""
+        },
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/231157",
+          "label": "채팅 모델 감추기",
+          "author": "",
+          "note": ""
+        },
+        {
+          "url": "https://gall.dcinside.com/mini/wrtnw/234063",
+          "label": "모바일 웹 전체화면 확프",
+          "author": "",
+          "note": ""
+        }
+      ]
     },
     {
       "id": "crack-char-clock-badge",
