@@ -11,7 +11,6 @@
         ['gemini-3.5-flash', 'Gemini 3.5 Flash · 권장'],
         ['gemini-3.1-flash-lite', 'Gemini 3.1 Flash-Lite · 저비용'],
         ['gemini-3.1-pro-preview', 'Gemini 3.1 Pro Preview · 정밀'],
-        ['gemini-2.5-flash', 'Gemini 2.5 Flash · 호환'],
         ['gemini-2.5-pro', 'Gemini 2.5 Pro · 정밀'],
         ['custom', '직접 입력']
       ]
@@ -31,7 +30,6 @@
         ['gemini-3.5-flash', 'Gemini 3.5 Flash · 권장'],
         ['gemini-3.1-flash-lite', 'Gemini 3.1 Flash-Lite · 저비용'],
         ['gemini-3.1-pro-preview', 'Gemini 3.1 Pro Preview · 정밀'],
-        ['gemini-2.5-flash', 'Gemini 2.5 Flash · 호환'],
         ['gemini-2.5-pro', 'Gemini 2.5 Pro · 정밀'],
         ['custom', '직접 입력']
       ]
@@ -71,7 +69,14 @@
     return (data.models || []).filter((model) => (model.supportedGenerationMethods || []).includes('generateContent')).map((model) => {
       const id = String(model.name || '').replace(/^models\//, '');
       return [id, model.displayName ? `${model.displayName} · ${id}` : id];
-    }).filter(([id]) => id.includes('gemini'));
+    }).filter(([id]) => isSupportedGeminiRecommendationModel(id));
+  }
+
+  function isSupportedGeminiRecommendationModel(id) {
+    const value = String(id || '').toLowerCase();
+    if (/(?:image|imagen|audio|live|tts|embedding|aqa|robotics|computer-use)/.test(value)) return false;
+    if (/^gemini-2\.5-pro(?:$|-preview(?:-|$))/.test(value)) return true;
+    return /^gemini-(?:[3-9](?:\.\d+)?)-(?:pro|flash|flash-lite)(?:$|-preview(?:-|$))/.test(value);
   }
 
   async function listDeepSeekModels(settings) {
