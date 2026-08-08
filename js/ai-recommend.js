@@ -7,6 +7,7 @@
   let resultItems = [];
   let recommendationInstruction = '';
   let catalogRefreshPromise = null;
+  let conversationStatusNode = null;
 
   function init() {
     recommendationInstruction = NS.aiInstructions.DEFAULT_RECOMMENDATION_INSTRUCTIONS;
@@ -21,7 +22,7 @@
     document.getElementById('aiRecommendDialog').addEventListener('close', handleDialogClose);
     document.getElementById('recommendAiProvider').addEventListener('change', onProviderChange);
     document.getElementById('recommendAiModel').addEventListener('change', onModelChange);
-    document.getElementById('recommendAiCustomModel').addEventListener('input', () => { refreshReasoning(); savePrefs(); });
+    document.getElementById('recommendAiCustomModel').addEventListener('input', () => { refreshReasoning(); savePrefs(); resetConnectionVerification(); });
     document.getElementById('recommendAiReasoning').addEventListener('change', savePrefs);
     document.getElementById('recommendLoadModelsButton').addEventListener('click', loadModels);
     document.getElementById('recommendTestButton').addEventListener('click', testConnection);
@@ -97,6 +98,7 @@
   function onProviderChange() {
     refreshProviderFields();
     savePrefs();
+    resetConnectionVerification();
     setBadge('연결 전', 'idle');
   }
 
@@ -104,6 +106,7 @@
     document.getElementById('recommendCustomModelField').hidden = document.getElementById('recommendAiModel').value !== 'custom';
     refreshReasoning();
     savePrefs();
+    resetConnectionVerification();
   }
 
   function refreshProviderFields() {
@@ -163,24 +166,34 @@
   async function loadModels() {
     if (busy) return;
     try {
-      setBusy(true); setBadge('조회 중', 'working');
+      setBusy(true, 'models'); setBadge('조회 중', 'working'); setConnectionFeedback('사용 가능한 모델을 확인하고 있슴다…', 'working');
       const models = await NS.aiProviders.listModels(settings());
       populateModels([...models, ['custom', '직접 입력']], NS.aiProviders.resolveModel(settings()));
       refreshReasoning(); setBadge(`모델 ${models.length}개`, 'success');
+      setConnectionFeedback(`모델 ${models.length}개를 불러왔슴다. 사용할 모델을 고른 뒤 연결 테스트를 눌러주십셔.`, 'success');
       NS.render.toast(`모델 ${models.length}개를 불러왔어요.`);
     } catch (error) {
-      console.error(error); NS.assistantAvatar?.setState('error'); setTimeout(() => NS.assistantAvatar?.setState('idle'), 1600); setBadge('조회 실패', 'error'); NS.render.toast(error.message || '모델을 불러오지 못했습니다.');
+      const message = error.message || '모델을 불러오지 못했습니다.';
+      console.error(error); NS.assistantAvatar?.setState('error'); setTimeout(() => NS.assistantAvatar?.setState('idle'), 1600); setBadge('조회 실패', 'error'); setConnectionFeedback(message, 'error'); NS.render.toast(message);
     } finally { setBusy(false); }
   }
 
   async function testConnection() {
     if (busy) return;
     try {
-      setBusy(true); setBadge('테스트 중', 'working');
+      setBusy(true, 'connection'); setBadge('테스트 중', 'working'); setConnectionFeedback('API 연결을 확인하고 있슴다…', 'working');
       const response = await NS.aiProviders.testConnection(settings());
-      setBadge('연결됨', 'success'); NS.render.toast(response.message || 'AI 연결 성공');
+      const message = response.message || 'AI 연결 성공';
+      setBadge('연결됨', 'success');
+      setConnectionFeedback(`✓ ${message}. 이제 설정을 닫고 원하는 기능을 말해주십셔.`, 'success');
+      appendAssistantMessage(`${message}! 이제 원하는 기능을 말해주시면 카탈로그 안에서 골라오겠슴다.`, 'success');
+      NS.render.toast(message);
     } catch (error) {
-      console.error(error); NS.assistantAvatar?.setState('error'); setTimeout(() => NS.assistantAvatar?.setState('idle'), 1600); setBadge('실패', 'error'); NS.render.toast(error.message || '연결 테스트에 실패했습니다.');
+      const message = error.message || '연결 테스트에 실패했습니다.';
+      console.error(error); NS.assistantAvatar?.setState('error'); setTimeout(() => NS.assistantAvatar?.setState('idle'), 1600); setBadge('실패', 'error');
+      setConnectionFeedback(`연결하지 못했슴다. ${message}`, 'error');
+      appendAssistantMessage(`연결 테스트에 실패했슴다. 설정값을 다시 확인해주십셔.`, 'error');
+      NS.render.toast(message);
     } finally { setBusy(false); }
   }
 
@@ -189,8 +202,17 @@
     const request = document.getElementById('recommendPrompt').value.trim();
     if (!request) { NS.render.toast('원하는 기능을 입력하세요.'); return; }
     beginConversation(request);
+    const config = settings();
+    if (!hasConnectionInput(config)) {
+      setConversationStatus('먼저 오른쪽 위 ⚙에서 API 정보를 넣고 연결 테스트를 눌러주십셔.', 'error');
+      setRunStatus('API 연결이 필요합니다.', 'error');
+      setConnectionFeedback(connectionInputGuide(config.provider), 'error');
+      openSettings(true);
+      return;
+    }
     try {
-      setBusy(true); setRunStatus('카탈로그를 확인하고 있습니다…', 'working');
+      setBusy(true, 'recommend'); setRunStatus('추천 작업 중…', 'working');
+      setConversationStatus('최신 카탈로그를 확인하고 있슴다…', 'working');
       await refreshCatalogForAi();
       const catalogCandidates = NS.state.value.catalog.extensions.map((item) => ({
         id: item.id, status: item.status, name: item.name, summary: item.summary,
@@ -199,6 +221,7 @@
       }));
       const catalogCandidateCount = catalogCandidates.length;
       updateCandidateCount('AI 전달 준비 완료');
+      setConversationStatus(`카탈로그 ${catalogCandidateCount}개 확인 완료. 요청에 맞는 후보를 골라오는 중임다…`, 'working');
       const prompt = [
         '다음 사용자 요청에 맞는 확프를 추천하세요.',
         '', '## 사용자 요청', request,
@@ -218,7 +241,10 @@
       document.getElementById('recommendPrompt').value = '';
       setRunStatus(`${catalogCandidateCount}개 후보 확인 · 추천 완료`, 'success');
     } catch (error) {
-      console.error(error); NS.assistantAvatar?.setState('error'); setTimeout(() => NS.assistantAvatar?.setState('idle'), 1800); setRunStatus(error.message || 'AI 추천에 실패했습니다.', 'error'); NS.render.toast('AI 추천에 실패했습니다. API 연결 상태를 확인하세요.');
+      const message = error.message || 'AI 추천에 실패했습니다.';
+      console.error(error); NS.assistantAvatar?.setState('error'); setTimeout(() => NS.assistantAvatar?.setState('idle'), 1800); setRunStatus(message, 'error');
+      setConversationStatus(`추천 중 문제가 생겼슴다. API 연결과 설정을 확인해주십셔.`, 'error');
+      NS.render.toast('AI 추천에 실패했습니다. API 연결 상태를 확인하세요.');
     } finally { setBusy(false); }
   }
 
@@ -226,6 +252,7 @@
     document.getElementById('recommendExamples').hidden = true;
     const container = document.getElementById('recommendResult');
     container.replaceChildren(createUserMessage(request));
+    conversationStatusNode = null;
     resultItems = [];
     document.getElementById('recommendApplyButton').disabled = true;
     scrollConversationToBottom();
@@ -235,6 +262,44 @@
     const message = create('div', 'ai-user-message');
     message.append(create('span', '', '나'), create('p', '', request));
     return message;
+  }
+
+  function createAssistantMessage(text, state) {
+    const message = create('div', 'ai-msg ai-msg--conversation');
+    const face = create('span', 'ai-msg__face', state === 'error' ? '•︵•' : '•ᴗ•');
+    face.setAttribute('aria-hidden', 'true');
+    const bubble = create('div', 'ai-msg__bubble');
+    if (state) bubble.dataset.state = state;
+    bubble.append(create('strong', '', '모아'), create('p', '', text));
+    message.append(face, bubble);
+    return message;
+  }
+
+  function appendAssistantMessage(text, state) {
+    const container = document.getElementById('recommendResult');
+    if (!container) return null;
+    const message = createAssistantMessage(text, state);
+    container.append(message);
+    scrollConversationToBottom();
+    return message;
+  }
+
+  function setConversationStatus(text, state) {
+    const container = document.getElementById('recommendResult');
+    if (!container) return;
+    if (!conversationStatusNode?.isConnected) {
+      conversationStatusNode = createAssistantMessage(text, state);
+      conversationStatusNode.classList.add('ai-progress-message');
+      container.append(conversationStatusNode);
+    } else {
+      const face = conversationStatusNode.querySelector('.ai-msg__face');
+      const bubble = conversationStatusNode.querySelector('.ai-msg__bubble');
+      const paragraph = bubble?.querySelector('p');
+      if (face) face.textContent = state === 'error' ? '•︵•' : '•ᴗ•';
+      if (bubble) bubble.dataset.state = state || '';
+      if (paragraph) paragraph.textContent = text;
+    }
+    scrollConversationToBottom();
   }
 
   function scrollConversationToBottom() {
@@ -307,8 +372,10 @@
 
   function renderResult(result, request) {
     const container = document.getElementById('recommendResult');
-    container.replaceChildren(createUserMessage(request)); resultItems = [];
-    if (result.summary) container.append(create('p', 'ai-recommend-summary', result.summary));
+    container.replaceChildren(createUserMessage(request));
+    conversationStatusNode = null;
+    resultItems = [];
+    container.append(createAssistantMessage(result.summary || '요청에 맞는 후보를 골라왔슴다.', 'success'));
     appendGroup(container, '기본 추천', result.selected, true);
     appendGroup(container, '선택 추천', result.optional, false);
     appendExcluded(container, result.excluded);
@@ -411,11 +478,40 @@
     try { localStorage.setItem(PREF_KEY, JSON.stringify(prefs)); } catch (_) { /* optional */ }
   }
 
-  function setBusy(value) {
+  function hasConnectionInput(config) {
+    if (config.provider === 'firebase') return Boolean(config.firebaseConfig);
+    return Boolean(config.apiKey);
+  }
+
+  function connectionInputGuide(provider) {
+    return provider === 'firebase'
+      ? 'Firebase 설정 코드를 넣은 뒤 연결 테스트를 눌러주십셔.'
+      : 'API 키를 넣은 뒤 연결 테스트를 눌러주십셔.';
+  }
+
+  function resetConnectionVerification() {
+    setBadge('연결 전', 'idle');
+    const status = document.getElementById('recommendConnectionStatus');
+    if (status) {
+      status.hidden = true;
+      status.textContent = '';
+      status.dataset.state = '';
+    }
+  }
+
+  function setConnectionFeedback(text, state) {
+    const status = document.getElementById('recommendConnectionStatus');
+    if (!status) return;
+    status.hidden = !text;
+    status.textContent = text || '';
+    status.dataset.state = state || '';
+  }
+
+  function setBusy(value, task) {
     busy = value;
-    NS.assistantAvatar?.setState(value ? 'thinking' : 'idle');
+    if (!value || task === 'recommend') NS.assistantAvatar?.setState(value ? 'thinking' : 'idle');
     ['recommendLoadModelsButton', 'recommendTestButton', 'recommendRunButton'].forEach((id) => { document.getElementById(id).disabled = value; });
-    document.getElementById('recommendRunButton').textContent = value ? '추천 중…' : '추천받기';
+    document.getElementById('recommendRunButton').textContent = value && task === 'recommend' ? '추천 중…' : '추천받기';
   }
   function setBadge(text, state) { const el = document.getElementById('recommendConnectionBadge'); el.textContent = text; el.dataset.state = state; }
   function setRunStatus(text, state) { const el = document.getElementById('recommendRunStatus'); el.hidden = !text; el.textContent = text; el.dataset.state = state; }

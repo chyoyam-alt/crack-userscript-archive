@@ -72,7 +72,7 @@
 
     byId('queueOpenButton')?.addEventListener('click', NS.queue.openCurrent);
     byId('queueDoneButton')?.addEventListener('click', NS.queue.markDone);
-    byId('queueSkipButton')?.addEventListener('click', NS.queue.skip);
+    byId('queueNextButton')?.addEventListener('click', NS.queue.next);
 
     document.querySelectorAll('.dialog-close').forEach((button) => {
       button.addEventListener('click', () => button.closest('dialog')?.close());

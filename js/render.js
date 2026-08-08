@@ -564,14 +564,14 @@
       waiting: '대기',
       opened: '설치 링크 열림',
       done: '완료로 표시',
-      skipped: '건너뜀'
+      skipped: '다음으로 넘김'
     }[state] || state;
   }
 
   function setQueueButtonsDisabled(all, openOnly) {
     document.getElementById('queueOpenButton').disabled = all || openOnly;
     document.getElementById('queueDoneButton').disabled = all;
-    document.getElementById('queueSkipButton').disabled = all;
+    document.getElementById('queueNextButton').disabled = all;
   }
 
   function renderPresets(presets) {

@@ -38,10 +38,10 @@
     NS.render.renderQueue();
   }
 
-  function skip() {
+  function next() {
     NS.state.markCurrentQueueItem('skipped');
     NS.render.renderQueue();
   }
 
-  NS.queue = { startFromSelection, openCurrent, markDone, skip };
+  NS.queue = { startFromSelection, openCurrent, markDone, next };
 })();

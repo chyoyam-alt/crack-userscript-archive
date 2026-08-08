@@ -14,7 +14,7 @@
     const label = document.getElementById('aiStaffState');
     if (label) label.textContent = {
       idle: label?.dataset.idleText || '확프 추천 도우미',
-      thinking: '카탈로그 확인 중…',
+      thinking: '추천 작업 중…',
       wave: '추천 준비됨',
       error: '연결 상태를 확인하세요' 
     }[next] || label?.dataset.idleText || '확프 추천 도우미';
