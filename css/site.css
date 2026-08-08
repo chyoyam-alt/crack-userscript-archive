@@ -6,7 +6,7 @@
   --ink:#161719; --ink-2:#44464c; --muted:#83858c; --faint:#adaeb6;
   --line:rgba(20,22,28,.13); --line-2:rgba(20,22,28,.2);
   --accent:#161719; --accent-ink:#ffffff; --accent-weak:rgba(22,23,25,.07); --blur:blur(16px) saturate(1.5);
-  --moa:#ffd84d; --moa-ink:#1e1a0d;
+  --moa:#d9bd62;
   --ease:cubic-bezier(.2,.7,.2,1); --wrap:1600px;
 }
 @media (prefers-color-scheme:dark){:root{
@@ -145,11 +145,10 @@ h1,h2,h3,p,dl,dd{margin:0}
 .selbar__actions .button{height:36px}
 
 /* ---- 모아: 우하단 상담 위젯 ---- */
-.ailauncher{position:fixed;right:18px;bottom:18px;z-index:58;display:inline-flex;align-items:center;justify-content:center;width:56px;min-width:56px;height:56px;padding:0;border:2px solid color-mix(in srgb,var(--moa-ink) 72%,transparent);border-radius:16px;background:linear-gradient(145deg,#ffe887,var(--moa));color:var(--moa-ink);box-shadow:0 0 0 4px color-mix(in srgb,var(--moa) 22%,transparent),0 14px 34px rgba(30,25,20,.28);animation:launcherIn .32s var(--ease) both;transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
-.ailauncher::after{content:"AI";position:absolute;right:-6px;top:-7px;display:grid;place-items:center;min-width:22px;height:17px;padding:0 4px;border:1px solid var(--moa-ink);border-radius:999px;background:#fff8d8;color:var(--moa-ink);font:900 8px var(--mono);letter-spacing:.04em}
-.ailauncher:hover{transform:translateY(-3px);box-shadow:0 0 0 5px color-mix(in srgb,var(--moa) 28%,transparent),0 17px 38px rgba(30,25,20,.32)}
-.ailauncher__face{position:relative;width:36px;height:36px;flex:0 0 auto;display:grid;place-items:center;border:1.8px solid var(--moa-ink);border-radius:50%;background:rgba(255,255,255,.72)}
-.ailauncher__kao{font-family:var(--mono);font-size:11px;font-weight:800;line-height:1;letter-spacing:0;color:var(--moa-ink);white-space:nowrap}
+.ailauncher{position:fixed;right:18px;bottom:18px;z-index:58;display:inline-flex;align-items:center;justify-content:center;width:52px;min-width:52px;height:52px;padding:0;border:1px solid color-mix(in srgb,var(--accent) 34%,var(--line-2));border-radius:13px;background:color-mix(in srgb,var(--solid) 82%,var(--moa));color:var(--ink);box-shadow:0 10px 28px rgba(30,25,20,.2);animation:launcherIn .32s var(--ease) both;transition:transform .2s var(--ease),border-color .2s var(--ease),box-shadow .2s var(--ease)}
+.ailauncher:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 13px 31px rgba(30,25,20,.24)}
+.ailauncher__face{position:relative;width:33px;height:33px;flex:0 0 auto;display:grid;place-items:center;border:1.5px solid var(--ink);border-radius:50%;background:color-mix(in srgb,var(--solid) 90%,var(--moa))}
+.ailauncher__kao{font-family:var(--mono);font-size:10px;font-weight:700;line-height:1;letter-spacing:0;color:var(--ink);white-space:nowrap}
 .ailauncher__on{position:absolute;right:-2px;bottom:-2px;width:10px;height:10px;border-radius:50%;background:#33c17a;border:2px solid var(--bg)}
 .ailauncher__txt{display:none}
 .ailauncher__txt b{font-family:var(--mono);font-size:12.5px;font-weight:800;letter-spacing:.01em}
@@ -163,8 +162,8 @@ h1,h2,h3,p,dl,dd{margin:0}
   #aiRecommendDialog>.ai-strip{padding:8px 14px}
 }
 @media (max-width:520px){
-  .ailauncher{right:14px;bottom:14px;width:60px;min-width:60px;height:60px;border-radius:18px}
-  .ailauncher__face{width:38px;height:38px}
+  .ailauncher{right:14px;bottom:14px;width:54px;min-width:54px;height:54px;border-radius:14px}
+  .ailauncher__face{width:34px;height:34px}
   #aiRecommendDialog{inset:max(6px,env(safe-area-inset-top)) 6px auto;height:calc(100dvh - max(6px,env(safe-area-inset-top)) - max(6px,env(safe-area-inset-bottom)));width:auto}
 }
 
@@ -204,8 +203,8 @@ dialog[open]::backdrop{animation:fadeIn .28s ease both}
 .ai-head__id h2{font-family:var(--mono);font-size:15px;font-weight:800}
 .ai-head__id p{font-size:11.5px;color:var(--muted)}
 .ai-head__actions{display:flex;gap:6px}
-#aiSettingsToggle{border-color:color-mix(in srgb,var(--moa-ink) 42%,var(--line-2));background:var(--moa);color:var(--moa-ink);font-size:17px;font-weight:800;box-shadow:0 0 0 3px color-mix(in srgb,var(--moa) 18%,transparent)}
-#aiSettingsToggle:hover{border-color:var(--moa-ink);color:var(--moa-ink)}
+#aiSettingsToggle{border-color:color-mix(in srgb,var(--accent) 28%,var(--line-2));background:color-mix(in srgb,var(--solid) 80%,var(--moa));color:var(--ink);font-size:16px;font-weight:800}
+#aiSettingsToggle:hover{border-color:var(--accent);color:var(--ink)}
 .ai-strip{display:flex;align-items:center;gap:9px;padding:10px 18px;border-bottom:1px solid var(--line);background:var(--panel-2);font-family:var(--mono);font-size:11.5px;color:var(--muted)}
 .ai-strip b{color:var(--ink)}
 .ai-strip__state{margin-left:auto;color:var(--faint)}
